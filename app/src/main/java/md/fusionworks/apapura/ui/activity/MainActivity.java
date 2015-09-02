@@ -1,16 +1,21 @@
-package md.fusionworks.apapura;
+package md.fusionworks.apapura.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+import md.fusionworks.apapura.R;
+import md.fusionworks.apapura.ui.fragment.MapFragment;
+
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        showFragment(R.id.containerLayout, MapFragment.newInstance());
     }
 
     @Override
