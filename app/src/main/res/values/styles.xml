@@ -1,9 +1,39 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="FrameworkRoot.Theme" parent="Theme.AppCompat.Light" />
+
+    <style name="Theme" parent="FrameworkRoot.Theme" />
+
+    <style name="Theme.ApaPura.Base" parent="Theme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:popupMenuStyle">@style/Widget.ApaPura.PopupMenu</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorControlHighlight">#3fff</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/TextAppearance.LargePopupMenu
+        </item>
+    </style>
+
+    <style name="Theme.ApaPura" parent="Theme.ApaPura.Base" />
+
+    <style name="Theme.ApaPura.WithNavDrawer" parent="Theme.ApaPura" />
+
+    <style name="Theme.ApaPura.Map" parent="Theme.ApaPura.WithNavDrawer" />
+
+    <style name="ActionBarThemeOverlay" parent="">
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="colorControlNormal">#fff</item>
+        <item name="colorControlHighlight">#3fff</item>
+    </style>
+
+    <style name="Widget.ApaPura.PopupMenu" parent="Widget.AppCompat.Light.PopupMenu">
+        <item name="android:textColor">#000</item>
+    </style>
+
+    <style name="TextAppearance.LargePopupMenu" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
+        <item name="android:textColor">@color/black</item>
     </style>
 
 </resources>

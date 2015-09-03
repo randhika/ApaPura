@@ -1,7 +1,14 @@
 package md.fusionworks.apapura.ui.activity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -16,8 +23,13 @@ public class MapActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.drawerLayout)
+    DrawerLayout drawerLayout;
+    @Bind(R.id.navigationView)
+    NavigationView navigationView;
 
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private GoogleMap map;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +40,9 @@ public class MapActivity extends BaseActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Map");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        setupDrawerLayout();
         setUpMapIfNeeded();
     }
 
@@ -38,10 +52,61 @@ public class MapActivity extends BaseActivity {
         setUpMapIfNeeded();
     }
 
+
+    private void setupDrawerLayout() {
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.app_name, R.string.app_name);
+        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                menuItem.setChecked(true);
+                drawerLayout.closeDrawers();
+
+
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        actionBarDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
      * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
+     * call {@link #setUpMap()} once when {@link #map} is not null.
      * <p/>
      * If it isn't installed {@link SupportMapFragment} (and
      * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
@@ -55,12 +120,12 @@ public class MapActivity extends BaseActivity {
      */
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
+        if (map == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+            map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMap();
             // Check if we were successful in obtaining the map.
-            if (mMap != null) {
+            if (map != null) {
                 setUpMap();
             }
         }
@@ -70,9 +135,9 @@ public class MapActivity extends BaseActivity {
      * This is where we can add markers or lines, add listeners or move the camera. In this case, we
      * just add a marker near Africa.
      * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
+     * This should only be called once and when we are sure that {@link #map} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
     }
 }
