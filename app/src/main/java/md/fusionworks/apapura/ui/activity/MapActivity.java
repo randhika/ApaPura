@@ -19,57 +19,29 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import md.fusionworks.apapura.R;
 
-public class MapActivity extends BaseActivity {
-
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-    @Bind(R.id.drawerLayout)
-    DrawerLayout drawerLayout;
-    @Bind(R.id.navigationView)
-    NavigationView navigationView;
+public class MapActivity extends BaseNavigationDrawerActivity {
 
     private GoogleMap map;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        ButterKnife.bind(this);
-
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Map");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        setupDrawerLayout();
         setUpMapIfNeeded();
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
+        setTitle("Map");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
-    }
-
-
-    private void setupDrawerLayout() {
-
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.app_name, R.string.app_name);
-        actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                menuItem.setChecked(true);
-                drawerLayout.closeDrawers();
-
-
-                return true;
-            }
-        });
     }
 
     @Override
@@ -79,24 +51,11 @@ public class MapActivity extends BaseActivity {
         return true;
     }
 
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        actionBarDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        actionBarDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
+                // drawerLayout.openDrawer(GravityCompat.START);
                 break;
         }
 
@@ -139,5 +98,11 @@ public class MapActivity extends BaseActivity {
      */
     private void setUpMap() {
         map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+    }
+
+    @Override
+    protected int getSelfDrawerItem() {
+
+        return DRAWER_ITEM_MAP;
     }
 }
