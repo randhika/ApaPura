@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="md.fusionworks.apapura">
+    package="md.fusionworks.aquamea">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.ApaPura">
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.MainActivity"
             android:label="@string/app_name"></activity>
 
         <meta-data
@@ -30,7 +30,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.activity.MapActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.MapActivity"
             android:label="@string/title_activity_map"
             android:theme="@style/Theme.ApaPura.Map">
             <intent-filter>
@@ -40,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.HealthActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.HealthActivity"
             android:label="@string/title_activity_health"
             android:theme="@style/Theme.ApaPura.Health"></activity>
     </application>

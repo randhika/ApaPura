@@ -1,4 +1,4 @@
-package md.fusionworks.apapura.ui.fragment;
+package md.fusionworks.aquamea.ui.fragment;
 
 
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import md.fusionworks.apapura.R;
+import md.fusionworks.aquamea.R;
 
 /**
  * A simple {@link Fragment} subclass.

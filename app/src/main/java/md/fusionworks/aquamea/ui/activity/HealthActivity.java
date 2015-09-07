@@ -1,27 +1,23 @@
-package md.fusionworks.apapura.ui.activity;
+package md.fusionworks.aquamea.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import md.fusionworks.apapura.R;
-import md.fusionworks.apapura.ui.fragment.MapFragment;
+import md.fusionworks.aquamea.R;
 
-public class MainActivity extends BaseActivity {
+public class HealthActivity extends BaseNavigationDrawerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        showFragment(R.id.containerLayout, MapFragment.newInstance());
+        setContentView(R.layout.activity_health);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_health, menu);
         return true;
     }
 
@@ -38,5 +34,11 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected int getSelfDrawerItem() {
+
+        return DRAWER_ITEM_HEALTH;
     }
 }

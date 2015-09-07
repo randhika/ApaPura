@@ -1,4 +1,4 @@
-package md.fusionworks.apapura.ui.activity;
+package md.fusionworks.aquamea.ui.activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;

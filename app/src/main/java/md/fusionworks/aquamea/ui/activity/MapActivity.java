@@ -1,12 +1,6 @@
-package md.fusionworks.apapura.ui.activity;
+package md.fusionworks.aquamea.ui.activity;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -15,9 +9,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import md.fusionworks.apapura.R;
+import md.fusionworks.aquamea.R;
 
 public class MapActivity extends BaseNavigationDrawerActivity {
 

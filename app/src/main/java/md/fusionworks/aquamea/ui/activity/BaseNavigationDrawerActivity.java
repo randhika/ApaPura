@@ -1,4 +1,4 @@
-package md.fusionworks.apapura.ui.activity;
+package md.fusionworks.aquamea.ui.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import md.fusionworks.apapura.R;
-import md.fusionworks.apapura.util.UIUtils;
+import md.fusionworks.aquamea.R;
+import md.fusionworks.aquamea.util.UIUtils;
 
 /**
  * Created by admin on 03.09.2015.

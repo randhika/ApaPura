@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package md.fusionworks.apapura.util;
+package md.fusionworks.aquamea.util;
 
 import android.os.Build;
 import android.view.View;

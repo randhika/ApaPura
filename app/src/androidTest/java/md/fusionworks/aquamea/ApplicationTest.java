@@ -1,4 +1,4 @@
-package md.fusionworks.apapura;
+package md.fusionworks.aquamea;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

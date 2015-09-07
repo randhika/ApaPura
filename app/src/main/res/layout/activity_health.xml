@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#eee"
     android:elevation="7dp"
-    tools:context="md.fusionworks.apapura.ui.activity.HealthActivity">
+    tools:context="md.fusionworks.aquamea.ui.activity.HealthActivity">
 
 
     <LinearLayout
