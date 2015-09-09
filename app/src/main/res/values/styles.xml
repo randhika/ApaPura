@@ -20,7 +20,10 @@
     <style name="Theme.ApaPura.WithNavDrawer" parent="Theme.ApaPura" />
 
     <style name="Theme.ApaPura.Map" parent="Theme.ApaPura.WithNavDrawer" />
+
     <style name="Theme.ApaPura.Health" parent="Theme.ApaPura.WithNavDrawer" />
+
+    <style name="Theme.ApaPura.AddWell" parent="Theme.ApaPura" />
 
     <style name="ActionBarThemeOverlay" parent="">
         <item name="android:textColorPrimary">#fff</item>
@@ -34,6 +37,12 @@
 
     <style name="TextAppearance.LargePopupMenu" parent="TextAppearance.AppCompat.Widget.PopupMenu.Large">
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="roomRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_drawable</item>
+        <item name="android:minHeight">24dip</item>
+        <item name="android:maxHeight">24dip</item>
     </style>
 
 </resources>

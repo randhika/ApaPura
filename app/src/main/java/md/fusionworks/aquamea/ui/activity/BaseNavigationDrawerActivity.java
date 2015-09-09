@@ -43,9 +43,9 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
 
     private static final int[] DRAWER_ICON_RES_ID = new int[]{
 
-            R.drawable.ic_lens_black_24dp,
-            R.drawable.ic_lens_black_24dp,
-            R.drawable.ic_lens_black_24dp
+            R.drawable.ic_water_black_24dp,
+            R.drawable.ic_water_black_24dp,
+            R.drawable.ic_water_black_24dp
     };
 
     @Bind(R.id.toolbar)

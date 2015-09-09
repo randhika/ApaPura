@@ -1,26 +1,43 @@
 package md.fusionworks.aquamea.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import md.fusionworks.aquamea.R;
 
 public class MapActivity extends BaseNavigationDrawerActivity {
 
     private GoogleMap map;
+    @Bind(R.id.addWellFab)
+    FloatingActionButton addWellFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        ButterKnife.bind(this);
         setUpMapIfNeeded();
+
+        addWellFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MapActivity.this, AddWellActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -97,4 +114,6 @@ public class MapActivity extends BaseNavigationDrawerActivity {
 
         return DRAWER_ITEM_MAP;
     }
+
+
 }

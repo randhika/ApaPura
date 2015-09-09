@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eee"
-    android:elevation="7dp"
+    android:elevation="16dp"
     tools:context="md.fusionworks.aquamea.ui.activity.MapActivity">
 
     <android.support.design.widget.CoordinatorLayout
@@ -32,14 +32,14 @@
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/addWellFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
             android:src="@drawable/ic_add_white_24dp"
             app:elevation="6dp"
-            app:layout_anchorGravity="bottom|right|end"
-            app:pressedTranslationZ="12dp" />
+            app:layout_anchorGravity="bottom|right|end" />
 
     </android.support.design.widget.CoordinatorLayout>
 
