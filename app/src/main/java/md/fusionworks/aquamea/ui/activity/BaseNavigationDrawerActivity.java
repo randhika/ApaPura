@@ -253,6 +253,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
     }
 
     private void setSelectedDrawerItem(int itemId) {
+
         if (drawerItemViews != null) {
             for (int i = 0; i < drawerItemViews.length; i++) {
                 if (i < drawerItems.size()) {

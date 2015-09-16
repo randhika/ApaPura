@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
     <!--
  The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but are recommended.
@@ -32,6 +36,7 @@
         <activity
             android:name=".ui.activity.MapActivity"
             android:label="@string/title_activity_map"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.Map">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +52,7 @@
             android:name=".ui.activity.AddWellActivity"
             android:label="@string/title_activity_add_well"
             android:parentActivityName=".ui.activity.MapActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.AddWell">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
