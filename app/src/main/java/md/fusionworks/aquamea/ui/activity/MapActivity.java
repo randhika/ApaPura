@@ -106,6 +106,8 @@ public class MapActivity extends BaseNavigationDrawerActivity {
      * This should only be called once and when we are sure that {@link #map} is not null.
      */
     private void setUpMap() {
+        map.setMyLocationEnabled(true);
+        map.getUiSettings().setZoomControlsEnabled(false);
         map.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
     }
 

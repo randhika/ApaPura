@@ -58,7 +58,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:elevation="2dp"
             android:orientation="vertical">
 
 
@@ -76,7 +75,7 @@
                     android:layout_marginRight="8dp"
                     android:layout_weight="30"
                     android:gravity="right"
-                    android:text="Appereance"
+                    android:text="Appearance"
                     android:textColor="#aaa"
                     android:textSize="16sp"
                     view:typeface="font/Roboto-Regular.ttf" />
@@ -87,6 +86,7 @@
                     android:layout_weight="60">
 
                     <RatingBar
+                        android:id="@+id/appearanceRatingBar"
                         style="@style/roomRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -125,6 +125,7 @@
                     android:layout_weight="60">
 
                     <RatingBar
+                        android:id="@+id/tasteRatingBar"
                         style="@style/roomRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -163,6 +164,7 @@
                     android:layout_weight="60">
 
                     <RatingBar
+                        android:id="@+id/smellRatingBar"
                         style="@style/roomRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -177,7 +179,7 @@
                 android:background="#eee" />
 
             <LinearLayout
-                android:id="@+id/location"
+                android:id="@+id/coordinatesLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"

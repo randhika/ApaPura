@@ -2,15 +2,10 @@ package md.fusionworks.aquamea.ui.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,6 +21,8 @@ public class EmptyImageView extends FrameLayout {
     @Bind(R.id.emptyLayout)
     View emptyLayout;
 
+    Bitmap bitmapReference;
+
     public EmptyImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -33,17 +30,38 @@ public class EmptyImageView extends FrameLayout {
         ButterKnife.bind(this);
     }
 
-    public void setImage(Uri uri) {
+    public void setImageBitmap(Bitmap bitmap) {
 
         emptyLayout.setVisibility(GONE);
-
-        imageView.setImageURI(uri);
+        imageView.setImageBitmap(bitmap);
+        this.bitmapReference = bitmap;
     }
 
-    public void setImage(Bitmap bitmap) {
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
 
-        emptyLayout.setVisibility(GONE);
+        clearImageView();
+    }
 
-        imageView.setImageBitmap(bitmap);
+    public boolean hasImage() {
+
+        return bitmapReference != null;
+    }
+
+    public void removeImage() {
+
+        emptyLayout.setVisibility(VISIBLE);
+        clearImageView();
+    }
+
+    private void clearImageView() {
+
+        imageView.setImageBitmap(null);
+        if (bitmapReference != null) {
+
+            bitmapReference.recycle();
+            bitmapReference = null;
+        }
     }
 }
