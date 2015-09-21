@@ -27,6 +27,7 @@ import butterknife.ButterKnife;
 import md.fusionworks.aquamea.R;
 import md.fusionworks.aquamea.ui.view.EmptyImageView;
 import md.fusionworks.aquamea.util.BitmapUtils;
+import md.fusionworks.aquamea.util.CommonConstants;
 import md.fusionworks.aquamea.util.GPSTracker;
 
 public class AddWellActivity extends BaseActivity implements View.OnClickListener {
@@ -54,11 +55,23 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
     RatingBar smellRatingBar;
 
     private GPSTracker gpsTracker;
+    private Double latitude;
+    private Double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_well);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+
+            if (extras.containsKey(CommonConstants.EXTRA_PARAM_LATITUDE)) {
+
+                latitude = extras.getDouble(CommonConstants.EXTRA_PARAM_LATITUDE);
+                longitude = extras.getDouble(CommonConstants.EXTRA_PARAM_LONGITUDE);
+            }
+        }
 
         ButterKnife.bind(this);
 
@@ -85,6 +98,15 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if (id == R.id.action_add_well) {
+
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
+            finish();
+
             return true;
         }
 

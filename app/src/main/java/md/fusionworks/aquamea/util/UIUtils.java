@@ -19,12 +19,15 @@ package md.fusionworks.aquamea.util;
 import android.os.Build;
 import android.view.View;
 
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+
 /**
  * An assortment of UI helpers.
  */
 public class UIUtils {
 
     public static void setAccessibilityIgnore(View view) {
+
         view.setClickable(false);
         view.setFocusable(false);
         view.setContentDescription("");
@@ -33,4 +36,14 @@ public class UIUtils {
         }
     }
 
+    public static float getMarkerColorByWaterRating(double rating) {
+
+        if (rating >= 0 && rating < 3)
+            return BitmapDescriptorFactory.HUE_RED;
+
+        if (rating >= 3 && rating < 4)
+            return BitmapDescriptorFactory.HUE_GREEN;
+
+        return BitmapDescriptorFactory.HUE_BLUE;
+    }
 }

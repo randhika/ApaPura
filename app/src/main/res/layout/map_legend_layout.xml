@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:background="#ccffffff"
+    android:elevation="2dp"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <md.fusionworks.aquamea.ui.view.TypefaceTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quality (1-5)"
+        android:textSize="12sp"
+        android:gravity="center"
+        app:typeface="font/Roboto-Regular.ttf" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_map_marker_black_24dp"
+            android:tint="#ff0000" />
+
+        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 to 3"
+            android:textSize="12sp"
+            app:typeface="font/Roboto-Regular.ttf" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_map_marker_black_24dp"
+            android:tint="#00ff00" />
+
+        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3 to 4"
+            android:textSize="12sp"
+            app:typeface="font/Roboto-Regular.ttf" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center|left"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_map_marker_black_24dp"
+            android:tint="#0000ff" />
+
+        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 to 5.1"
+            android:textSize="12sp"
+            app:typeface="font/Roboto-Regular.ttf" />
+    </LinearLayout>
+</LinearLayout>

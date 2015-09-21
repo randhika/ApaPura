@@ -11,9 +11,9 @@
     tools:context="md.fusionworks.aquamea.ui.activity.MapActivity">
 
     <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,14 +21,21 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/toolbar"
+                 android:id="@+id/toolbar"
                 layout="@layout/tool_bar"></include>
 
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent">
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <include layout="@layout/map_legend_layout" />
+            </FrameLayout>
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
