@@ -28,6 +28,7 @@ public class EmptyImageView extends FrameLayout {
 
         inflate(context, R.layout.photo_view_layout, this);
         ButterKnife.bind(this);
+        setTag(null);
     }
 
     public void setImageBitmap(Bitmap bitmap) {
@@ -53,6 +54,7 @@ public class EmptyImageView extends FrameLayout {
 
         emptyLayout.setVisibility(VISIBLE);
         clearImageView();
+        setTag(null);
     }
 
     private void clearImageView() {

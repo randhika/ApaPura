@@ -23,7 +23,7 @@
 
     <style name="Theme.ApaPura.Health" parent="Theme.ApaPura.WithNavDrawer" />
 
-    <style name="Theme.ApaPura.AddWell" parent="Theme.ApaPura" />
+    <style name="Theme.ApaPura.AddWell" parent="Theme.ApaPura.WithNavDrawer" />
 
     <style name="ActionBarThemeOverlay" parent="">
         <item name="android:textColorPrimary">#fff</item>

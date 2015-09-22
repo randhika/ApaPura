@@ -12,9 +12,9 @@
     <md.fusionworks.aquamea.ui.view.TypefaceTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Quality (1-5)"
         android:textSize="12sp"
-        android:gravity="center"
         app:typeface="font/Roboto-Regular.ttf" />
 
     <LinearLayout
@@ -79,4 +79,11 @@
             android:textSize="12sp"
             app:typeface="font/Roboto-Regular.ttf" />
     </LinearLayout>
+
+    <md.fusionworks.aquamea.ui.view.TypefaceTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:text="Hide" />
+
 </LinearLayout>

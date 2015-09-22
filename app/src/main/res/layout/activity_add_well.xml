@@ -37,6 +37,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
                 android:elevation="4dp"
                 android:theme="@style/ActionBarThemeOverlay"
                 app:layout_collapseMode="pin"
@@ -221,6 +222,7 @@
 
 
             <md.fusionworks.aquamea.ui.view.TypefaceEditText
+                android:id="@+id/noteField"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="16dp"
