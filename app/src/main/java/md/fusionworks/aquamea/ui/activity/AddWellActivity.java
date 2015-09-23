@@ -4,10 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
-import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -22,10 +21,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,9 +39,10 @@ import md.fusionworks.aquamea.R;
 import md.fusionworks.aquamea.ui.view.EmptyImageView;
 import md.fusionworks.aquamea.util.BitmapUtils;
 import md.fusionworks.aquamea.util.CommonConstants;
+import md.fusionworks.aquamea.util.DialogUtils;
 import md.fusionworks.aquamea.util.GPSTracker;
 
-public class AddWellActivity extends BaseActivity implements View.OnClickListener {
+public class AddWellActivity extends BaseLocationActivity implements View.OnClickListener {
 
     private static final int OPTION_TAKE_PHOTO = 0;
     private static final int OPTION_PICK_PHOTO = 1;
@@ -58,6 +60,8 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
     private static final String KEY_SMELL = "KEY_SMELL";
     private static final String KEY_TASTE = "KEY_TASTE";
     private static final String KEY_NOTE = "KEY_NOTE";
+    private static final String KEY_LATITUDE = "KEY_LATITUDE";
+    private static final String KEY_LONGITUDE = "KEY_LONGITUDE";
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -77,6 +81,10 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
     RatingBar smellRatingBar;
     @Bind(R.id.noteField)
     EditText noteField;
+    @Bind(R.id.latitudeField)
+    TextView latitudeField;
+    @Bind(R.id.longitudeField)
+    TextView longitudeField;
 
     private GPSTracker gpsTracker;
     private Double latitude;
@@ -96,7 +104,8 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
                 latitude = extras.getDouble(CommonConstants.EXTRA_PARAM_LATITUDE);
                 longitude = extras.getDouble(CommonConstants.EXTRA_PARAM_LONGITUDE);
             }
-        }
+        } else
+            DialogUtils.showAlertDialog(this, "GPS Location error", "Cannot gather GPS data at this moment. Make sure your location services allow for GPS positioning.");
 
         ButterKnife.bind(this);
 
@@ -105,6 +114,8 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
 
         collapsingToolbarLayout.setTitle("Add well");
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+
+        // fillUI();
 
         photoFab.setOnClickListener(this);
         coordinatesLayout.setOnClickListener(this);
@@ -139,6 +150,15 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void fillUI() {
+
+        if (latitude != null) {
+
+            latitudeField.setText(String.valueOf(latitude));
+            longitudeField.setText(String.valueOf(longitude));
+        }
     }
 
     private File getPhotoAlbumDir() {
@@ -219,18 +239,8 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
 
     private void determineGPSCoordinates() {
 
-        gpsTracker = new GPSTracker(this);
-
-        if (gpsTracker.canGetLocation()) {
-
-            double latitude = gpsTracker.getLatitude();
-            double longitude = gpsTracker.getLongitude();
-
-            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-        } else {
-
-            gpsTracker.showSettingsAlert();
-        }
+        buildGoogleApiClient();
+        connectGoogleApiClient();
     }
 
     private void enterGPSCoordinatesManually() {
@@ -424,6 +434,8 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
         outState.putInt(KEY_TASTE, (int) tasteRatingBar.getRating());
         outState.putInt(KEY_SMELL, (int) smellRatingBar.getRating());
         outState.putString(KEY_NOTE, noteField.getText().toString());
+        outState.putString(KEY_LATITUDE, latitudeField.getText().toString());
+        outState.putString(KEY_LONGITUDE, longitudeField.getText().toString());
 
         super.onSaveInstanceState(outState);
     }
@@ -437,11 +449,15 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
         int smellRating = savedInstanceState.getInt(KEY_SMELL);
         int tasteRating = savedInstanceState.getInt(KEY_TASTE);
         String note = savedInstanceState.getString(KEY_NOTE);
+        String latitude = savedInstanceState.getString(KEY_LATITUDE);
+        String longitude = savedInstanceState.getString(KEY_LONGITUDE);
 
         appearanceRatingBar.setRating(appearanceRating);
         smellRatingBar.setRating(smellRating);
         tasteRatingBar.setRating(tasteRating);
         noteField.setText(note);
+        latitudeField.setText(latitude);
+        longitudeField.setText(longitude);
 
         if (photoPath != null) {
 
@@ -453,5 +469,16 @@ public class AddWellActivity extends BaseActivity implements View.OnClickListene
             }
             emptyImageView.setTag(photoPath);
         }
+    }
+
+    @Override
+    public void onGetLastLocation(GoogleApiClient googleApiClient, Location location) {
+
+        if (location != null) {
+
+            latitudeField.setText(String.valueOf(location.getLatitude()));
+            longitudeField.setText(String.valueOf(location.getLongitude()));
+        }
+        disconnectGoogleApiClient();
     }
 }

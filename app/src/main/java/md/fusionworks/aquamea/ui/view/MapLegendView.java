@@ -28,7 +28,7 @@ public class MapLegendView extends LinearLayout implements View.OnClickListener 
         inflate(context, R.layout.map_legend_layout, this);
         ButterKnife.bind(this);
 
-        showLegend();
+        hideLegend();
 
         hideShowLegendInfoLayout.setOnClickListener(this);
     }
@@ -36,13 +36,13 @@ public class MapLegendView extends LinearLayout implements View.OnClickListener 
     public void showLegend() {
 
         legendInfoLayout.setVisibility(VISIBLE);
-        hideShowLegendInfoField.setText("Hide legend");
+        hideShowLegendInfoField.setText("Hide");
     }
 
     public void hideLegend() {
 
         legendInfoLayout.setVisibility(GONE);
-        hideShowLegendInfoField.setText("Show legend");
+        hideShowLegendInfoField.setText("Legend");
     }
 
     public boolean isLegendShowed() {
