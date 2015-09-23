@@ -19,12 +19,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import md.fusionworks.aquamea.R;
+import md.fusionworks.aquamea.ui.view.MapLegendView;
 import md.fusionworks.aquamea.util.CommonConstants;
 import md.fusionworks.aquamea.util.UIUtils;
 
@@ -33,10 +33,14 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     public static final int ACTIVITY_RESULT_ADD_WELL = 0;
     public static final int CAMERA_POSITION_ZOOM = 15;
 
+    private static final String KEY_MAP_LEGEND_VIEW_WAS_SHOWED = "KEY_MAP_LEGEND_VIEW_VISIBILITY";
+
     @Bind(R.id.addWellFab)
     FloatingActionButton addWellFab;
     @Bind(R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
+    @Bind(R.id.mapLegendView)
+    MapLegendView mapLegendView;
 
     private GoogleMap map;
     private GoogleApiClient googleApiClient;
@@ -209,5 +213,24 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     public void onConnectionSuspended(int cause) {
 
         googleApiClient.connect();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        outState.putBoolean(KEY_MAP_LEGEND_VIEW_WAS_SHOWED, mapLegendView.isLegendShowed());
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        boolean mapLegendViewWasShowed = savedInstanceState.getBoolean(KEY_MAP_LEGEND_VIEW_WAS_SHOWED);
+        if (mapLegendViewWasShowed)
+            mapLegendView.showLegend();
+        else
+            mapLegendView.hideLegend();
     }
 }
