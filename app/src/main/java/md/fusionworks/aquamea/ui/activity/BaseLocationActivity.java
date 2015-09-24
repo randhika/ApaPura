@@ -30,13 +30,13 @@ public abstract class BaseLocationActivity extends BaseActivity implements Googl
         return googleApiClient;
     }
 
-    public void connectGoogleApiClient(){
+    public void connectGoogleApiClient() {
 
         if (!googleApiClient.isConnected())
             googleApiClient.connect();
     }
 
-    public void disconnectGoogleApiClient(){
+    public void disconnectGoogleApiClient() {
 
         if (googleApiClient.isConnected())
             googleApiClient.disconnect();
@@ -61,7 +61,7 @@ public abstract class BaseLocationActivity extends BaseActivity implements Googl
     public void onConnected(Bundle connectionHint) {
 
         myLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
-        onGetLastLocation(googleApiClient, myLastLocation);
+        onGetLastLocation(myLastLocation);
     }
 
     @Override
@@ -76,5 +76,5 @@ public abstract class BaseLocationActivity extends BaseActivity implements Googl
         googleApiClient.connect();
     }
 
-    public abstract void onGetLastLocation(GoogleApiClient googleApiClient, Location location);
+    public abstract void onGetLastLocation(Location location);
 }

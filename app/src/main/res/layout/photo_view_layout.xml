@@ -11,7 +11,7 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:src="@drawable/photo_icon"
-            android:tint="#d7d7d7" />
+            android:tint="@color/icons" />
     </RelativeLayout>
 
     <ImageView

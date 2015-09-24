@@ -6,27 +6,25 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,12 +33,13 @@ import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 import md.fusionworks.aquamea.R;
+import md.fusionworks.aquamea.model.Well;
 import md.fusionworks.aquamea.ui.view.EmptyImageView;
 import md.fusionworks.aquamea.util.BitmapUtils;
 import md.fusionworks.aquamea.util.CommonConstants;
 import md.fusionworks.aquamea.util.DialogUtils;
-import md.fusionworks.aquamea.util.GPSTracker;
 
 public class AddWellActivity extends BaseLocationActivity implements View.OnClickListener {
 
@@ -69,8 +68,8 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     CollapsingToolbarLayout collapsingToolbarLayout;
     @Bind(R.id.photoFab)
     FloatingActionButton photoFab;
-    @Bind(R.id.coordinatesLayout)
-    LinearLayout coordinatesLayout;
+    @Bind(R.id.coordinatesCardView)
+    View coordinatesCardView;
     @Bind(R.id.emptyImageView)
     EmptyImageView emptyImageView;
     @Bind(R.id.appearanceRatingBar)
@@ -86,26 +85,12 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     @Bind(R.id.longitudeField)
     TextView longitudeField;
 
-    private GPSTracker gpsTracker;
-    private Double latitude;
-    private Double longitude;
     private String currentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_well);
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-
-            if (extras.containsKey(CommonConstants.EXTRA_PARAM_LATITUDE)) {
-
-                latitude = extras.getDouble(CommonConstants.EXTRA_PARAM_LATITUDE);
-                longitude = extras.getDouble(CommonConstants.EXTRA_PARAM_LONGITUDE);
-            }
-        } else
-            DialogUtils.showAlertDialog(this, "GPS Location error", "Cannot gather GPS data at this moment. Make sure your location services allow for GPS positioning.");
 
         ButterKnife.bind(this);
 
@@ -118,7 +103,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
         // fillUI();
 
         photoFab.setOnClickListener(this);
-        coordinatesLayout.setOnClickListener(this);
+        coordinatesCardView.setOnClickListener(this);
     }
 
     @Override
@@ -130,20 +115,24 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         if (id == R.id.action_add_well) {
 
+            saveWell();
+
+            return true;
+        }
+
+        if (id == R.id.home) {
+
             Intent intent = new Intent();
-            setResult(RESULT_OK, intent);
+            setResult(RESULT_CANCELED, intent);
             finish();
 
             return true;
@@ -152,13 +141,54 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
         return super.onOptionsItemSelected(item);
     }
 
-    private void fillUI() {
+    private void saveWell() {
 
-        if (latitude != null) {
+        if (validateInput()) {
 
-            latitudeField.setText(String.valueOf(latitude));
-            longitudeField.setText(String.valueOf(longitude));
+            final String photoPath = (String) emptyImageView.getTag();
+            final int appearanceRating = (int) appearanceRatingBar.getRating();
+            final int tasteRating = (int) tasteRatingBar.getRating();
+            final int smellRating = (int) smellRatingBar.getRating();
+            final String note = noteField.getText().toString();
+            final double latitude = Double.valueOf(latitudeField.getText().toString());
+            final double longitude = Double.valueOf(longitudeField.getText().toString());
+
+            final Well well = new Well();
+            well.setPhotoPath(photoPath);
+            well.setAppearanceRating(appearanceRating);
+            well.setSmellRating(smellRating);
+            well.setTasteRating(tasteRating);
+            well.setNote(note);
+            well.setLatitude(latitude);
+            well.setLongitude(longitude);
+
+            Realm realm = Realm.getInstance(this);
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+
+                    realm.copyToRealm(well);
+                }
+            });
+
+            Intent intent = new Intent();
+            intent.putExtra(CommonConstants.EXTRA_PARAM_WELL, well);
+            setResult(RESULT_OK, intent);
+            finish();
         }
+    }
+
+    private boolean validateInput() {
+
+        boolean isValid = true;
+
+        if (TextUtils.isEmpty(latitudeField.getText().toString()) || TextUtils.isEmpty(longitudeField.getText().toString())) {
+
+            isValid = false;
+            DialogUtils.showAlertDialog(this, "Validation error", "Well GPS coordinates are required!");
+        }
+
+        return isValid;
     }
 
     private File getPhotoAlbumDir() {
@@ -254,6 +284,11 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                     @Override
                     public void onPositive(MaterialDialog dialog) {
 
+                        EditText dialogLatitudeField = (EditText) dialog.findViewById(R.id.latitudeField);
+                        EditText dialogLongitudeField = (EditText) dialog.findViewById(R.id.longitudeField);
+
+                        latitudeField.setText(dialogLatitudeField.getText().toString());
+                        longitudeField.setText(dialogLongitudeField.getText().toString());
                     }
 
                     @Override
@@ -340,7 +375,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
                 break;
 
-            case R.id.coordinatesLayout:
+            case R.id.coordinatesCardView:
 
                 new MaterialDialog.Builder(AddWellActivity.this)
                         .items(R.array.coordinates_options)
@@ -472,12 +507,15 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     }
 
     @Override
-    public void onGetLastLocation(GoogleApiClient googleApiClient, Location location) {
+    public void onGetLastLocation(Location location) {
 
         if (location != null) {
 
             latitudeField.setText(String.valueOf(location.getLatitude()));
             longitudeField.setText(String.valueOf(location.getLongitude()));
+        } else {
+
+            DialogUtils.showAlertDialog(this, "GPS Location error", "Cannot gather GPS data at this moment. Make sure your location services allow for GPS positioning.");
         }
         disconnectGoogleApiClient();
     }

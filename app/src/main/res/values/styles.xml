@@ -6,11 +6,12 @@
 
     <style name="Theme.ApaPura.Base" parent="Theme">
         <item name="windowActionBar">false</item>
+        <item name="colorControlNormal">@color/divider_dark</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="android:popupMenuStyle">@style/Widget.ApaPura.PopupMenu</item>
-        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorAccent">@color/accent </item>
         <item name="android:textAppearanceLargePopupMenu">@style/TextAppearance.LargePopupMenu
         </item>
     </style>

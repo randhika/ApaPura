@@ -5,6 +5,5 @@ package md.fusionworks.aquamea.util;
  */
 public class CommonConstants {
 
-    public static final String EXTRA_PARAM_LATITUDE = "EXTRA_PARAM_LATITUDE";
-    public static final String EXTRA_PARAM_LONGITUDE = "EXTRA_PARAM_LONGITUDE";
+    public static final String EXTRA_PARAM_WELL = "EXTRA_PARAM_WELL";
 }

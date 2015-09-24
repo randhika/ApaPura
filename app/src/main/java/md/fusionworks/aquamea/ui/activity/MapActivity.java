@@ -23,10 +23,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.realm.RealmResults;
 import md.fusionworks.aquamea.R;
+import md.fusionworks.aquamea.model.Well;
+import md.fusionworks.aquamea.provider.WellProvider;
 import md.fusionworks.aquamea.ui.view.MapLegendView;
 import md.fusionworks.aquamea.util.CommonConstants;
 import md.fusionworks.aquamea.util.UIUtils;
+import md.fusionworks.aquamea.util.Utils;
 
 public class MapActivity extends BaseNavigationDrawerActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
@@ -59,12 +63,6 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
             public void onClick(View v) {
 
                 Intent intent = new Intent(MapActivity.this, AddWellActivity.class);
-
-                if (myLastLocation != null) {
-
-                    intent.putExtra(CommonConstants.EXTRA_PARAM_LATITUDE, myLastLocation.getLatitude());
-                    intent.putExtra(CommonConstants.EXTRA_PARAM_LONGITUDE, myLastLocation.getLongitude());
-                }
                 startActivityForResult(intent, ACTIVITY_RESULT_ADD_WELL);
             }
         });
@@ -118,6 +116,13 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     private void setUpMap() {
 
         map.setMyLocationEnabled(true);
+
+        RealmResults<Well> wells = WellProvider.newInstance(this).getAll();
+        for (Well well : wells) {
+
+            int rating = Utils.calculateWaterRating(well.getAppearanceRating(), well.getTasteRating(), well.getSmellRating());
+            createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+        }
     }
 
     @Override
@@ -136,13 +141,16 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
                 case ACTIVITY_RESULT_ADD_WELL:
 
+                    Well well = (Well) data.getSerializableExtra(CommonConstants.EXTRA_PARAM_WELL);
+                    int rating = Utils.calculateWaterRating(well.getAppearanceRating(), well.getTasteRating(), well.getSmellRating());
+                    goToPosition(well.getLatitude(), well.getLongitude());
+                    createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+
                     coordinatorLayout.postDelayed(new Runnable() {
                         @Override
                         public void run() {
 
                             Snackbar.make(coordinatorLayout, "Well added", Snackbar.LENGTH_SHORT).show();
-                            goToPosition(myLastLocation.getLatitude(), myLastLocation.getLongitude());
-                            createMarker(myLastLocation.getLatitude(), myLastLocation.getLongitude(), UIUtils.getMarkerColorByWaterRating(3));
                         }
                     }, 500);
                     break;

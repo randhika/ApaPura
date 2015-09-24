@@ -5,8 +5,9 @@ package md.fusionworks.aquamea.util;
  */
 public class Utils {
 
-    public static double calculateWaterRating(int appearance, int taste, int smell) {
+    public static int calculateWaterRating(int appearance, int taste, int smell) {
 
-        return (appearance + taste + smell) / 3;
+        int total = appearance + taste + smell;
+        return (total > 0) ? total / 3 : 0;
     }
 }
