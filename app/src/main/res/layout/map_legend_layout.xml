@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/legend_title"
+            android:text="@string/title_legend"
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_small"
             app:typeface="font/Roboto-Regular.ttf" />

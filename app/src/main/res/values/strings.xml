@@ -31,24 +31,23 @@
         <item>Determine GPS coordinates</item>
         <item>Enter GPS coordinates manually</item>
     </string-array>
-    <string name="title_activity_well_detail">Well Detail</string>
-    <string name="activity_title_add_well">Add well</string>
-    <string name="add_well_validation_error_title">Validation error</string>
-    <string name="add_well_coordidnates_validation_error_message">Well GPS coordinates are required!</string>
-    <string name="add_well_save">Save</string>
-    <string name="add_well_enter_gps_coordinates_title">Enter GPS coordinates</string>
-    <string name="add_well_gps_location_error_title">GPS Location error</string>
-    <string name="add_well_gps_location_error_message">Cannot gather GPS data at this moment. Make sure your location services allow for GPS positioning.</string>
-    <string name="activity_title_map">Map</string>
-    <string name="map_well_added">Well added</string>
-    <string name="activity_title_well_detail">Well detail</string>
-    <string name="legend_action_hide">Hide</string>
-    <string name="legend_action_show">Legend</string>
+    <string name="module_title_add_well">Add well</string>
+    <string name="dialog_title_validation_error">Validation error</string>
+    <string name="validation_error_message_gps_coordinates_required">Well GPS coordinates are required!</string>
+    <string name="action_save">Save</string>
+    <string name="dialog_title_enter_gps_coordinates">Enter GPS coordinates</string>
+    <string name="dialog_title_gps_location_error">GPS Location error</string>
+    <string name="info_cannot_get_gps_coordiates">Cannot gather GPS data at this moment. Make sure your location services allow for GPS positioning.</string>
+    <string name="module_title_map">Map</string>
+    <string name="info_well_added">Well added</string>
+    <string name="module_title_well_detail">Well detail</string>
+    <string name="action_hide">Hide</string>
+    <string name="action_show_legend">Legend</string>
     <string name="menu_option_add_well">Add well</string>
-    <string name="legend_title">Quality (1-5)</string>
+    <string name="title_legend">Quality (1-5)</string>
     <string name="legend_rate_0_3">0 to 3</string>
     <string name="legend_rate_3_4">3 to 4</string>
     <string name="legend_rate_4_5_1">4 to 5.1</string>
-    <string name="add_gps_coordiates_dialog_latitude">Latitude</string>
-    <string name="add_gps_coordiates_dialog_longitude">Longitude</string>
+    <string name="field_latitude">Latitude</string>
+    <string name="field_longitude">Longitude</string>
 </resources>

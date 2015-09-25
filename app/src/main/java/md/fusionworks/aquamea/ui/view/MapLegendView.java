@@ -36,13 +36,13 @@ public class MapLegendView extends LinearLayout implements View.OnClickListener 
     public void showLegend() {
 
         legendInfoLayout.setVisibility(VISIBLE);
-        hideShowLegendInfoField.setText(R.string.legend_action_hide);
+        hideShowLegendInfoField.setText(R.string.action_hide);
     }
 
     public void hideLegend() {
 
         legendInfoLayout.setVisibility(GONE);
-        hideShowLegendInfoField.setText(R.string.legend_action_show);
+        hideShowLegendInfoField.setText(R.string.action_show_legend);
     }
 
     public boolean isLegendShowed() {

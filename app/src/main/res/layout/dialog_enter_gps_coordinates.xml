@@ -12,7 +12,7 @@
             android:id="@+id/latitudeField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/add_gps_coordiates_dialog_latitude"
+            android:hint="@string/field_latitude"
             android:inputType="numberDecimal">
 
             <requestFocus />
@@ -27,7 +27,7 @@
             android:id="@+id/longitudeField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/add_gps_coordiates_dialog_longitude"
+            android:hint="@string/field_longitude"
             android:inputType="numberDecimal" />
     </android.support.design.widget.TextInputLayout>
 </LinearLayout>

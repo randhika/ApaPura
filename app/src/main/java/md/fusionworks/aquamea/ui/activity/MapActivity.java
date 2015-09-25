@@ -80,7 +80,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        setTitle(getString(R.string.activity_title_map));
+        setTitle(getString(R.string.module_title_map));
     }
 
     @Override
@@ -160,7 +160,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
                         @Override
                         public void run() {
 
-                            Snackbar.make(coordinatorLayout, getString(R.string.map_well_added), Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(coordinatorLayout, getString(R.string.info_well_added), Snackbar.LENGTH_SHORT).show();
                         }
                     }, 500);
                     break;

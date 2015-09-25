@@ -62,7 +62,7 @@
         </activity>
         <activity
             android:name=".ui.activity.WellDetailActivity"
-            android:label="@string/title_activity_well_detail"
+            android:label="@string/module_title_well_detail"
             android:parentActivityName=".ui.activity.MapActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.WellDetail">

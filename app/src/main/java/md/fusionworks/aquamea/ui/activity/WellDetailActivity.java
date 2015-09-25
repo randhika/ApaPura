@@ -12,7 +12,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -61,7 +60,7 @@ public class WellDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        collapsingToolbarLayout.setTitle(getString(R.string.activity_title_well_detail));
+        collapsingToolbarLayout.setTitle(getString(R.string.module_title_well_detail));
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

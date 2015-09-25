@@ -98,7 +98,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        collapsingToolbarLayout.setTitle(getString(R.string.activity_title_add_well));
+        collapsingToolbarLayout.setTitle(getString(R.string.module_title_add_well));
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,7 +186,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
         if (TextUtils.isEmpty(latitudeField.getText().toString()) || TextUtils.isEmpty(longitudeField.getText().toString())) {
 
             isValid = false;
-            DialogUtils.showAlertDialog(this, getString(R.string.add_well_validation_error_title), getString(R.string.add_well_coordidnates_validation_error_message));
+            DialogUtils.showAlertDialog(this, getString(R.string.dialog_title_validation_error), getString(R.string.validation_error_message_gps_coordinates_required));
         }
 
         return isValid;
@@ -277,9 +277,9 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     private void enterGPSCoordinatesManually() {
 
         MaterialDialog dialog = new MaterialDialog.Builder(this)
-                .title(R.string.add_well_enter_gps_coordinates_title)
+                .title(R.string.dialog_title_enter_gps_coordinates)
                 .customView(R.layout.dialog_enter_gps_coordinates, true)
-                .positiveText(R.string.add_well_save)
+                .positiveText(R.string.action_save)
                 .negativeText(android.R.string.cancel)
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
@@ -519,7 +519,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             longitudeField.setText(String.valueOf(location.getLongitude()));
         } else {
 
-            DialogUtils.showAlertDialog(this, getString(R.string.add_well_gps_location_error_title), getString(R.string.add_well_gps_location_error_message));
+            DialogUtils.showAlertDialog(this, getString(R.string.dialog_title_gps_location_error), getString(R.string.info_cannot_get_gps_coordiates));
         }
         disconnectGoogleApiClient();
     }
