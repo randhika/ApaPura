@@ -1,11 +1,11 @@
-package md.fusionworks.aquamea.model;
+package md.fusionworks.aquamea.model.realm;
 
-import java.io.Serializable;
+import io.realm.RealmObject;
 
 /**
  * Created by ungvas on 9/24/15.
  */
-public class Well implements Serializable {
+public class Well extends RealmObject {
 
     private String photoPath;
     private int appearanceRating;

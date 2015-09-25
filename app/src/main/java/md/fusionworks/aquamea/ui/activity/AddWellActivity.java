@@ -35,10 +35,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import md.fusionworks.aquamea.R;
-import md.fusionworks.aquamea.model.Well;
+import md.fusionworks.aquamea.model.realm.Well;
 import md.fusionworks.aquamea.ui.view.EmptyImageView;
 import md.fusionworks.aquamea.util.BitmapUtils;
 import md.fusionworks.aquamea.util.CommonConstants;
+import md.fusionworks.aquamea.util.Convertor;
 import md.fusionworks.aquamea.util.DialogUtils;
 
 public class AddWellActivity extends BaseLocationActivity implements View.OnClickListener {
@@ -97,10 +98,17 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        collapsingToolbarLayout.setTitle("Add well");
+        collapsingToolbarLayout.setTitle(getString(R.string.activity_title_add_well));
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        // fillUI();
+                Intent intent = new Intent();
+                setResult(RESULT_CANCELED, intent);
+                finish();
+            }
+        });
 
         photoFab.setOnClickListener(this);
         coordinatesCardView.setOnClickListener(this);
@@ -129,15 +137,6 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             return true;
         }
 
-        if (id == R.id.home) {
-
-            Intent intent = new Intent();
-            setResult(RESULT_CANCELED, intent);
-            finish();
-
-            return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -153,23 +152,25 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             final double latitude = Double.valueOf(latitudeField.getText().toString());
             final double longitude = Double.valueOf(longitudeField.getText().toString());
 
-            final Well well = new Well();
-            well.setPhotoPath(photoPath);
-            well.setAppearanceRating(appearanceRating);
-            well.setSmellRating(smellRating);
-            well.setTasteRating(tasteRating);
-            well.setNote(note);
-            well.setLatitude(latitude);
-            well.setLongitude(longitude);
+            final Well wellRealm = new Well();
+            wellRealm.setPhotoPath(photoPath);
+            wellRealm.setAppearanceRating(appearanceRating);
+            wellRealm.setSmellRating(smellRating);
+            wellRealm.setTasteRating(tasteRating);
+            wellRealm.setNote(note);
+            wellRealm.setLatitude(latitude);
+            wellRealm.setLongitude(longitude);
 
             Realm realm = Realm.getInstance(this);
             realm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
 
-                    realm.copyToRealm(well);
+                    realm.copyToRealm(wellRealm);
                 }
             });
+
+            md.fusionworks.aquamea.model.Well well = Convertor.wellRealmObjectToSimple(wellRealm);
 
             Intent intent = new Intent();
             intent.putExtra(CommonConstants.EXTRA_PARAM_WELL, well);
@@ -185,7 +186,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
         if (TextUtils.isEmpty(latitudeField.getText().toString()) || TextUtils.isEmpty(longitudeField.getText().toString())) {
 
             isValid = false;
-            DialogUtils.showAlertDialog(this, "Validation error", "Well GPS coordinates are required!");
+            DialogUtils.showAlertDialog(this, getString(R.string.add_well_validation_error_title), getString(R.string.add_well_coordidnates_validation_error_message));
         }
 
         return isValid;
@@ -276,9 +277,9 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     private void enterGPSCoordinatesManually() {
 
         MaterialDialog dialog = new MaterialDialog.Builder(this)
-                .title("Enter GPS coordinates")
+                .title(R.string.add_well_enter_gps_coordinates_title)
                 .customView(R.layout.dialog_enter_gps_coordinates, true)
-                .positiveText("Save")
+                .positiveText(R.string.add_well_save)
                 .negativeText(android.R.string.cancel)
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
@@ -297,10 +298,13 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                 }).build();
 
         final View positiveAction = dialog.getActionButton(DialogAction.POSITIVE);
-        final EditText latitudeField = (EditText) dialog.findViewById(R.id.latitudeField);
-        final EditText longitudeField = (EditText) dialog.findViewById(R.id.longitudeField);
+        final EditText dialogLatitudeField = (EditText) dialog.findViewById(R.id.latitudeField);
+        final EditText dialogLongitudeField = (EditText) dialog.findViewById(R.id.longitudeField);
 
-        latitudeField.addTextChangedListener(new TextWatcher() {
+        dialogLatitudeField.setText(latitudeField.getText().toString());
+        dialogLongitudeField.setText(longitudeField.getText().toString());
+
+        dialogLatitudeField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -309,7 +313,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                positiveAction.setEnabled(s.toString().trim().length() > 0 && longitudeField.getText().toString().length() > 0);
+                positiveAction.setEnabled(s.toString().trim().length() > 0 && dialogLongitudeField.getText().toString().length() > 0);
             }
 
             @Override
@@ -317,7 +321,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
             }
         });
-        longitudeField.addTextChangedListener(new TextWatcher() {
+        dialogLongitudeField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -326,7 +330,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                positiveAction.setEnabled(s.toString().trim().length() > 0 && latitudeField.getText().toString().length() > 0);
+                positiveAction.setEnabled(s.toString().trim().length() > 0 && dialogLatitudeField.getText().toString().length() > 0);
             }
 
             @Override
@@ -334,7 +338,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
             }
         });
-        positiveAction.setEnabled(false);
+        positiveAction.setEnabled(latitudeField.getText().toString().length() > 0);
 
         dialog.show();
     }
@@ -515,7 +519,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             longitudeField.setText(String.valueOf(location.getLongitude()));
         } else {
 
-            DialogUtils.showAlertDialog(this, "GPS Location error", "Cannot gather GPS data at this moment. Make sure your location services allow for GPS positioning.");
+            DialogUtils.showAlertDialog(this, getString(R.string.add_well_gps_location_error_title), getString(R.string.add_well_gps_location_error_message));
         }
         disconnectGoogleApiClient();
     }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="md.fusionworks.aquamea.ui.activity.AddWellActivity">
      <item android:id="@+id/action_add_well"
-         android:title="Add well"
+         android:title="@string/menu_option_add_well"
         android:orderInCategory="100" app:showAsAction="ifRoom"
         android:icon="@drawable/ic_done_white_24dp"
         />

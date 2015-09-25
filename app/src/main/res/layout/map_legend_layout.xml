@@ -13,8 +13,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Quality (1-5)"
-            android:textSize="12sp"
+            android:text="@string/legend_title"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_small"
             app:typeface="font/Roboto-Regular.ttf" />
 
         <LinearLayout
@@ -33,8 +34,9 @@
             <md.fusionworks.aquamea.ui.view.TypefaceTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0 to 3"
-                android:textSize="12sp"
+                android:text="@string/legend_rate_0_3"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_small"
                 app:typeface="font/Roboto-Regular.ttf" />
         </LinearLayout>
 
@@ -54,8 +56,9 @@
             <md.fusionworks.aquamea.ui.view.TypefaceTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3 to 4"
-                android:textSize="12sp"
+                android:text="@string/legend_rate_3_4"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_small"
                 app:typeface="font/Roboto-Regular.ttf" />
         </LinearLayout>
 
@@ -75,8 +78,9 @@
             <md.fusionworks.aquamea.ui.view.TypefaceTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4 to 5.1"
-                android:textSize="12sp"
+                android:text="@string/legend_rate_4_5_1"
+                android:textColor="@color/primary_text"
+                android:textSize="@dimen/text_size_small"
                 app:typeface="font/Roboto-Regular.ttf" />
         </LinearLayout>
     </LinearLayout>
@@ -95,7 +99,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="14sp"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_medium"
             app:typeface="font/Roboto-Regular.ttf" />
     </LinearLayout>
 </merge>

@@ -19,20 +19,25 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.RealmResults;
 import md.fusionworks.aquamea.R;
-import md.fusionworks.aquamea.model.Well;
+import md.fusionworks.aquamea.model.realm.Well;
 import md.fusionworks.aquamea.provider.WellProvider;
 import md.fusionworks.aquamea.ui.view.MapLegendView;
 import md.fusionworks.aquamea.util.CommonConstants;
+import md.fusionworks.aquamea.util.Convertor;
 import md.fusionworks.aquamea.util.UIUtils;
 import md.fusionworks.aquamea.util.Utils;
 
-public class MapActivity extends BaseNavigationDrawerActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class MapActivity extends BaseNavigationDrawerActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, GoogleMap.OnMarkerClickListener {
 
     public static final int ACTIVITY_RESULT_ADD_WELL = 0;
     public static final int CAMERA_POSITION_ZOOM = 15;
@@ -49,6 +54,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     private GoogleMap map;
     private GoogleApiClient googleApiClient;
     private Location myLastLocation;
+    private Map<Marker, md.fusionworks.aquamea.model.Well> wellDetailsMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +80,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        setTitle("Map");
+        setTitle(getString(R.string.activity_title_map));
     }
 
     @Override
@@ -116,12 +122,15 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     private void setUpMap() {
 
         map.setMyLocationEnabled(true);
+        map.setOnMarkerClickListener(this);
 
-        RealmResults<Well> wells = WellProvider.newInstance(this).getAll();
-        for (Well well : wells) {
+        wellDetailsMap = new HashMap<>();
+        RealmResults<Well> wellRealms = WellProvider.newInstance(this).getAll();
+        for (Well wellRealm : wellRealms) {
 
-            int rating = Utils.calculateWaterRating(well.getAppearanceRating(), well.getTasteRating(), well.getSmellRating());
-            createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+            int rating = Utils.calculateWaterRating(wellRealm.getAppearanceRating(), wellRealm.getTasteRating(), wellRealm.getSmellRating());
+            Marker marker = createMarker(wellRealm.getLatitude(), wellRealm.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+            wellDetailsMap.put(marker, Convertor.wellRealmObjectToSimple(wellRealm));
         }
     }
 
@@ -141,16 +150,17 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
                 case ACTIVITY_RESULT_ADD_WELL:
 
-                    Well well = (Well) data.getSerializableExtra(CommonConstants.EXTRA_PARAM_WELL);
+                    md.fusionworks.aquamea.model.Well well = (md.fusionworks.aquamea.model.Well) data.getSerializableExtra(CommonConstants.EXTRA_PARAM_WELL);
                     int rating = Utils.calculateWaterRating(well.getAppearanceRating(), well.getTasteRating(), well.getSmellRating());
                     goToPosition(well.getLatitude(), well.getLongitude());
-                    createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+                    Marker marker = createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+                    wellDetailsMap.put(marker, well);
 
                     coordinatorLayout.postDelayed(new Runnable() {
                         @Override
                         public void run() {
 
-                            Snackbar.make(coordinatorLayout, "Well added", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(coordinatorLayout, getString(R.string.map_well_added), Snackbar.LENGTH_SHORT).show();
                         }
                     }, 500);
                     break;
@@ -193,10 +203,10 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
     }
 
-    private void createMarker(Double latitude, Double longitude, float hue) {
+    private Marker createMarker(Double latitude, Double longitude, float hue) {
 
         LatLng latLng = new LatLng(latitude, longitude);
-        map.addMarker(new MarkerOptions()
+        return map.addMarker(new MarkerOptions()
                 .position(latLng)
                 .icon(BitmapDescriptorFactory.defaultMarker(hue)));
     }
@@ -240,5 +250,16 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
             mapLegendView.showLegend();
         else
             mapLegendView.hideLegend();
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+
+        md.fusionworks.aquamea.model.Well well = wellDetailsMap.get(marker);
+
+        Intent wellDetailIntent = new Intent(this, WellDetailActivity.class);
+        wellDetailIntent.putExtra(CommonConstants.EXTRA_PARAM_WELL, well);
+        startActivity(wellDetailIntent);
+        return true;
     }
 }

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
-import md.fusionworks.aquamea.model.Well;
+import md.fusionworks.aquamea.model.realm.Well;
 
 /**
  * Created by ungvas on 9/24/15.
