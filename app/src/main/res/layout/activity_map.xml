@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#eee"
     android:elevation="16dp"
-    tools:context="md.fusionworks.aquamea.ui.activity.MapActivity">
+    tools:context="md.fusionworks.apapura.ui.activity.MapActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayout"
@@ -34,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-                <md.fusionworks.aquamea.ui.view.MapLegendView
+                <md.fusionworks.apapura.ui.view.MapLegendView
                     android:id="@+id/mapLegendView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

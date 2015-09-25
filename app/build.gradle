@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "md.fusionworks.aquamea"
+        applicationId "md.fusionworks.apapura"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1

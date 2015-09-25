@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+        <md.fusionworks.apapura.ui.view.TypefaceTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -31,7 +31,7 @@
                 android:src="@drawable/ic_map_marker_black_24dp"
                 android:tint="#ff0000" />
 
-            <md.fusionworks.aquamea.ui.view.TypefaceTextView
+            <md.fusionworks.apapura.ui.view.TypefaceTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/legend_rate_0_3"
@@ -53,7 +53,7 @@
                 android:src="@drawable/ic_map_marker_black_24dp"
                 android:tint="#00ff00" />
 
-            <md.fusionworks.aquamea.ui.view.TypefaceTextView
+            <md.fusionworks.apapura.ui.view.TypefaceTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/legend_rate_3_4"
@@ -75,7 +75,7 @@
                 android:src="@drawable/ic_map_marker_black_24dp"
                 android:tint="#0000ff" />
 
-            <md.fusionworks.aquamea.ui.view.TypefaceTextView
+            <md.fusionworks.apapura.ui.view.TypefaceTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/legend_rate_4_5_1"
@@ -94,7 +94,7 @@
         android:gravity="center"
         android:padding="8dp">
 
-        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+        <md.fusionworks.apapura.ui.view.TypefaceTextView
             android:id="@+id/hideShowLegendInfoField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
