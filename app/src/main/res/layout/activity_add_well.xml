@@ -83,7 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/content_padding_normal"
-                        android:text="Rate the water properties"
+                        android:text="@string/field_water_properties"
                         android:textColor="@color/secondary_text"
                         android:textSize="@dimen/text_size_medium"
                         view:typeface="font/Roboto-Regular.ttf" />
@@ -102,7 +102,7 @@
                             android:layout_marginRight="@dimen/element_spacing_normal"
                             android:layout_weight="50"
                             android:gravity="right"
-                            android:text="Appearance"
+                            android:text="@string/field_appearance"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_medium"
                             view:typeface="font/Roboto-Regular.ttf" />
@@ -143,7 +143,7 @@
                             android:layout_marginRight="@dimen/element_spacing_normal"
                             android:layout_weight="50"
                             android:gravity="right"
-                            android:text="Taste"
+                            android:text="@string/field_taste"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_medium"
                             view:typeface="font/Roboto-Regular.ttf" />
@@ -185,7 +185,7 @@
                             android:layout_marginRight="@dimen/element_spacing_normal"
                             android:layout_weight="50"
                             android:gravity="right"
-                            android:text="Smell"
+                            android:text="@string/field_smell"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_medium"
                             view:typeface="font/Roboto-Regular.ttf" />
@@ -230,7 +230,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/content_padding_normal"
-                        android:text="Well GPS coordinates"
+                        android:text="@string/field_well_coordinates"
                         android:textColor="@color/secondary_text"
                         android:textSize="@dimen/text_size_medium"
                         view:typeface="font/Roboto-Regular.ttf" />
@@ -249,7 +249,7 @@
                             android:layout_marginRight="@dimen/element_spacing_normal"
                             android:layout_weight="50"
                             android:gravity="right"
-                            android:text="Latitude"
+                            android:text="@string/field_latitude"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_medium"
                             view:typeface="font/Roboto-Regular.ttf" />
@@ -285,7 +285,7 @@
                             android:layout_marginRight="@dimen/element_spacing_normal"
                             android:layout_weight="50"
                             android:gravity="right"
-                            android:text="Longitude"
+                            android:text="@string/field_longitude"
                             android:textColor="@color/primary_text"
                             android:textSize="@dimen/text_size_medium"
                             view:typeface="font/Roboto-Regular.ttf" />
@@ -314,7 +314,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="16dp"
                     android:gravity="top"
-                    android:hint="Note"
+                    android:hint="@string/hint_note"
                     android:padding="@dimen/content_padding_normal"
                     android:singleLine="false"
                     android:textColor="@color/primary_text"
