@@ -115,6 +115,7 @@
                                 style="@style/roomRatingBar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:isIndicator="true"
                                 android:numStars="5"
                                 android:stepSize="1" />
                         </FrameLayout>
@@ -156,6 +157,7 @@
                                 style="@style/roomRatingBar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:isIndicator="true"
                                 android:numStars="5"
                                 android:stepSize="1" />
                         </FrameLayout>
@@ -198,6 +200,7 @@
                                 style="@style/roomRatingBar"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:isIndicator="true"
                                 android:numStars="5"
                                 android:stepSize="1" />
                         </FrameLayout>

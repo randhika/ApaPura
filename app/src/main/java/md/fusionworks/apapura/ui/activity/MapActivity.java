@@ -152,7 +152,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
                     md.fusionworks.apapura.model.Well well = (md.fusionworks.apapura.model.Well) data.getSerializableExtra(CommonConstants.EXTRA_PARAM_WELL);
                     int rating = Utils.calculateWaterRating(well.getAppearanceRating(), well.getTasteRating(), well.getSmellRating());
-                    goToPosition(well.getLatitude(), well.getLongitude());
+                    goToPosition(well.getLatitude(), well.getLongitude(), true);
                     Marker marker = createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
                     wellDetailsMap.put(marker, well);
 
@@ -195,12 +195,15 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         }
     }
 
-    private void goToPosition(Double latitude, Double longitude) {
+    private void goToPosition(Double latitude, Double longitude, boolean animate) {
 
         CameraPosition position = new CameraPosition.Builder()
                 .target(new LatLng(latitude, longitude))
                 .zoom(CAMERA_POSITION_ZOOM).build();
-        map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
+        if (animate)
+            map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
+        else
+            map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
     }
 
     private Marker createMarker(Double latitude, Double longitude, float hue) {
@@ -217,7 +220,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         myLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
         if (myLastLocation != null) {
 
-            goToPosition(myLastLocation.getLatitude(), myLastLocation.getLongitude());
+            goToPosition(myLastLocation.getLatitude(), myLastLocation.getLongitude(), false);
         }
     }
 

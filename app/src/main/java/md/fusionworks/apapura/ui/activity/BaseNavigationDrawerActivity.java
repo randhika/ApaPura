@@ -28,7 +28,8 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
     protected static final int DRAWER_ITEM_MAP = 0;
     protected static final int DRAWER_ITEM_HEALTH = 1;
     protected static final int DRAWER_ITEM_TREATMENT = 2;
-    protected static final int DRAWER_ITEM_SETTINGS = 3;
+    protected static final int DRAWER_ITEM_ABOUT_APP = 3;
+    protected static final int DRAWER_ITEM_SETTINGS = 4;
     protected static final int DRAWER_ITEM_INVALID = -1;
     protected static final int DRAWER_ITEM_SEPARATOR = -2;
 
@@ -38,11 +39,15 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
 
             R.string.drawer_item_map,
             R.string.drawer_item_health,
-            R.string.drawer_item_treatment
+            R.string.drawer_item_treatment,
+            R.string.drawer_item_about_app,
+            R.string.drawer_item_settings
     };
 
     private static final int[] DRAWER_ICON_RES_ID = new int[]{
 
+            R.drawable.ic_water_black_24dp,
+            R.drawable.ic_water_black_24dp,
             R.drawable.ic_water_black_24dp,
             R.drawable.ic_water_black_24dp,
             R.drawable.ic_water_black_24dp
@@ -117,8 +122,12 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
     private void populateDrawerItems() {
 
         drawerItems.add(DRAWER_ITEM_MAP);
+        drawerItems.add(DRAWER_ITEM_SEPARATOR);
         drawerItems.add(DRAWER_ITEM_HEALTH);
         drawerItems.add(DRAWER_ITEM_TREATMENT);
+        drawerItems.add(DRAWER_ITEM_SEPARATOR);
+        drawerItems.add(DRAWER_ITEM_SETTINGS);
+        drawerItems.add(DRAWER_ITEM_ABOUT_APP);
 
         createDrawerItems();
     }

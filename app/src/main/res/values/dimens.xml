@@ -17,7 +17,7 @@
     <dimen name="fab_press_translation_z">6dp</dimen>
     <dimen name="headerbar_elevation">4dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
-
+    <dimen name="drawer_header_height">250dp</dimen>\
     <dimen name="card_corner_radius">4dp</dimen>
     <dimen name="well_photo_height_max">300dp</dimen>
 </resources>

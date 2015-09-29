@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -25,6 +26,7 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.google.android.gms.maps.model.Marker;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,14 +43,17 @@ import md.fusionworks.apapura.util.BitmapUtils;
 import md.fusionworks.apapura.util.CommonConstants;
 import md.fusionworks.apapura.util.Convertor;
 import md.fusionworks.apapura.util.DialogUtils;
+import md.fusionworks.apapura.util.UIUtils;
+import md.fusionworks.apapura.util.Utils;
 
 public class AddWellActivity extends BaseLocationActivity implements View.OnClickListener {
 
     private static final int OPTION_TAKE_PHOTO = 0;
     private static final int OPTION_PICK_PHOTO = 1;
     private static final int OPTION_REMOVE_PHOTO = 2;
-    private static final int OPTION_DETERMINE_GPS_COORDINATES = 0;
-    private static final int OPTION_ENTER_GPS_COORDINATES_MANUALLY = 1;
+    private static final int OPTION_MARK_A_POINT_ON_MAP = 0;
+    private static final int OPTION_DETERMINE_GPS_COORDINATES = 1;
+    private static final int OPTION_ENTER_GPS_COORDINATES_MANUALLY = 2;
 
     private static final String JPEG_FILE_PREFIX = "IMG_";
     private static final String JPEG_FILE_SUFFIX = ".jpg";
@@ -62,6 +67,8 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     private static final String KEY_NOTE = "KEY_NOTE";
     private static final String KEY_LATITUDE = "KEY_LATITUDE";
     private static final String KEY_LONGITUDE = "KEY_LONGITUDE";
+
+    public static final int ACTIVITY_RESULT_MARK_A_POINT_ON_MAP = 1001;
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -268,6 +275,21 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
         this.sendBroadcast(mediaScanIntent);
     }
 
+    private void markAPointOnMap() {
+
+        Intent intent = new Intent(this, MarkAPointOnMapActivity.class);
+
+        String latitude = latitudeField.getText().toString();
+        String longitude = longitudeField.getText().toString();
+        if (!TextUtils.isEmpty(latitude) && !TextUtils.isEmpty(longitude)) {
+
+            intent.putExtra(CommonConstants.EXTRA_PARAM_LATITUDE, latitude);
+            intent.putExtra(CommonConstants.EXTRA_PARAM_LONGITUDE, longitude);
+        }
+        startActivityForResult(intent, ACTIVITY_RESULT_MARK_A_POINT_ON_MAP);
+    }
+
+
     private void determineGPSCoordinates() {
 
         buildGoogleApiClient();
@@ -389,6 +411,10 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
                                                switch (which) {
 
+                                                   case OPTION_MARK_A_POINT_ON_MAP:
+
+                                                       markAPointOnMap();
+                                                       break;
                                                    case OPTION_DETERMINE_GPS_COORDINATES:
 
                                                        determineGPSCoordinates();
@@ -445,6 +471,17 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                         currentPhotoPath = null;
                     }
 
+                }
+                break;
+            case ACTIVITY_RESULT_MARK_A_POINT_ON_MAP:
+
+                if (requestCode == ACTIVITY_RESULT_MARK_A_POINT_ON_MAP && resultCode == RESULT_OK) {
+
+                    String latitude = data.getStringExtra(CommonConstants.EXTRA_PARAM_LATITUDE);
+                    String longitude = data.getStringExtra(CommonConstants.EXTRA_PARAM_LONGITUDE);
+
+                    latitudeField.setText(latitude);
+                    longitudeField.setText(longitude);
                 }
                 break;
         }

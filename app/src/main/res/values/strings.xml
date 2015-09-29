@@ -8,7 +8,8 @@
     <string name="title_activity_map">Map</string>
     <string name="drawer_item_map">Hartă</string>
     <string name="drawer_item_health">Despre sănătate</string>
-    <string name="drawer_item_treatment">Despre tratment</string>s
+    <string name="drawer_item_treatment">Despre tratament</string>
+    <string name="drawer_item_about_app">Despre aplicație</string>
     <string name="title_activity_health">About health</string>
     <string name="drawer_item_settings">Setări</string>
     <string name="title_activity_add_well">Add well</string>
@@ -23,13 +24,14 @@
 
         <item>Fotografiază</item>
         <item>Selectează o fotografie</item>
-        <item>Elimină fotografia generată</item>
+        <item>Elimină fotografia selectată</item>
     </string-array>
     <string-array name="coordinates_options">
-
+        <item>Marchează un punct pe hartă</item>
         <item>Depistează coordinatele GPS</item>
         <item>Introdu coordinatele GPS manual</item>
     </string-array>
+    <string name="module_title_mark_a_point_on_map">Marchează un punct pe hartă</string>
     <string name="module_title_add_well">Adaugă o fîntînă</string>
     <string name="dialog_title_validation_error">Eroare de validare</string>
     <string name="validation_error_message_gps_coordinates_required">Coordonatele GPS ale fîntînii sunt obligatorii!</string>
@@ -54,6 +56,10 @@
     <string name="field_taste">Gust</string>
     <string name="field_smell">Miros</string>
     <string name="field_well_coordinates">Coordonatele GPS ale fîntînii</string>
+    <string name="field_marked_point_on_map_coordinates">Coordonatele GPS ale punctului marcat pe hartă</string>
     <string name="hint_note">Notă</string>
     <string name="field_note">Notă</string>
+    <string name="title_activity_mark_apoint_on_map">MarkAPointOnMapActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
