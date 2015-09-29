@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import md.fusionworks.apapura.R;
 import md.fusionworks.apapura.ui.view.EmptyImageView;
 import md.fusionworks.apapura.util.BitmapUtils;
-import md.fusionworks.apapura.util.CommonConstants;
+import md.fusionworks.apapura.util.Constants;
 
 public class WellDetailActivity extends AppCompatActivity {
 
@@ -66,11 +66,13 @@ public class WellDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent();
+                setResult(RESULT_CANCELED, intent);
                 finish();
             }
         });
         Intent intent = getIntent();
-        well = (md.fusionworks.apapura.model.Well) intent.getSerializableExtra(CommonConstants.EXTRA_PARAM_WELL);
+        well = (md.fusionworks.apapura.model.Well) intent.getSerializableExtra(Constants.EXTRA_PARAM_WELL);
 
         fillUI();
 

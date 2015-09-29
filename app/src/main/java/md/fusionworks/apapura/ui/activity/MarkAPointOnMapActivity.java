@@ -19,7 +19,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import md.fusionworks.apapura.R;
 import md.fusionworks.apapura.helper.MapHelper;
-import md.fusionworks.apapura.util.CommonConstants;
+import md.fusionworks.apapura.util.Constants;
 import md.fusionworks.apapura.util.DialogUtils;
 
 public class MarkAPointOnMapActivity extends BaseLocationActivity implements GoogleMap.OnMapClickListener {
@@ -43,10 +43,10 @@ public class MarkAPointOnMapActivity extends BaseLocationActivity implements Goo
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
-            if (bundle.containsKey(CommonConstants.EXTRA_PARAM_LATITUDE)) {
+            if (bundle.containsKey(Constants.EXTRA_PARAM_LATITUDE)) {
 
-                latitudeExtraString = bundle.getString(CommonConstants.EXTRA_PARAM_LATITUDE);
-                longitudeExtraString = bundle.getString(CommonConstants.EXTRA_PARAM_LONGITUDE);
+                latitudeExtraString = bundle.getString(Constants.EXTRA_PARAM_LATITUDE);
+                longitudeExtraString = bundle.getString(Constants.EXTRA_PARAM_LONGITUDE);
             }
 
 
@@ -109,8 +109,8 @@ public class MarkAPointOnMapActivity extends BaseLocationActivity implements Goo
             String longitude = longitudeField.getText().toString();
 
             Intent intent = new Intent();
-            intent.putExtra(CommonConstants.EXTRA_PARAM_LATITUDE, latitude);
-            intent.putExtra(CommonConstants.EXTRA_PARAM_LONGITUDE, longitude);
+            intent.putExtra(Constants.EXTRA_PARAM_LATITUDE, latitude);
+            intent.putExtra(Constants.EXTRA_PARAM_LONGITUDE, longitude);
 
             setResult(RESULT_OK, intent);
             finish();
@@ -175,7 +175,7 @@ public class MarkAPointOnMapActivity extends BaseLocationActivity implements Goo
         map.clear();
         latitudeField.setText(String.valueOf(latitude));
         longitudeField.setText(String.valueOf(longitude));
-        mapHelper.goToPosition(latitude, longitude, false, CommonConstants.MY_LOCATION_CAMERA_POSITION_ZOOM);
+        mapHelper.goToPosition(latitude, longitude, false, Constants.MY_LOCATION_CAMERA_POSITION_ZOOM);
         mapHelper.createMarker(latitude, longitude, BitmapDescriptorFactory.HUE_GREEN);
 
         disconnectGoogleApiClient();

@@ -3,6 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:id="@+id/coordinatorLayout"
     android:layout_height="match_parent"
     android:background="@color/base_background"
     android:descendantFocusability="beforeDescendants"

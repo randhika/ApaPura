@@ -10,8 +10,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import md.fusionworks.apapura.util.CommonConstants;
-
 /**
  * Created by ungvas on 9/29/15.
  */

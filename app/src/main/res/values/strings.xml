@@ -41,6 +41,7 @@
     <string name="info_cannot_get_gps_coordiates">Nu este posibil de preluat automat coordonatele GPS în acest moment, vă rog verificați dacă serviciile de depistare a coordonatelor GPS sunt activate.</string>
     <string name="module_title_map">Hartă</string>
     <string name="info_well_added">Fîntîna a fost adăugată</string>
+    <string name="info_gps_coordonates_was_set">Coordonatele GPS au fost setate</string>
     <string name="module_title_well_detail">Detaliile fîntînii</string>
     <string name="action_hide">Ascunde</string>
     <string name="action_show_legend">Legendă</string>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +27,6 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.google.android.gms.maps.model.Marker;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,40 +40,21 @@ import md.fusionworks.apapura.R;
 import md.fusionworks.apapura.model.realm.Well;
 import md.fusionworks.apapura.ui.view.EmptyImageView;
 import md.fusionworks.apapura.util.BitmapUtils;
-import md.fusionworks.apapura.util.CommonConstants;
+import md.fusionworks.apapura.util.Constants;
 import md.fusionworks.apapura.util.Convertor;
 import md.fusionworks.apapura.util.DialogUtils;
-import md.fusionworks.apapura.util.UIUtils;
-import md.fusionworks.apapura.util.Utils;
 
 public class AddWellActivity extends BaseLocationActivity implements View.OnClickListener {
 
-    private static final int OPTION_TAKE_PHOTO = 0;
-    private static final int OPTION_PICK_PHOTO = 1;
-    private static final int OPTION_REMOVE_PHOTO = 2;
-    private static final int OPTION_MARK_A_POINT_ON_MAP = 0;
-    private static final int OPTION_DETERMINE_GPS_COORDINATES = 1;
-    private static final int OPTION_ENTER_GPS_COORDINATES_MANUALLY = 2;
-
-    private static final String JPEG_FILE_PREFIX = "IMG_";
-    private static final String JPEG_FILE_SUFFIX = ".jpg";
-    private static final String CAMERA_DIR = "/DCIM/";
-    private static final String PHOTO_ALBUM_NAME = "AquaMeaPhotos";
-
-    private static final String KEY_PHOTO_PATH = "KEY_PHOTO_PATH";
-    private static final String KEY_APPEREANCE = "KEY_APPEREANCE";
-    private static final String KEY_SMELL = "KEY_SMELL";
-    private static final String KEY_TASTE = "KEY_TASTE";
-    private static final String KEY_NOTE = "KEY_NOTE";
-    private static final String KEY_LATITUDE = "KEY_LATITUDE";
-    private static final String KEY_LONGITUDE = "KEY_LONGITUDE";
-
-    public static final int ACTIVITY_RESULT_MARK_A_POINT_ON_MAP = 1001;
+    private int[] photoOptions = {Constants.OPTION_TAKE_PHOTO, Constants.OPTION_PICK_PHOTO, Constants.OPTION_REMOVE_PHOTO};
+    private int[] coordinatesOptions = {Constants.OPTION_MARK_A_POINT_ON_MAP, Constants.OPTION_DETERMINE_GPS_COORDINATES, Constants.OPTION_ENTER_GPS_COORDINATES_MANUALLY};
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.collapsedToolbarLayout)
     CollapsingToolbarLayout collapsingToolbarLayout;
+    @Bind(R.id.coordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
     @Bind(R.id.photoFab)
     FloatingActionButton photoFab;
     @Bind(R.id.coordinatesCardView)
@@ -94,6 +75,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     TextView longitudeField;
 
     private String currentPhotoPath;
+    private boolean isActivityResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +98,8 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                 finish();
             }
         });
+
+        isActivityResult = false;
 
         photoFab.setOnClickListener(this);
         coordinatesCardView.setOnClickListener(this);
@@ -180,7 +164,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             md.fusionworks.apapura.model.Well well = Convertor.wellRealmObjectToSimple(wellRealm);
 
             Intent intent = new Intent();
-            intent.putExtra(CommonConstants.EXTRA_PARAM_WELL, well);
+            intent.putExtra(Constants.EXTRA_PARAM_WELL, well);
             setResult(RESULT_OK, intent);
             finish();
         }
@@ -205,7 +189,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
 
-            storageDir = new File(Environment.getExternalStorageDirectory() + CAMERA_DIR + PHOTO_ALBUM_NAME);
+            storageDir = new File(Environment.getExternalStorageDirectory() + Constants.CAMERA_DIR + Constants.PHOTO_ALBUM_NAME);
             if (storageDir != null) {
                 if (!storageDir.mkdirs()) {
                     if (!storageDir.exists()) {
@@ -225,7 +209,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
-        startActivityForResult(photoPickerIntent, OPTION_PICK_PHOTO);
+        startActivityForResult(photoPickerIntent, Constants.OPTION_PICK_PHOTO);
     }
 
     private void takePhoto() {
@@ -245,16 +229,16 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                 currentPhotoPath = null;
             }
 
-            startActivityForResult(takePictureIntent, OPTION_TAKE_PHOTO);
+            startActivityForResult(takePictureIntent, Constants.OPTION_TAKE_PHOTO);
         }
     }
 
     private File createImageFile() throws IOException {
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
+        String imageFileName = Constants.JPEG_FILE_PREFIX + timeStamp + "_";
         File albumF = getPhotoAlbumDir();
-        File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX, albumF);
+        File imageF = File.createTempFile(imageFileName, Constants.JPEG_FILE_SUFFIX, albumF);
         return imageF;
     }
 
@@ -283,10 +267,10 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
         String longitude = longitudeField.getText().toString();
         if (!TextUtils.isEmpty(latitude) && !TextUtils.isEmpty(longitude)) {
 
-            intent.putExtra(CommonConstants.EXTRA_PARAM_LATITUDE, latitude);
-            intent.putExtra(CommonConstants.EXTRA_PARAM_LONGITUDE, longitude);
+            intent.putExtra(Constants.EXTRA_PARAM_LATITUDE, latitude);
+            intent.putExtra(Constants.EXTRA_PARAM_LONGITUDE, longitude);
         }
-        startActivityForResult(intent, ACTIVITY_RESULT_MARK_A_POINT_ON_MAP);
+        startActivityForResult(intent, Constants.ACTIVITY_RESULT_MARK_A_POINT_ON_MAP);
     }
 
 
@@ -312,6 +296,14 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
                         latitudeField.setText(dialogLatitudeField.getText().toString());
                         longitudeField.setText(dialogLongitudeField.getText().toString());
+
+                        coordinatorLayout.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                Snackbar.make(coordinatorLayout, getString(R.string.info_gps_coordonates_was_set), Snackbar.LENGTH_SHORT).show();
+                            }
+                        }, 500);
                     }
 
                     @Override
@@ -380,17 +372,19 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                                            @Override
                                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
 
-                                               switch (which) {
+                                               int whichOption = photoOptions[which];
 
-                                                   case OPTION_TAKE_PHOTO:
+                                               switch (whichOption) {
+
+                                                   case Constants.OPTION_TAKE_PHOTO:
 
                                                        takePhoto();
                                                        break;
-                                                   case OPTION_PICK_PHOTO:
+                                                   case Constants.OPTION_PICK_PHOTO:
 
                                                        pickPhoto();
                                                        break;
-                                                   case OPTION_REMOVE_PHOTO:
+                                                   case Constants.OPTION_REMOVE_PHOTO:
 
                                                        emptyImageView.removeImage();
                                                        break;
@@ -409,17 +403,19 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                                            @Override
                                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
 
-                                               switch (which) {
+                                               int whichOption = coordinatesOptions[which];
 
-                                                   case OPTION_MARK_A_POINT_ON_MAP:
+                                               switch (whichOption) {
+
+                                                   case Constants.OPTION_MARK_A_POINT_ON_MAP:
 
                                                        markAPointOnMap();
                                                        break;
-                                                   case OPTION_DETERMINE_GPS_COORDINATES:
+                                                   case Constants.OPTION_DETERMINE_GPS_COORDINATES:
 
                                                        determineGPSCoordinates();
                                                        break;
-                                                   case OPTION_ENTER_GPS_COORDINATES_MANUALLY:
+                                                   case Constants.OPTION_ENTER_GPS_COORDINATES_MANUALLY:
 
                                                        enterGPSCoordinatesManually();
                                                        break;
@@ -436,9 +432,11 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        isActivityResult = true;
+
         switch (requestCode) {
 
-            case OPTION_PICK_PHOTO:
+            case Constants.OPTION_PICK_PHOTO:
 
                 if (resultCode == RESULT_OK) {
 
@@ -454,9 +452,9 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                     }
                 }
                 break;
-            case OPTION_TAKE_PHOTO:
+            case Constants.OPTION_TAKE_PHOTO:
 
-                if (requestCode == OPTION_TAKE_PHOTO && resultCode == RESULT_OK) {
+                if (requestCode == Constants.OPTION_TAKE_PHOTO && resultCode == RESULT_OK) {
 
                     if (currentPhotoPath != null) {
 
@@ -473,12 +471,12 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
                 }
                 break;
-            case ACTIVITY_RESULT_MARK_A_POINT_ON_MAP:
+            case Constants.ACTIVITY_RESULT_MARK_A_POINT_ON_MAP:
 
-                if (requestCode == ACTIVITY_RESULT_MARK_A_POINT_ON_MAP && resultCode == RESULT_OK) {
+                if (requestCode == Constants.ACTIVITY_RESULT_MARK_A_POINT_ON_MAP && resultCode == RESULT_OK) {
 
-                    String latitude = data.getStringExtra(CommonConstants.EXTRA_PARAM_LATITUDE);
-                    String longitude = data.getStringExtra(CommonConstants.EXTRA_PARAM_LONGITUDE);
+                    String latitude = data.getStringExtra(Constants.EXTRA_PARAM_LATITUDE);
+                    String longitude = data.getStringExtra(Constants.EXTRA_PARAM_LONGITUDE);
 
                     latitudeField.setText(latitude);
                     longitudeField.setText(longitude);
@@ -505,13 +503,13 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        outState.putString(KEY_PHOTO_PATH, (String) emptyImageView.getTag());
-        outState.putInt(KEY_APPEREANCE, (int) appearanceRatingBar.getRating());
-        outState.putInt(KEY_TASTE, (int) tasteRatingBar.getRating());
-        outState.putInt(KEY_SMELL, (int) smellRatingBar.getRating());
-        outState.putString(KEY_NOTE, noteField.getText().toString());
-        outState.putString(KEY_LATITUDE, latitudeField.getText().toString());
-        outState.putString(KEY_LONGITUDE, longitudeField.getText().toString());
+        outState.putString(Constants.KEY_PHOTO_PATH, (String) emptyImageView.getTag());
+        outState.putInt(Constants.KEY_APPEREANCE, (int) appearanceRatingBar.getRating());
+        outState.putInt(Constants.KEY_TASTE, (int) tasteRatingBar.getRating());
+        outState.putInt(Constants.KEY_SMELL, (int) smellRatingBar.getRating());
+        outState.putString(Constants.KEY_NOTE, noteField.getText().toString());
+        outState.putString(Constants.KEY_LATITUDE, latitudeField.getText().toString());
+        outState.putString(Constants.KEY_LONGITUDE, longitudeField.getText().toString());
 
         super.onSaveInstanceState(outState);
     }
@@ -520,13 +518,13 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        String photoPath = savedInstanceState.getString(KEY_PHOTO_PATH);
-        int appearanceRating = savedInstanceState.getInt(KEY_APPEREANCE);
-        int smellRating = savedInstanceState.getInt(KEY_SMELL);
-        int tasteRating = savedInstanceState.getInt(KEY_TASTE);
-        String note = savedInstanceState.getString(KEY_NOTE);
-        String latitude = savedInstanceState.getString(KEY_LATITUDE);
-        String longitude = savedInstanceState.getString(KEY_LONGITUDE);
+        String photoPath = savedInstanceState.getString(Constants.KEY_PHOTO_PATH);
+        int appearanceRating = savedInstanceState.getInt(Constants.KEY_APPEREANCE);
+        int smellRating = savedInstanceState.getInt(Constants.KEY_SMELL);
+        int tasteRating = savedInstanceState.getInt(Constants.KEY_TASTE);
+        String note = savedInstanceState.getString(Constants.KEY_NOTE);
+        String latitude = savedInstanceState.getString(Constants.KEY_LATITUDE);
+        String longitude = savedInstanceState.getString(Constants.KEY_LONGITUDE);
 
         appearanceRatingBar.setRating(appearanceRating);
         smellRatingBar.setRating(smellRating);
@@ -550,13 +548,27 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     @Override
     public void onGetLastLocation(Location location) {
 
-        if (location != null) {
+        if (!isActivityResult) {
 
-            latitudeField.setText(String.valueOf(location.getLatitude()));
-            longitudeField.setText(String.valueOf(location.getLongitude()));
+            if (location != null) {
+
+                latitudeField.setText(String.valueOf(location.getLatitude()));
+                longitudeField.setText(String.valueOf(location.getLongitude()));
+
+                coordinatorLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Snackbar.make(coordinatorLayout, getString(R.string.info_gps_coordonates_was_set), Snackbar.LENGTH_SHORT).show();
+                    }
+                }, 500);
+            } else {
+
+                DialogUtils.showAlertDialog(this, getString(R.string.dialog_title_gps_location_error), getString(R.string.info_cannot_get_gps_coordiates));
+            }
         } else {
 
-            DialogUtils.showAlertDialog(this, getString(R.string.dialog_title_gps_location_error), getString(R.string.info_cannot_get_gps_coordiates));
+            isActivityResult = false;
         }
         disconnectGoogleApiClient();
     }

@@ -29,20 +29,16 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.RealmResults;
 import md.fusionworks.apapura.R;
+import md.fusionworks.apapura.helper.MapHelper;
 import md.fusionworks.apapura.model.realm.Well;
 import md.fusionworks.apapura.provider.WellProvider;
 import md.fusionworks.apapura.ui.view.MapLegendView;
-import md.fusionworks.apapura.util.CommonConstants;
+import md.fusionworks.apapura.util.Constants;
 import md.fusionworks.apapura.util.Convertor;
 import md.fusionworks.apapura.util.UIUtils;
 import md.fusionworks.apapura.util.Utils;
 
 public class MapActivity extends BaseNavigationDrawerActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, GoogleMap.OnMarkerClickListener {
-
-    public static final int ACTIVITY_RESULT_ADD_WELL = 0;
-    public static final int CAMERA_POSITION_ZOOM = 15;
-
-    private static final String KEY_MAP_LEGEND_VIEW_WAS_SHOWED = "KEY_MAP_LEGEND_VIEW_VISIBILITY";
 
     @Bind(R.id.addWellFab)
     FloatingActionButton addWellFab;
@@ -53,6 +49,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
     private GoogleMap map;
     private GoogleApiClient googleApiClient;
+    private MapHelper mapHelper;
     private Location myLastLocation;
     private Map<Marker, md.fusionworks.apapura.model.Well> wellDetailsMap;
 
@@ -69,7 +66,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
             public void onClick(View v) {
 
                 Intent intent = new Intent(MapActivity.this, AddWellActivity.class);
-                startActivityForResult(intent, ACTIVITY_RESULT_ADD_WELL);
+                startActivityForResult(intent, Constants.ACTIVITY_RESULT_ADD_WELL);
             }
         });
 
@@ -114,6 +111,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
             map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
             if (map != null) {
 
+                mapHelper = MapHelper.newInstance(this, map);
                 setUpMap();
             }
         }
@@ -129,7 +127,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         for (Well wellRealm : wellRealms) {
 
             int rating = Utils.calculateWaterRating(wellRealm.getAppearanceRating(), wellRealm.getTasteRating(), wellRealm.getSmellRating());
-            Marker marker = createMarker(wellRealm.getLatitude(), wellRealm.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+            Marker marker = mapHelper.createMarker(wellRealm.getLatitude(), wellRealm.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
             wellDetailsMap.put(marker, Convertor.wellRealmObjectToSimple(wellRealm));
         }
     }
@@ -148,12 +146,12 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
             switch (requestCode) {
 
-                case ACTIVITY_RESULT_ADD_WELL:
+                case Constants.ACTIVITY_RESULT_ADD_WELL:
 
-                    md.fusionworks.apapura.model.Well well = (md.fusionworks.apapura.model.Well) data.getSerializableExtra(CommonConstants.EXTRA_PARAM_WELL);
+                    md.fusionworks.apapura.model.Well well = (md.fusionworks.apapura.model.Well) data.getSerializableExtra(Constants.EXTRA_PARAM_WELL);
                     int rating = Utils.calculateWaterRating(well.getAppearanceRating(), well.getTasteRating(), well.getSmellRating());
-                    goToPosition(well.getLatitude(), well.getLongitude(), true);
-                    Marker marker = createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+                    mapHelper.goToPosition(well.getLatitude(), well.getLongitude(), true, Constants.MY_LOCATION_CAMERA_POSITION_ZOOM);
+                    Marker marker = mapHelper.createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
                     wellDetailsMap.put(marker, well);
 
                     coordinatorLayout.postDelayed(new Runnable() {
@@ -195,32 +193,13 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         }
     }
 
-    private void goToPosition(Double latitude, Double longitude, boolean animate) {
-
-        CameraPosition position = new CameraPosition.Builder()
-                .target(new LatLng(latitude, longitude))
-                .zoom(CAMERA_POSITION_ZOOM).build();
-        if (animate)
-            map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
-        else
-            map.moveCamera(CameraUpdateFactory.newCameraPosition(position));
-    }
-
-    private Marker createMarker(Double latitude, Double longitude, float hue) {
-
-        LatLng latLng = new LatLng(latitude, longitude);
-        return map.addMarker(new MarkerOptions()
-                .position(latLng)
-                .icon(BitmapDescriptorFactory.defaultMarker(hue)));
-    }
-
     @Override
     public void onConnected(Bundle connectionHint) {
 
         myLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
         if (myLastLocation != null) {
 
-            goToPosition(myLastLocation.getLatitude(), myLastLocation.getLongitude(), false);
+            mapHelper.goToPosition(myLastLocation.getLatitude(), myLastLocation.getLongitude(), false, Constants.MY_LOCATION_CAMERA_POSITION_ZOOM);
         }
     }
 
@@ -239,7 +218,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        outState.putBoolean(KEY_MAP_LEGEND_VIEW_WAS_SHOWED, mapLegendView.isLegendShowed());
+        outState.putBoolean(Constants.KEY_MAP_LEGEND_VIEW_WAS_SHOWED, mapLegendView.isLegendShowed());
 
         super.onSaveInstanceState(outState);
     }
@@ -248,7 +227,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        boolean mapLegendViewWasShowed = savedInstanceState.getBoolean(KEY_MAP_LEGEND_VIEW_WAS_SHOWED);
+        boolean mapLegendViewWasShowed = savedInstanceState.getBoolean(Constants.KEY_MAP_LEGEND_VIEW_WAS_SHOWED);
         if (mapLegendViewWasShowed)
             mapLegendView.showLegend();
         else
@@ -261,8 +240,8 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         md.fusionworks.apapura.model.Well well = wellDetailsMap.get(marker);
 
         Intent wellDetailIntent = new Intent(this, WellDetailActivity.class);
-        wellDetailIntent.putExtra(CommonConstants.EXTRA_PARAM_WELL, well);
-        startActivity(wellDetailIntent);
+        wellDetailIntent.putExtra(Constants.EXTRA_PARAM_WELL, well);
+        startActivityForResult(wellDetailIntent, Constants.ACTIVITY_RESULT_WELL_DETAIL);
         return true;
     }
 }
