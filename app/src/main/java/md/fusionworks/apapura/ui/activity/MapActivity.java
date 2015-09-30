@@ -1,27 +1,31 @@
 package md.fusionworks.apapura.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +36,9 @@ import md.fusionworks.apapura.R;
 import md.fusionworks.apapura.helper.MapHelper;
 import md.fusionworks.apapura.model.realm.Well;
 import md.fusionworks.apapura.provider.WellProvider;
+import md.fusionworks.apapura.ui.view.EmptyImageView;
 import md.fusionworks.apapura.ui.view.MapLegendView;
+import md.fusionworks.apapura.util.BitmapUtils;
 import md.fusionworks.apapura.util.Constants;
 import md.fusionworks.apapura.util.Convertor;
 import md.fusionworks.apapura.util.UIUtils;
@@ -123,7 +129,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     private void setUpMap() {
 
         map.setMyLocationEnabled(true);
-        map.setInfoWindowAdapter(new WellDetailInfoWindowAdapter());
+        map.setInfoWindowAdapter(new WellDetailInfoWindowAdapter(this));
         map.setOnMarkerClickListener(this);
         map.setOnInfoWindowClickListener(this);
     }
@@ -162,8 +168,8 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
                     int rating = Utils.calculateWaterRating(well.getAppearanceRating(), well.getTasteRating(), well.getSmellRating());
                     mapHelper.goToPosition(well.getLatitude(), well.getLongitude(), true, Constants.MY_LOCATION_CAMERA_POSITION_ZOOM);
                     Marker marker = mapHelper.createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
-                    marker.showInfoWindow();
                     wellDetailsMap.put(marker, well);
+                    marker.showInfoWindow();
 
                     coordinatorLayout.postDelayed(new Runnable() {
                         @Override
@@ -270,10 +276,12 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
     public class WellDetailInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
+        private Context context;
         private View view;
 
-        public WellDetailInfoWindowAdapter() {
+        public WellDetailInfoWindowAdapter(Context context) {
 
+            this.context = context;
             view = getLayoutInflater().inflate(R.layout.well_detail_info_window_layout, null);
         }
 
@@ -284,6 +292,28 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
         @Override
         public View getInfoContents(Marker marker) {
+
+            TextView totalRatingField = (TextView) view.findViewById(R.id.totalRatingField);
+            TextView appearanceRatingField = (TextView) view.findViewById(R.id.appearanceRatingField);
+            TextView tasteRatingField = (TextView) view.findViewById(R.id.tasteRatingField);
+            TextView smellRatingField = (TextView) view.findViewById(R.id.smellRatingField);
+            EmptyImageView emptyImageView = (EmptyImageView) view.findViewById(R.id.emptyImageView);
+
+            md.fusionworks.apapura.model.Well well = wellDetailsMap.get(marker);
+            int totalRating = Utils.calculateWaterRating(well.getAppearanceRating(), well.getTasteRating(), well.getSmellRating());
+
+            totalRatingField.setText(String.format("%s %d", getString(R.string.field_total_rating_), totalRating));
+            appearanceRatingField.setText(String.format("%s %d", getString(R.string.field_appearance_), well.getAppearanceRating()));
+            tasteRatingField.setText(String.format("%s %d", getString(R.string.field_taste_), well.getTasteRating()));
+            smellRatingField.setText(String.format("%s %d", getString(R.string.field_smell_), well.getSmellRating()));
+
+            String photoPath = well.getPhotoPath();
+            if (!TextUtils.isEmpty(photoPath)) {
+
+                emptyImageView.setImageBitmap(BitmapUtils.scaleToActualAspectRatio(emptyImageView, photoPath));
+                emptyImageView.setTag(photoPath);
+            } else
+                emptyImageView.removeImage();
 
             return view;
         }

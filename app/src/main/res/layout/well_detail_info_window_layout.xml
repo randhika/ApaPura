@@ -1,11 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="?attr/selectableItemBackground"
-    android:layout_height="match_parent">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="aaaaaaaaaaaaaaaa"
-    />
-</LinearLayout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="@dimen/info_window_width"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/element_spacing_normal"
+        android:layout_marginTop="@dimen/element_spacing_normal"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="100"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:orientation="vertical">
+
+                <md.fusionworks.apapura.ui.view.TypefaceTextView
+                    android:id="@+id/totalRatingField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/element_spacing_normal"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_medium"
+                    view:typeface="font/Roboto-Bold.ttf" />
+
+                <md.fusionworks.apapura.ui.view.TypefaceTextView
+                    android:id="@+id/appearanceRatingField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/element_spacing_normal"
+                    android:layout_marginTop="@dimen/element_spacing_normal"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_medium"
+                    view:typeface="font/Roboto-Regular.ttf" />
+
+                <md.fusionworks.apapura.ui.view.TypefaceTextView
+                    android:id="@+id/tasteRatingField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/element_spacing_normal"
+                    android:layout_marginTop="@dimen/element_spacing_normal"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_medium"
+                    view:typeface="font/Roboto-Regular.ttf" />
+
+                <md.fusionworks.apapura.ui.view.TypefaceTextView
+                    android:id="@+id/smellRatingField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/element_spacing_normal"
+                    android:layout_marginTop="@dimen/element_spacing_normal"
+                    android:gravity="right"
+                    android:text=""
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_size_medium"
+                    view:typeface="font/Roboto-Regular.ttf" />
+            </LinearLayout>
+
+            <md.fusionworks.apapura.ui.view.EmptyImageView
+                android:id="@+id/emptyImageView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:minWidth="100dp"
+                android:minHeight="100dp"
+                android:background="@color/background_lite"
+                android:fitsSystemWindows="true"
+                android:gravity="center" />
+        </LinearLayout>
+        <md.fusionworks.apapura.ui.view.TypefaceTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/content_padding_normal"
+            android:gravity="center"
+            android:text="Faceți click pe fereastră pentru a vedea mai multe informații!"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/text_size_small"
+            view:typeface="font/Roboto-Regular.ttf" />
+    </LinearLayout>
+</FrameLayout>

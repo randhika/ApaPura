@@ -60,6 +60,11 @@
     <string name="field_marked_point_on_map_coordinates">Coordonatele GPS ale punctului marcat pe hartă</string>
     <string name="hint_note">Notă</string>
     <string name="field_note">Notă</string>
+    <string name="field_total_rating_">Reiting total:</string>
+    <string name="field_appearance_">Aspect:</string>
+    <string name="field_taste_">Gust:</string>
+    <string name="field_smell_">Miros:</string>
+
     <string name="title_activity_mark_apoint_on_map">MarkAPointOnMapActivity</string>
 
     <string name="hello_world">Hello world!</string>

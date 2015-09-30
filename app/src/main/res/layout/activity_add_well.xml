@@ -115,7 +115,7 @@
 
                             <RatingBar
                                 android:id="@+id/appearanceRatingBar"
-                                style="@style/roomRatingBar"
+                                style="@style/WellRatingBarStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:numStars="5"
@@ -156,7 +156,7 @@
 
                             <RatingBar
                                 android:id="@+id/tasteRatingBar"
-                                style="@style/roomRatingBar"
+                                style="@style/WellRatingBarStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:numStars="5"
@@ -198,7 +198,7 @@
 
                             <RatingBar
                                 android:id="@+id/smellRatingBar"
-                                style="@style/roomRatingBar"
+                                style="@style/WellRatingBarStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:numStars="5"
