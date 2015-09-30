@@ -16,7 +16,7 @@
     <color name="navdrawer_background">#ffffffff</color>
     <color name="navdrawer_text_color">@color/body_text_1</color>
     <color name="navdrawer_text_color_selected">@color/primary</color>
-    <color name="navdrawer_icon_tint">#fac92c</color>
+    <color name="navdrawer_icon_tint">@color/divider_dark</color>
     <color name="navdrawer_icon_tint_selected">@color/primary</color>
 
     <color name="primary">#2196F3</color>

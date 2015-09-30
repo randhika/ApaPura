@@ -49,6 +49,7 @@
         <activity
             android:name=".ui.activity.HealthActivity"
             android:label="@string/title_activity_health"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.Health" />
         <activity
             android:name=".ui.activity.AddWellActivity"
@@ -80,6 +81,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="md.fusionworks.apapura.ui.activity.AddWellActivity" />
         </activity>
+        <activity
+            android:name=".ui.activity.AboutAppActivity"
+            android:label="@string/title_activity_about_app"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.ApaPura.AboutApp"></activity>
     </application>
 
 </manifest>

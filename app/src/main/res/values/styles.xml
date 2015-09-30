@@ -24,6 +24,8 @@
 
     <style name="Theme.ApaPura.Health" parent="Theme.ApaPura.WithNavDrawer" />
 
+    <style name="Theme.ApaPura.AboutApp" parent="Theme.ApaPura.WithNavDrawer" />
+
     <style name="Theme.ApaPura.AddWell" parent="Theme.ApaPura.WithNavDrawer" />
     <style name="Theme.ApaPura.WellDetail" parent="Theme.ApaPura.WithNavDrawer" />
     <style name="Theme.ApaPura.MarkAPointOnMap" parent="Theme.ApaPura" />

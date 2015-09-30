@@ -117,9 +117,6 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         if (id == R.id.action_add_well) {
 

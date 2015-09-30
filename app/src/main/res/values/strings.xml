@@ -10,7 +10,7 @@
     <string name="drawer_item_health">Despre sănătate</string>
     <string name="drawer_item_treatment">Despre tratament</string>
     <string name="drawer_item_about_app">Despre aplicație</string>
-    <string name="title_activity_health">About health</string>
+    <string name="title_activity_health">Despre sănătate</string>
     <string name="drawer_item_settings">Setări</string>
     <string name="title_activity_add_well">Add well</string>
     <string name="drawer_item_empty"> </string>
@@ -68,4 +68,5 @@
     <string name="title_activity_mark_apoint_on_map">MarkAPointOnMapActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_about_app">Despre aplicație</string>
 </resources>

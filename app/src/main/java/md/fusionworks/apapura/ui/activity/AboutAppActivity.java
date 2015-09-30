@@ -1,23 +1,24 @@
 package md.fusionworks.apapura.ui.activity;
 
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import md.fusionworks.apapura.R;
 
-public class HealthActivity extends BaseNavigationDrawerActivity {
+public class AboutAppActivity extends BaseNavigationDrawerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health);
+        setContentView(R.layout.activity_about_app);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_health, menu);
+        getMenuInflater().inflate(R.menu.menu_about_app, menu);
         return true;
     }
 
@@ -36,6 +37,6 @@ public class HealthActivity extends BaseNavigationDrawerActivity {
     @Override
     protected int getSelfDrawerItem() {
 
-        return DRAWER_ITEM_HEALTH;
+        return DRAWER_ITEM_ABOUT_APP;
     }
 }

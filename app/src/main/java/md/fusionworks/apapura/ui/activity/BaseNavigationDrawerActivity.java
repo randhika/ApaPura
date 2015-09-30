@@ -41,16 +41,14 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
             R.string.drawer_item_health,
             R.string.drawer_item_treatment,
             R.string.drawer_item_about_app,
-            R.string.drawer_item_settings
     };
 
     private static final int[] DRAWER_ICON_RES_ID = new int[]{
 
-            R.drawable.ic_water_black_24dp,
-            R.drawable.ic_water_black_24dp,
-            R.drawable.ic_water_black_24dp,
-            R.drawable.ic_water_black_24dp,
-            R.drawable.ic_water_black_24dp
+            R.drawable.ic_map_black_24dp,
+            R.drawable.ic_info_black_24dp,
+            R.drawable.ic_info_black_24dp,
+            R.drawable.ic_info_black_24dp,
     };
 
     @Bind(R.id.toolbar)
@@ -126,7 +124,6 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
         drawerItems.add(DRAWER_ITEM_HEALTH);
         drawerItems.add(DRAWER_ITEM_TREATMENT);
         drawerItems.add(DRAWER_ITEM_SEPARATOR);
-        drawerItems.add(DRAWER_ITEM_SETTINGS);
         drawerItems.add(DRAWER_ITEM_ABOUT_APP);
 
         createDrawerItems();
@@ -255,6 +252,11 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
                 break;
             case DRAWER_ITEM_HEALTH:
                 intent = new Intent(this, HealthActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case DRAWER_ITEM_ABOUT_APP:
+                intent = new Intent(this, AboutAppActivity.class);
                 startActivity(intent);
                 finish();
                 break;
