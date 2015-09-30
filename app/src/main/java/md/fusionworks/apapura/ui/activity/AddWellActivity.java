@@ -480,6 +480,14 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
                     latitudeField.setText(latitude);
                     longitudeField.setText(longitude);
+
+                    coordinatorLayout.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            Snackbar.make(coordinatorLayout, getString(R.string.info_gps_coordonates_was_set), Snackbar.LENGTH_SHORT).show();
+                        }
+                    }, 500);
                 }
                 break;
         }

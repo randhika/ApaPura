@@ -50,6 +50,8 @@ public class MapHelper {
         LatLng latLng = new LatLng(latitude, longitude);
         return map.addMarker(new MarkerOptions()
                 .position(latLng)
+                .title("Title")
+                .snippet("Snippet")
                 .icon(BitmapDescriptorFactory.defaultMarker(hue)));
     }
 }
