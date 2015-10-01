@@ -47,8 +47,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.HealthActivity"
-            android:label="@string/title_activity_health"
+            android:name=".ui.activity.HealthAndTreatmentActivity"
+            android:label="@string/title_activity_health_treatment"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.Health" />
         <activity
@@ -85,7 +85,7 @@
             android:name=".ui.activity.AboutAppActivity"
             android:label="@string/title_activity_about_app"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.ApaPura.AboutApp"></activity>
+            android:theme="@style/Theme.ApaPura.AboutApp" />
     </application>
 
 </manifest>

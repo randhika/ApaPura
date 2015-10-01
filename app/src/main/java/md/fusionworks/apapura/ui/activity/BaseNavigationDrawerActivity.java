@@ -26,10 +26,9 @@ import md.fusionworks.apapura.util.UIUtils;
 public class BaseNavigationDrawerActivity extends BaseActivity {
 
     protected static final int DRAWER_ITEM_MAP = 0;
-    protected static final int DRAWER_ITEM_HEALTH = 1;
-    protected static final int DRAWER_ITEM_TREATMENT = 2;
-    protected static final int DRAWER_ITEM_ABOUT_APP = 3;
-    protected static final int DRAWER_ITEM_SETTINGS = 4;
+    protected static final int DRAWER_ITEM_HEALTH_TREATMENT = 1;
+    protected static final int DRAWER_ITEM_ABOUT_APP = 2;
+    protected static final int DRAWER_ITEM_SETTINGS = 3;
     protected static final int DRAWER_ITEM_INVALID = -1;
     protected static final int DRAWER_ITEM_SEPARATOR = -2;
 
@@ -38,7 +37,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
     private static final int[] DRAWER_TITLE_RES_ID = new int[]{
 
             R.string.drawer_item_map,
-            R.string.drawer_item_health,
+            R.string.drawer_item_health_treatment,
             R.string.drawer_item_treatment,
             R.string.drawer_item_about_app,
     };
@@ -46,7 +45,6 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
     private static final int[] DRAWER_ICON_RES_ID = new int[]{
 
             R.drawable.ic_map_black_24dp,
-            R.drawable.ic_info_black_24dp,
             R.drawable.ic_info_black_24dp,
             R.drawable.ic_info_black_24dp,
     };
@@ -92,6 +90,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.app_name, R.string.app_name);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,8 +120,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
 
         drawerItems.add(DRAWER_ITEM_MAP);
         drawerItems.add(DRAWER_ITEM_SEPARATOR);
-        drawerItems.add(DRAWER_ITEM_HEALTH);
-        drawerItems.add(DRAWER_ITEM_TREATMENT);
+        drawerItems.add(DRAWER_ITEM_HEALTH_TREATMENT);
         drawerItems.add(DRAWER_ITEM_SEPARATOR);
         drawerItems.add(DRAWER_ITEM_ABOUT_APP);
 
@@ -250,8 +248,8 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
                 startActivity(intent);
                 finish();
                 break;
-            case DRAWER_ITEM_HEALTH:
-                intent = new Intent(this, HealthActivity.class);
+            case DRAWER_ITEM_HEALTH_TREATMENT:
+                intent = new Intent(this, HealthAndTreatmentActivity.class);
                 startActivity(intent);
                 finish();
                 break;

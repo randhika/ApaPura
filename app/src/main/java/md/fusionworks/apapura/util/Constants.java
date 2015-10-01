@@ -21,6 +21,7 @@ public class Constants {
     public static final String EXTRA_PARAM_LONGITUDE = "EXTRA_PARAM_LONGITUDE";
 
     public static final String KEY_MAP_LEGEND_VIEW_WAS_SHOWED = "KEY_MAP_LEGEND_VIEW_VISIBILITY";
+    public static final String KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED = "KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED";
     public static final String KEY_PHOTO_PATH = "KEY_PHOTO_PATH";
     public static final String KEY_APPEREANCE = "KEY_APPEREANCE";
     public static final String KEY_SMELL = "KEY_SMELL";

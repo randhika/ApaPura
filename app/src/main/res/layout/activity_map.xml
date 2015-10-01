@@ -6,8 +6,8 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eee"
-    android:elevation="16dp"
+    android:background="@color/navdrawer_background"
+    android:elevation="@dimen/drawer_elevation"
     tools:context="md.fusionworks.apapura.ui.activity.MapActivity">
 
     <android.support.design.widget.CoordinatorLayout
@@ -24,7 +24,7 @@
                 android:id="@+id/toolbar"
                 layout="@layout/tool_bar"></include>
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -36,14 +36,22 @@
 
                 <md.fusionworks.apapura.ui.view.MapLegendView
                     android:id="@+id/mapLegendView"
+                    style="@style/MapUiWidgetStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="12dp"
-                    android:background="#ccffffff"
-                    android:elevation="2dp"
-                    android:orientation="vertical"
-                    />
-            </FrameLayout>
+                    android:orientation="vertical" />
+
+                <md.fusionworks.apapura.ui.view.MapTypeSatelliteSwitcher
+                    android:id="@+id/mapTypeSatelliteSwitcher"
+                    style="@style/MapUiWidgetStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginTop="62dp" />
+            </RelativeLayout>
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
@@ -51,9 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/content_padding_normal"
             android:src="@drawable/ic_add_white_24dp"
-            app:elevation="6dp"
+            app:elevation="@dimen/fab_elevation"
             app:layout_anchorGravity="bottom|right|end" />
 
     </android.support.design.widget.CoordinatorLayout>

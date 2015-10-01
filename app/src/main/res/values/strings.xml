@@ -7,10 +7,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_map">Map</string>
     <string name="drawer_item_map">Hartă</string>
-    <string name="drawer_item_health">Despre sănătate</string>
+    <string name="drawer_item_health_treatment">Despre sănătate și tratament</string>
     <string name="drawer_item_treatment">Despre tratament</string>
     <string name="drawer_item_about_app">Despre aplicație</string>
-    <string name="title_activity_health">Despre sănătate</string>
+    <string name="title_activity_health_treatment">Despre sănătate și tratament</string>
     <string name="drawer_item_settings">Setări</string>
     <string name="title_activity_add_well">Add well</string>
     <string name="drawer_item_empty"> </string>
@@ -60,7 +60,7 @@
     <string name="field_marked_point_on_map_coordinates">Coordonatele GPS ale punctului marcat pe hartă</string>
     <string name="hint_note">Notă</string>
     <string name="field_note">Notă</string>
-    <string name="field_total_rating_">Reiting total:</string>
+    <string name="field_total_rating_">Rating total:</string>
     <string name="field_appearance_">Aspect:</string>
     <string name="field_taste_">Gust:</string>
     <string name="field_smell_">Miros:</string>
@@ -69,4 +69,125 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_about_app">Despre aplicație</string>
+
+    <string name="health_text" formatted="false">Ce se intampla in corp cand bem apa?
+Ralph Vornehm a prezentat componenta de apa a fiecarui organ din corpul omenesc, incepand cu celulele, sangele, neurotransmitatorii si terminand cu organele.
+Astfel, creierul contine 90% apa, ceea ce explica intr-un fel capacitatea acestuia de a transmite mesajele catre toate organele cu viteze uluitoare; neurotransmitatorii - responsabili de transmiterea acestor mesaje - contin tot 90% apa.
+Este de inteles atunci, de ce cand nu bem apa, nu mai simtim cu timpul senzatia de sete. Neurotransmitatorii deshidratati nu mai transmit corect mesajul "mi-e sete", asa incat setea incepe sa mistuie corpul, incep durerile (si ele semnale de deshidratare) si patologia multor organe. "Celulele corpului nostru nu se ating intre ele, pentru ca inoata in apa, la fel ca si nervii"- R. Vornehm
+
+Ce se intampla cand apa din corp este murdara?
+
+
+Celulele comunica printr-un sistem de tip bio-laser. Exista un tip de apa in interiorul celulei si alt tip de apa in afara ei. Schimbul intre acestea purifica celula si o ajuta sa functioneze corect.
+Daca nu bem apa regulat, celulele se intoxica. Cind membrana unei celule nu este bine hidratata, corpul declanseaza un mecanism de urgenta, ca forma de aparare si de hidratare. Corpul se protejeaza de deshidratare cu ajutorul colesterolului.
+Membrana se imbraca intr-o pelicula protectoare, ca o crema, care impiedica uscarea. Ce este aceasta pelicula? Surpriza, este colesterol.
+
+
+Corpul nostru se protejeaza de deshidratare cu ajutorul colesterolului
+
+Studiile efectuate au aratat ca, in 90% din cazuri, colesterolul scade in 21 de zile de baut apa corect, ceea ce inseamna ca in 90% din cazuri colesterolul este crescut din cauza deshidratarii.
+Ralph Vornehm arata ca celulele deshidratate se afla intr-un fel de sfera intunecata, dupa care devin mutante si se ajunge la cancer (studiile facute pe celulele canceroase au aratat ca acestea nu mai comunica intre ele).
+
+
+Ce se intampla la nivelul sistemului digestiv daca nu bem apa inainte de masa (o cana, cu o jumatate de ora inainte de masa, NU SE BEA APA IN TIMPUL MESEI !!)?
+
+
+Corpul nostru are nevoie de sange pentru a efectua procesul digestiv si este binecunoscut faptul ca sangele este compus 80% din apa.
+Pentru a efectua corect procesul de digestie, sangele trebuie sa fie hidratat corect inainte de masa. Altfel sangele se ingroasa si de aceea, pentru a se hidrata extrage apa din organele vitale.
+In organismul nostru fiecare celula, fiecare componenta "lupta" pentru a-si intretine viata proprie, ceea ce face ca, in ultima instanta, sa conduca spre viata intregului organism.
+Sangele nu face exceptie de la acest principiu, asa incat, este extrem de important sa bem apa cu o jumatate de ora inainte de masa.
+Sangele nu va mai extrage apa din organele vitale pentru a realiza procesul de digestie, iar corpul va ramane sanatos.
+Sunt oameni care tusesc, ii apasa inima sau au colici dupa masa. Acele organe care ne dor dupa ce mancam sesizeaza ca nu au destula apa", spune Ralph Vornehm.
+
+La nivelul cartilagiilor, componenta apei este de 90%
+
+Cand cartilagiul este deshidratat, incepe sa pocneasca. Oasele au nevoie de apa in aceeasi masura si multe dintre durerile de oase, precum si sindromul de alunecare al discului lombar sunt cauzate de deshidratare. Tensiunea arteriala mare, problemele legate de vasele de sange sunt cauzate de lipsa apei din corp.
+Presupunem, insa, ca durerile sunt mai mult decat o rugaminte pe care corpul ne-o trimite.
+Durerea trebuie sa fie un mare strigat de ajutor, care s-ar putea traduce: "Ajutor, mi-e sete de nu mai pot!".
+
+BETI APA PE STOMACUL GOL
+
+
+In Japonia zilelor nostre este foarte popular obiceiul de a bea apa imediat dupa trezire, in fiecare dimineata. Mai mult, testele cercetatorilor au demonstrat valoarea acestui obicei.
+Publicam mai jos o descriere a folosirii apei, pentru cititorii nostri.
+Pentru cei in varsta si pentru bolile grave ca si pentru bolile moderne, tratamentul cu apa a fost considerat de succes de catre o societate medicala japoneza, ca tratament sigur 100% pentru urmatoarele boli:
+dureri ale corpului; dureri de cap; sistemul circulator; artrita; batai puternice ale inimii; epilepsie; grasimi in exces; astm bronsic; tuberculoza; meningita; boli de ficat si urina; voma; gastrita; diaree; hemoroizi; diabet ; constipatie; toate bolile de ochi; cancer la organele genitale si dere glari menstruale; boli ale urechilor, nasului si gatului.
+
+METODA DE TRATAMENT
+
+
+1.Dimineata, imediat dupa trezire, inainte de a va spala pe dinti, beti 4x 160 ml apa
+( aproximativ o jumatate de litru in total)
+2. Spalati-va pe dinti dar nu mancati si nu beti nimic 45 minute.
+3. Dupa 45 minute puteti bea si manca normal.
+4. Dupa 15 minute de la micul dejun, pranz sau cina nu mancati si nu beti nimic timp de 2 ore.
+5. Cei care sunt batrani sau bolnavi si nu pot bea 4 pahare cu apa dimineata pe stomacul gol, pot incepe prin a bea apa mai putina si sa creasca gradual pana la 4 pahare.
+6. Metoda de mai sus va vindeca bolile si toata lumea se poate bucura de o viata sanatoasa.
+
+Urmatoarea lista da numarul de zile de tratament necesar pentru vindecarea/ controlul/ reducerea principalelor boli:
+
+
+1. Presiune ridicata a sangelui- 30 zile;
+2. Gastrita - 10 zile
+3. Diabet - 30 zile
+4. Constipatie- 10 zile
+5. Cancer- 180 zile
+6. Tuberculoza- 90 zile
+7. Pacientii cu artrita ar trebui sa urmeze tratamentul de mai sus doar 3 zile in prima
+saptamana si incepand din a doua saptamana zilnic. Aceasta metoda de tratament nu are efecte adverse; oricum, la inceputul tratamentului s-ar putea sa fie necesar sa urinati mai des ca de obicei.
+Este si mai bine daca continuati acest tratament ca pe o activitate de rutina in viata voastra.
+
+Beti apa curata si ramaneti sanatosi si activi.
+Nu beti apa la masa!
+
+
+Celor carora le place sa bea apa rece, la masa, le sunt adresate aceste randuri: Apa rece va solidifica mancarurile uleioase pe care tocmai le-ati consumat.
+Va va incetini digestia. Odata ce acest "noroi" reactioneaza cu acidul din stomac, va fi absorbit mai repede decat hrana solida. Va depune un strat pe intestine.
+Foarte curand, acesta se va transforma in grasime si reziduuri si va duce la cancer.
+
+Este cel mai indicat sa beti supa fierbinte sau apa calda dupa masa.
+O nota importanta despre atacurile de inima:
+
+
+Ar trebui sa se stie ca nu fiecare simptom de atac de inima va fi durerea in mana stanga.
+Fiti atenti la durerile intense in maxilar.
+S-ar putea sa nu ai prima data durere in piept, in timpul unui atac de inima.
+Greata si transpiratul intens sunt si ele simptome obisnuite. 60% din persoanele care au atac de inima in timp ce dorm, nu se trezesc...
+Durerea in maxilar va poate trezi dintr-un somn adanc. Fiti cu grija si atenti... Cu cat stim mai multe, cu atat sansele de a supravietui sunt mai mari.
+Un cardiolog spunea ca, daca fiecare din cei care primesc acest mail, il trimite la toti cunoscutii sai, putem fi siguri ca vom salva cel putin o viata.
+</string>
+    <string name="treatment_text">4.  Protectia apelor:
+
+I.  Autopurificarea apelor:
+
+Se realizeaza prin procese fizice si fizico-chomice precum si prin procese biologice si biochimice. Acestea constau in:
+
+-        sedimentarea materilor mai grele, sedimentare, care este influentata de temperatura, viteza de scurgere a apei etc.;
+
+-        prin actiunea radiatilor solare (ultraviolete) cu efecte antibacteriene;
+
+-        prin reactii chimice de oxidare, reducere, neutralizare care au loc intre substantele chimice din apa si cele din apa poluata;
+
+-        prin reactii chimice chiar numai intre substantele chimice din apa poluata.
+
+Procesele biologice si biochimice constau in primul rand in concurenta dintre flora propriei ape si flora poluanta patrunsa in apa. Astfel, germenii propii apei elibereaza in apa o serie de metaboliti cu actiune antibiotica fata de germenii poluanti, ducand in cele din urma la disparitia suportului nutritiv de hrana al germenilor patogeni patrunsi prin poluare.
+
+II.  Protectia apelor si a ecosistemelor acvatice:
+
+            Protectia apelor de suprafata si subterane si a ecosistemelor acvatice are ca obiect, mentinerea si ameliorarea calitatii si productivitatii naturale ale acestora in scopul evitarii unor efecte negative asupra mediului, sanatatii umane si bunurilor materiale:
+
+-      Interzicerea evacuarii la intamplare a reziduurilor de orice fel care ar putea polua apa si, in primul rand, a apelor reziduale, comunale si industriale. Acestea trebuie colectate si indepartate prin sisteme de canalizare sau instalatii locale de coloectare;
+
+-      Construirea de statii de epurare pentru retinerea si degradarea substantelor organice poluante continute in apele reziduale ale localitatilor si unitatilor zootehnice inainte de eliminarea lor in apa;
+
+-       Distrugerea prin dezimfectie a germenilor patogeni continuti in ape reziduale ale  unor institutii (spitale), abatoarele, unitatile industriei carnii;
+
+-      Inzestrarea cu sisteme de retinere si colectare a substantelor radioactive din ape reziduale;
+
+-      Construirea de statii sau sisteme de epurare specifice pentru apele reziduale ale unitatii industriale in vederea retinerii si neutralizarii substantelor chimice potential toxice;
+
+-      Controlul depozitarii deseurilor solide, astfel incat acestea sa nu fie antrenate sau purtate in sursele de apa de suprafata sau subterane.
+
+</string>
+    <string name="title_activity_treatment">Despre tratament</string>
 </resources>

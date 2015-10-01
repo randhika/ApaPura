@@ -2,11 +2,8 @@ package md.fusionworks.apapura.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,7 +11,6 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -24,8 +20,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Marker;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,6 +32,7 @@ import md.fusionworks.apapura.model.realm.Well;
 import md.fusionworks.apapura.provider.WellProvider;
 import md.fusionworks.apapura.ui.view.EmptyImageView;
 import md.fusionworks.apapura.ui.view.MapLegendView;
+import md.fusionworks.apapura.ui.view.MapTypeSatelliteSwitcher;
 import md.fusionworks.apapura.util.BitmapUtils;
 import md.fusionworks.apapura.util.Constants;
 import md.fusionworks.apapura.util.Convertor;
@@ -52,6 +47,8 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     CoordinatorLayout coordinatorLayout;
     @Bind(R.id.mapLegendView)
     MapLegendView mapLegendView;
+    @Bind(R.id.mapTypeSatelliteSwitcher)
+    MapTypeSatelliteSwitcher mapTypeSatelliteSwitcher;
 
     private GoogleMap map;
     private GoogleApiClient googleApiClient;
@@ -76,6 +73,17 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
                 Intent intent = new Intent(MapActivity.this, AddWellActivity.class);
                 startActivityForResult(intent, Constants.ACTIVITY_RESULT_ADD_WELL);
+            }
+        });
+
+        mapTypeSatelliteSwitcher.setOnCheckedChangeListener(new MapTypeSatelliteSwitcher.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(boolean isChecked) {
+
+                if (isChecked)
+                    map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                else
+                    map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             }
         });
 
@@ -241,6 +249,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     protected void onSaveInstanceState(Bundle outState) {
 
         outState.putBoolean(Constants.KEY_MAP_LEGEND_VIEW_WAS_SHOWED, mapLegendView.isLegendShowed());
+        outState.putBoolean(Constants.KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED, mapTypeSatelliteSwitcher.isChecked());
 
         super.onSaveInstanceState(outState);
     }
@@ -254,6 +263,9 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
             mapLegendView.showLegend();
         else
             mapLegendView.hideLegend();
+
+        boolean mapTypeSatelliteSwithcerWasChecked = savedInstanceState.getBoolean(Constants.KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED);
+        mapTypeSatelliteSwitcher.setChecked(mapTypeSatelliteSwithcerWasChecked);
     }
 
     @Override

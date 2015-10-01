@@ -25,6 +25,7 @@
     <style name="Theme.ApaPura.Health" parent="Theme.ApaPura.WithNavDrawer" />
 
     <style name="Theme.ApaPura.AboutApp" parent="Theme.ApaPura.WithNavDrawer" />
+    <style name="Theme.ApaPura.Treatment" parent="Theme.ApaPura.WithNavDrawer" />
 
     <style name="Theme.ApaPura.AddWell" parent="Theme.ApaPura.WithNavDrawer" />
     <style name="Theme.ApaPura.WellDetail" parent="Theme.ApaPura.WithNavDrawer" />
@@ -49,5 +50,7 @@
         <item name="android:minHeight">24dip</item>
         <item name="android:maxHeight">24dip</item>
     </style>
+    <style name="Theme.ApaPura.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.ApaPura.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
