@@ -30,6 +30,7 @@
     <style name="Theme.ApaPura.AddWell" parent="Theme.ApaPura.WithNavDrawer" />
     <style name="Theme.ApaPura.WellDetail" parent="Theme.ApaPura.WithNavDrawer" />
     <style name="Theme.ApaPura.MarkAPointOnMap" parent="Theme.ApaPura" />
+    <style name="Theme.ApaPura.Launch" parent="Theme.ApaPura" />
 
     <style name="ActionBarThemeOverlay" parent="">
         <item name="android:textColorPrimary">#fff</item>
@@ -52,5 +53,10 @@
     </style>
     <style name="Theme.ApaPura.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.ApaPura.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MapUiWidgetStyle">
+        <item name="android:background">@drawable/map_type_satellite_switcher_drawable</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
 
 </resources>

@@ -25,7 +25,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.ApaPura">
         <activity
-            android:name="md.fusionworks.aquamea.ui.activity.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:label="@string/app_name" />
 
         <meta-data
@@ -36,25 +36,20 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="md.fusionworks.aquamea.ui.activity.MapActivity"
+            android:name=".ui.activity.MapActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.Map">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
-            android:name="md.fusionworks.aquamea.ui.activity.HealthAndTreatmentActivity"
+            android:name=".ui.activity.HealthAndTreatmentActivity"
             android:label="@string/title_activity_health_treatment"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.Health" />
         <activity
-            android:name="md.fusionworks.aquamea.ui.activity.AddWellActivity"
+            android:name=".ui.activity.AddWellActivity"
             android:label="@string/title_activity_add_well"
-            android:parentActivityName="md.fusionworks.aquamea.ui.activity.MapActivity"
+            android:parentActivityName=".ui.activity.MapActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.AddWell">
             <meta-data
@@ -62,9 +57,9 @@
                 android:value="md.fusionworks.aquamea.ui.activity.MapActivity" />
         </activity>
         <activity
-            android:name="md.fusionworks.aquamea.ui.activity.WellDetailActivity"
+            android:name=".ui.activity.WellDetailActivity"
             android:label="@string/module_title_well_detail"
-            android:parentActivityName="md.fusionworks.aquamea.ui.activity.MapActivity"
+            android:parentActivityName=".ui.activity.MapActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.WellDetail">
             <meta-data
@@ -72,9 +67,9 @@
                 android:value="md.fusionworks.aquamea.ui.activity.MapActivity" />
         </activity>
         <activity
-            android:name="md.fusionworks.aquamea.ui.activity.MarkAPointOnMapActivity"
+            android:name=".ui.activity.MarkAPointOnMapActivity"
             android:label="@string/title_activity_mark_apoint_on_map"
-            android:parentActivityName="md.fusionworks.aquamea.ui.activity.AddWellActivity"
+            android:parentActivityName=".ui.activity.AddWellActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.MarkAPointOnMap">
             <meta-data
@@ -82,10 +77,21 @@
                 android:value="md.fusionworks.aquamea.ui.activity.AddWellActivity" />
         </activity>
         <activity
-            android:name="md.fusionworks.aquamea.ui.activity.AboutAppActivity"
+            android:name=".ui.activity.AboutAppActivity"
             android:label="@string/title_activity_about_app"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.AboutApp" />
+
+        <activity
+            android:name=".ui.activity.LaunchActivity"
+            android:theme="@style/Theme.ApaPura.Launch"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

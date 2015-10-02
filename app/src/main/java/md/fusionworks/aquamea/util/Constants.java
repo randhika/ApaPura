@@ -35,4 +35,5 @@ public class Constants {
     public static final String JPEG_FILE_SUFFIX = ".jpg";
     public static final String CAMERA_DIR = "/DCIM/";
     public static final String PHOTO_ALBUM_NAME = "AquaMeaPhotos";
+    public static final int LAUNCH_SLEEP_TIME = 3000;
 }
