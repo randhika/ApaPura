@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#eee"
     android:elevation="7dp"
-    tools:context="md.fusionworks.apapura.ui.activity.HealthAndTreatmentActivity">
+    tools:context="md.fusionworks.aquamea.ui.activity.HealthAndTreatmentActivity">
 
 
     <LinearLayout
@@ -39,7 +39,7 @@
                     card_view:cardPreventCornerOverlap="true"
                     card_view:cardUseCompatPadding="true">
 
-                    <md.fusionworks.apapura.ui.view.TypefaceTextView
+                    <md.fusionworks.aquamea.ui.view.TypefaceTextView
                       android:id="@+id/healthField"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

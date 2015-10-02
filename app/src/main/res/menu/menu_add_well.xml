@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="md.fusionworks.apapura.ui.activity.AddWellActivity">
+    tools:context="md.fusionworks.aquamea.ui.activity.AddWellActivity">
      <item android:id="@+id/action_add_well"
          android:title="@string/menu_option_add_well"
         android:orderInCategory="100" app:showAsAction="ifRoom"

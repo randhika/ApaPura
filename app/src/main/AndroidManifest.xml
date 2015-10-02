@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="md.fusionworks.apapura">
+    package="md.fusionworks.aquamea">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -25,7 +25,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.ApaPura">
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.MainActivity"
             android:label="@string/app_name" />
 
         <meta-data
@@ -36,7 +36,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".ui.activity.MapActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.MapActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.Map">
@@ -47,42 +47,42 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.HealthAndTreatmentActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.HealthAndTreatmentActivity"
             android:label="@string/title_activity_health_treatment"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.Health" />
         <activity
-            android:name=".ui.activity.AddWellActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.AddWellActivity"
             android:label="@string/title_activity_add_well"
-            android:parentActivityName=".ui.activity.MapActivity"
+            android:parentActivityName="md.fusionworks.aquamea.ui.activity.MapActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.AddWell">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="md.fusionworks.apapura.ui.activity.MapActivity" />
+                android:value="md.fusionworks.aquamea.ui.activity.MapActivity" />
         </activity>
         <activity
-            android:name=".ui.activity.WellDetailActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.WellDetailActivity"
             android:label="@string/module_title_well_detail"
-            android:parentActivityName=".ui.activity.MapActivity"
+            android:parentActivityName="md.fusionworks.aquamea.ui.activity.MapActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.WellDetail">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="md.fusionworks.apapura.ui.activity.MapActivity" />
+                android:value="md.fusionworks.aquamea.ui.activity.MapActivity" />
         </activity>
         <activity
-            android:name=".ui.activity.MarkAPointOnMapActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.MarkAPointOnMapActivity"
             android:label="@string/title_activity_mark_apoint_on_map"
-            android:parentActivityName=".ui.activity.AddWellActivity"
+            android:parentActivityName="md.fusionworks.aquamea.ui.activity.AddWellActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.MarkAPointOnMap">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="md.fusionworks.apapura.ui.activity.AddWellActivity" />
+                android:value="md.fusionworks.aquamea.ui.activity.AddWellActivity" />
         </activity>
         <activity
-            android:name=".ui.activity.AboutAppActivity"
+            android:name="md.fusionworks.aquamea.ui.activity.AboutAppActivity"
             android:label="@string/title_activity_about_app"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ApaPura.AboutApp" />
