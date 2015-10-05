@@ -1,4 +1,4 @@
-package md.fusionworks.aquamea.ui.view;
+package md.fusionworks.aquamea.ui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -39,7 +39,7 @@
                     card_view:cardPreventCornerOverlap="true"
                     card_view:cardUseCompatPadding="true">
 
-                    <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                    <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                       android:id="@+id/healthField"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

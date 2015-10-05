@@ -15,7 +15,7 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
-       // new LaunchTask().execute();
+        new LaunchTask().execute();
     }
 
     private class LaunchTask extends AsyncTask {
@@ -25,6 +25,7 @@ public class LaunchActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             intent = new Intent(LaunchActivity.this, MapActivity.class);
+            intent.putExtra(Constants.EXTRA_PARAM_FROM_LAUNCH_SCREEN, true);
         }
 
         @Override

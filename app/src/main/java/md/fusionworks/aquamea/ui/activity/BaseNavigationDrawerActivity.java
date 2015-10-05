@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import md.fusionworks.aquamea.R;
+import md.fusionworks.aquamea.util.Constants;
 import md.fusionworks.aquamea.util.UIUtils;
 
 /**
@@ -38,15 +39,14 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
 
             R.string.drawer_item_map,
             R.string.drawer_item_health_treatment,
-            R.string.drawer_item_treatment,
             R.string.drawer_item_about_app,
     };
 
     private static final int[] DRAWER_ICON_RES_ID = new int[]{
 
             R.drawable.ic_map_black_24dp,
-            R.drawable.ic_info_black_24dp,
-            R.drawable.ic_info_black_24dp,
+            R.drawable.ic_info_outline_black_24dp,
+            R.drawable.ic_info_outline_black_24dp,
     };
 
     @Bind(R.id.toolbar)
@@ -77,10 +77,16 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        setupDrawerLayout();
+        boolean openDrawer = false;
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            if (bundle.containsKey(Constants.EXTRA_PARAM_FROM_LAUNCH_SCREEN))
+                openDrawer = true;
+
+        setupDrawerLayout(openDrawer);
     }
 
-    private void setupDrawerLayout() {
+    private void setupDrawerLayout(boolean openDrawer) {
 
         int selfItem = getSelfDrawerItem();
 
@@ -90,6 +96,9 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.app_name, R.string.app_name);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
+
+        if (openDrawer)
+            drawerLayout.openDrawer(GravityCompat.START);
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

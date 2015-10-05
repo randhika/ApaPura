@@ -19,6 +19,7 @@ public class Constants {
     public static final String EXTRA_PARAM_WELL = "EXTRA_PARAM_WELL";
     public static final String EXTRA_PARAM_LATITUDE = "EXTRA_PARAM_LATITUDE";
     public static final String EXTRA_PARAM_LONGITUDE = "EXTRA_PARAM_LONGITUDE";
+    public static final String EXTRA_PARAM_FROM_LAUNCH_SCREEN = "EXTRA_PARAM_FROM_LAUNCH_SCREEN";
 
     public static final String KEY_MAP_LEGEND_VIEW_WAS_SHOWED = "KEY_MAP_LEGEND_VIEW_VISIBILITY";
     public static final String KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED = "KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED";

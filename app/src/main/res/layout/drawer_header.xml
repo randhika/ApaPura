@@ -2,13 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/drawer_header_height"
-    android:background="@color/primary"
+    android:gravity="center"
+    android:background="@drawable/drawer_header_gradient"
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:scaleType="fitXY"
-        android:src="@drawable/molova_well"
+        android:layout_marginTop="@dimen/status_bar_height"
+        android:layout_gravity="center"
+        android:visibility="visible"
+        android:src="@drawable/aquamea_logo2"
         />
 </LinearLayout>

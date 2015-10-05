@@ -25,7 +25,7 @@
                 android:layout_weight="50"
                 android:orientation="vertical">
 
-                <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                     android:id="@+id/totalRatingField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                     android:textSize="@dimen/text_size_medium"
                     view:typeface="font/Roboto-Bold.ttf" />
 
-                <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                     android:id="@+id/appearanceRatingField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                     android:textSize="@dimen/text_size_medium"
                     view:typeface="font/Roboto-Regular.ttf" />
 
-                <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                     android:id="@+id/tasteRatingField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                     android:textSize="@dimen/text_size_medium"
                     view:typeface="font/Roboto-Regular.ttf" />
 
-                <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                     android:id="@+id/smellRatingField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                     view:typeface="font/Roboto-Regular.ttf" />
             </LinearLayout>
 
-            <md.fusionworks.aquamea.ui.view.EmptyImageView
+            <md.fusionworks.aquamea.ui.widget.EmptyImageView
                 android:id="@+id/emptyImageView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -84,7 +84,7 @@
                 android:fitsSystemWindows="true"
                 android:gravity="center" />
         </LinearLayout>
-        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+        <md.fusionworks.aquamea.ui.widget.TypefaceTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_padding_normal"

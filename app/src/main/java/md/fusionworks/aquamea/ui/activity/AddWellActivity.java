@@ -38,7 +38,7 @@ import butterknife.ButterKnife;
 import io.realm.Realm;
 import md.fusionworks.aquamea.R;
 import md.fusionworks.aquamea.model.realm.Well;
-import md.fusionworks.aquamea.ui.view.EmptyImageView;
+import md.fusionworks.aquamea.ui.widget.EmptyImageView;
 import md.fusionworks.aquamea.util.BitmapUtils;
 import md.fusionworks.aquamea.util.Constants;
 import md.fusionworks.aquamea.util.Convertor;

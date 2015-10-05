@@ -34,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-                <md.fusionworks.aquamea.ui.view.MapLegendView
+                <md.fusionworks.aquamea.ui.widget.MapLegendView
                     android:id="@+id/mapLegendView"
                     style="@style/MapUiWidgetStyle"
                     android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                     android:layout_margin="12dp"
                     android:orientation="vertical" />
 
-                <md.fusionworks.aquamea.ui.view.MapTypeSatelliteSwitcher
+                <md.fusionworks.aquamea.ui.widget.MapTypeSatelliteSwitcher
                     android:id="@+id/mapTypeSatelliteSwitcher"
                     style="@style/MapUiWidgetStyle"
                     android:layout_width="wrap_content"

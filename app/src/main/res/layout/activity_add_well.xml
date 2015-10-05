@@ -27,7 +27,7 @@
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <md.fusionworks.aquamea.ui.view.EmptyImageView
+            <md.fusionworks.aquamea.ui.widget.EmptyImageView
                 android:id="@+id/emptyImageView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/well_photo_height_max"
@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                    <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/content_padding_normal"
@@ -97,7 +97,7 @@
                         android:padding="20dp"
                         android:weightSum="100">
 
-                        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                        <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/element_spacing_normal"
@@ -138,7 +138,7 @@
                         android:padding="20dp"
                         android:weightSum="100">
 
-                        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                        <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/element_spacing_normal"
@@ -180,7 +180,7 @@
                         android:padding="20dp"
                         android:weightSum="100">
 
-                        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                        <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/element_spacing_normal"
@@ -227,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                    <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/content_padding_normal"
@@ -244,7 +244,7 @@
                         android:padding="20dp"
                         android:weightSum="100">
 
-                        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                        <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/element_spacing_normal"
@@ -255,7 +255,7 @@
                             android:textSize="@dimen/text_size_medium"
                             view:typeface="font/Roboto-Regular.ttf" />
 
-                        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                        <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                             android:id="@+id/latitudeField"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -281,7 +281,7 @@
                         android:padding="20dp"
                         android:weightSum="100">
 
-                        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                        <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/element_spacing_normal"
@@ -292,7 +292,7 @@
                             android:textSize="@dimen/text_size_medium"
                             view:typeface="font/Roboto-Regular.ttf" />
 
-                        <md.fusionworks.aquamea.ui.view.TypefaceTextView
+                        <md.fusionworks.aquamea.ui.widget.TypefaceTextView
                             android:id="@+id/longitudeField"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -311,7 +311,7 @@
                 android:layout_marginBottom="50dp"
                 android:layout_marginTop="@dimen/element_spacing_normal">
 
-                <md.fusionworks.aquamea.ui.view.TypefaceEditText
+                <md.fusionworks.aquamea.ui.widget.TypefaceEditText
                     android:id="@+id/noteField"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
