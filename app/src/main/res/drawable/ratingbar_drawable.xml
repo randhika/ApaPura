@@ -3,15 +3,15 @@
 
     <item
         android:id="@android:id/background"
-        android:drawable="@drawable/ic_water_yellow_24dp">
+        android:drawable="@drawable/ic_water_drop_empty_24">
     </item>
     <item
         android:id="@android:id/secondaryProgress"
-        android:drawable="@drawable/ic_water_yellow_24dp">
+        android:drawable="@drawable/ic_water_drop_empty_24">
     </item>
     <item
         android:id="@android:id/progress"
-        android:drawable="@drawable/ic_water_blue_24dp">
+        android:drawable="@drawable/ic_water_drop_24">
     </item>
 
 </layer-list>
