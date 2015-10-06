@@ -45,7 +45,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
     private static final int[] DRAWER_ICON_RES_ID = new int[]{
 
             R.drawable.ic_map_black_24dp,
-            R.drawable.ic_info_outline_black_24dp,
+            R.drawable.ic_accessibility_black_24dp,
             R.drawable.ic_info_outline_black_24dp,
     };
 
