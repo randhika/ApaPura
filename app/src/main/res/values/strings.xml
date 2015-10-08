@@ -64,12 +64,12 @@
     <string name="field_appearance_">Aspect:</string>
     <string name="field_taste_">Gust:</string>
     <string name="field_smell_">Miros:</string>
+    <string name="partener_web_address">http://fusionworks.md</string>
 
     <string name="title_activity_mark_apoint_on_map">MarkAPointOnMapActivity</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_about_app">Despre aplicație</string>
-
     <string name="health_text" formatted="false">Ce se intampla in corp cand bem apa?
 Ralph Vornehm a prezentat componenta de apa a fiecarui organ din corpul omenesc, incepand cu celulele, sangele, neurotransmitatorii si terminand cu organele.
 Astfel, creierul contine 90% apa, ceea ce explica intr-un fel capacitatea acestuia de a transmite mesajele catre toate organele cu viteze uluitoare; neurotransmitatorii - responsabili de transmiterea acestor mesaje - contin tot 90% apa.
@@ -190,4 +190,9 @@ II.  Protectia apelor si a ecosistemelor acvatice:
 
 </string>
     <string name="title_activity_treatment">Despre tratament</string>
+    <string name="field_about_app">Aquamea informează oamenii despre calitatea apei potabile și modul în care acestea se pot proteja.</string>
+    <string name="field_partener">Dezvoltat în colaborare cu</string>
+    <string name="field_version">Versiune 1.0.0</string>
+    <string name="field_contact">Suntem în contact</string>
+    <string name="field_contact_email">info@fusionworks.md</string>
 </resources>

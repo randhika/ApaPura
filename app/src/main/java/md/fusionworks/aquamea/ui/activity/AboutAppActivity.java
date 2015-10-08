@@ -1,41 +1,61 @@
 package md.fusionworks.aquamea.ui.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import md.fusionworks.aquamea.R;
+import md.fusionworks.aquamea.util.Constants;
 
-public class AboutAppActivity extends BaseNavigationDrawerActivity {
+public class AboutAppActivity extends BaseNavigationDrawerActivity implements View.OnClickListener {
+
+    @Bind(R.id.partnerLogoField)
+    View partnerLogoField;
+    @Bind(R.id.emailField)
+    TextView emailField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_app);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_about_app, menu);
-        return true;
-    }
+        ButterKnife.bind(this);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-
-
-        return super.onOptionsItemSelected(item);
+        emailField.setMovementMethod(LinkMovementMethod.getInstance());
+        emailField.setOnClickListener(this);
+        partnerLogoField.setOnClickListener(this);
     }
 
     @Override
     protected int getSelfDrawerItem() {
 
         return DRAWER_ITEM_ABOUT_APP;
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        Intent intent;
+
+        switch (v.getId()) {
+
+            case R.id.partnerLogoField:
+
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.partener_web_address)));
+                startActivity(intent);
+                break;
+            case R.id.emailField:
+
+                intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(Constants.MAIL_TO, getString(R.string.field_contact_email), null));
+                startActivity(Intent.createChooser(intent, null));
+                break;
+        }
     }
 }

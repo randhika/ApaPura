@@ -30,11 +30,12 @@ public class Constants {
     public static final String KEY_NOTE = "KEY_NOTE";
     public static final String KEY_LATITUDE = "KEY_LATITUDE";
     public static final String KEY_LONGITUDE = "KEY_LONGITUDE";
+    public static final String MAIL_TO = "mailto";
 
     public static final float MY_LOCATION_CAMERA_POSITION_ZOOM = 15f;
     public static final String JPEG_FILE_PREFIX = "IMG_";
     public static final String JPEG_FILE_SUFFIX = ".jpg";
     public static final String CAMERA_DIR = "/DCIM/";
     public static final String PHOTO_ALBUM_NAME = "AquaMeaPhotos";
-    public static final int LAUNCH_SLEEP_TIME = 2000;
+    public static final int LAUNCH_SLEEP_TIME = 1000;
 }

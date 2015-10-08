@@ -264,8 +264,8 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         else
             mapLegendView.hideLegend();
 
-        boolean mapTypeSatelliteSwithcerWasChecked = savedInstanceState.getBoolean(Constants.KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED);
-        mapTypeSatelliteSwitcher.setChecked(mapTypeSatelliteSwithcerWasChecked);
+        boolean mapTypeSatelliteSwitcerWasChecked = savedInstanceState.getBoolean(Constants.KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED);
+        mapTypeSatelliteSwitcher.setChecked(mapTypeSatelliteSwitcerWasChecked);
     }
 
     @Override
