@@ -19,6 +19,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import md.fusionworks.aquamea.R;
 import md.fusionworks.aquamea.helper.MapHelper;
+import md.fusionworks.aquamea.ui.widget.MapTypeSatelliteSwitcher;
 import md.fusionworks.aquamea.util.Constants;
 import md.fusionworks.aquamea.util.DialogUtils;
 
@@ -30,6 +31,8 @@ public class MarkAPointOnMapActivity extends BaseLocationActivity implements Goo
     TextView latitudeField;
     @Bind(R.id.longitudeField)
     TextView longitudeField;
+    @Bind(R.id.mapTypeSatelliteSwitcher)
+    MapTypeSatelliteSwitcher mapTypeSatelliteSwitcher;
 
     private GoogleMap map;
     private MapHelper mapHelper;
@@ -49,7 +52,6 @@ public class MarkAPointOnMapActivity extends BaseLocationActivity implements Goo
                 longitudeExtraString = bundle.getString(Constants.EXTRA_PARAM_LONGITUDE);
             }
 
-
         ButterKnife.bind(this);
         setUpMapIfNeeded();
         mapHelper = MapHelper.newInstance(this, map);
@@ -66,6 +68,18 @@ public class MarkAPointOnMapActivity extends BaseLocationActivity implements Goo
                 finish();
             }
         });
+
+        mapTypeSatelliteSwitcher.setOnCheckedChangeListener(new MapTypeSatelliteSwitcher.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(boolean isChecked) {
+
+                if (isChecked)
+                    map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                else
+                    map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            }
+        });
+
 
         map.setOnMapClickListener(this);
     }

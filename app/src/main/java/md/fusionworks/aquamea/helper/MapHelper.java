@@ -31,7 +31,7 @@ public class MapHelper {
     public void goToPosition(Double latitude, Double longitude, boolean animateCamera) {
 
         float zoom = map.getCameraPosition().zoom;
-        goToPosition(latitude,longitude,animateCamera, zoom);
+        goToPosition(latitude, longitude, animateCamera, zoom);
     }
 
     public void goToPosition(Double latitude, Double longitude, boolean animateCamera, float zoom) {
@@ -50,8 +50,8 @@ public class MapHelper {
         LatLng latLng = new LatLng(latitude, longitude);
         return map.addMarker(new MarkerOptions()
                 .position(latLng)
-                .title("Title")
-                .snippet("Snippet")
+                        // .title("Title")
+                        //  .snippet("Snippet")
                 .icon(BitmapDescriptorFactory.defaultMarker(hue)));
     }
 }

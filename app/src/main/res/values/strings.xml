@@ -70,7 +70,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_about_app">Despre aplicație</string>
-    <string name="health_text" formatted="false">Ce se intampla in corp cand bem apa?
+    <string name="health_text" formatted="false"><html><body>
+        <b>METODA DE TRATAMENT</b>
+        Ce se intampla in corp cand bem apa?
 Ralph Vornehm a prezentat componenta de apa a fiecarui organ din corpul omenesc, incepand cu celulele, sangele, neurotransmitatorii si terminand cu organele.
 Astfel, creierul contine 90% apa, ceea ce explica intr-un fel capacitatea acestuia de a transmite mesajele catre toate organele cu viteze uluitoare; neurotransmitatorii - responsabili de transmiterea acestor mesaje - contin tot 90% apa.
 Este de inteles atunci, de ce cand nu bem apa, nu mai simtim cu timpul senzatia de sete. Neurotransmitatorii deshidratati nu mai transmit corect mesajul "mi-e sete", asa incat setea incepe sa mistuie corpul, incep durerile (si ele semnale de deshidratare) si patologia multor organe. "Celulele corpului nostru nu se ating intre ele, pentru ca inoata in apa, la fel ca si nervii"- R. Vornehm
@@ -113,7 +115,7 @@ Publicam mai jos o descriere a folosirii apei, pentru cititorii nostri.
 Pentru cei in varsta si pentru bolile grave ca si pentru bolile moderne, tratamentul cu apa a fost considerat de succes de catre o societate medicala japoneza, ca tratament sigur 100% pentru urmatoarele boli:
 dureri ale corpului; dureri de cap; sistemul circulator; artrita; batai puternice ale inimii; epilepsie; grasimi in exces; astm bronsic; tuberculoza; meningita; boli de ficat si urina; voma; gastrita; diaree; hemoroizi; diabet ; constipatie; toate bolile de ochi; cancer la organele genitale si dere glari menstruale; boli ale urechilor, nasului si gatului.
 
-METODA DE TRATAMENT
+<b>METODA DE TRATAMENT</b><br/><br/>
 
 
 1.Dimineata, imediat dupa trezire, inainte de a va spala pe dinti, beti 4x 160 ml apa
@@ -155,7 +157,8 @@ S-ar putea sa nu ai prima data durere in piept, in timpul unui atac de inima.
 Greata si transpiratul intens sunt si ele simptome obisnuite. 60% din persoanele care au atac de inima in timp ce dorm, nu se trezesc...
 Durerea in maxilar va poate trezi dintr-un somn adanc. Fiti cu grija si atenti... Cu cat stim mai multe, cu atat sansele de a supravietui sunt mai mari.
 Un cardiolog spunea ca, daca fiecare din cei care primesc acest mail, il trimite la toti cunoscutii sai, putem fi siguri ca vom salva cel putin o viata.
-</string>
+</body></html>
+    </string>
     <string name="treatment_text">4.  Protectia apelor:
 
 I.  Autopurificarea apelor:
