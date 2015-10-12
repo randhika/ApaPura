@@ -25,6 +25,8 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import icepick.Icepick;
+import icepick.State;
 import io.realm.RealmResults;
 import md.fusionworks.aquamea.R;
 import md.fusionworks.aquamea.helper.MapHelper;
@@ -57,7 +59,13 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     private Map<Marker, md.fusionworks.aquamea.model.Well> wellDetailsMap;
     private boolean isActivityResult;
 
+    @State
+    boolean mapLegendShowedState = false;
+    @State
+    boolean mapTypeSatelliteSwitcerCheckedState = false;
+
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
@@ -122,7 +130,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         return super.onOptionsItemSelected(item);
     }
 
-    private void  setUpMapIfNeeded() {
+    private void setUpMapIfNeeded() {
 
         if (map == null) {
 
@@ -248,24 +256,24 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-        outState.putBoolean(Constants.KEY_MAP_LEGEND_VIEW_WAS_SHOWED, mapLegendView.isLegendShowed());
-        outState.putBoolean(Constants.KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED, mapTypeSatelliteSwitcher.isChecked());
-
         super.onSaveInstanceState(outState);
+        mapLegendShowedState = mapLegendView.isLegendShowed();
+        mapTypeSatelliteSwitcerCheckedState = mapTypeSatelliteSwitcher.isChecked();
+        Icepick.saveInstanceState(this, outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
 
-        boolean mapLegendViewWasShowed = savedInstanceState.getBoolean(Constants.KEY_MAP_LEGEND_VIEW_WAS_SHOWED);
-        if (mapLegendViewWasShowed)
+        super.onRestoreInstanceState(savedInstanceState);
+        Icepick.restoreInstanceState(this, savedInstanceState);
+
+        if (mapLegendShowedState)
             mapLegendView.showLegend();
         else
             mapLegendView.hideLegend();
 
-        boolean mapTypeSatelliteSwitcerWasChecked = savedInstanceState.getBoolean(Constants.KEY_MAP_TYPE_SATELLITE_SWITCHER_WAS_CHECKED);
-        mapTypeSatelliteSwitcher.setChecked(mapTypeSatelliteSwitcerWasChecked);
+        mapTypeSatelliteSwitcher.setChecked(mapTypeSatelliteSwitcerCheckedState);
     }
 
     @Override
