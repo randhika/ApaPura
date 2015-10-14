@@ -59,14 +59,11 @@ public class MarkAPointOnMapActivity extends BaseLocationActivity implements Goo
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.module_title_mark_a_point_on_map);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        toolbar.setNavigationOnClickListener(v -> {
 
-                Intent intent = new Intent();
-                setResult(RESULT_CANCELED, intent);
-                finish();
-            }
+            Intent intent = new Intent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
         });
 
         mapTypeSatelliteSwitcher.setOnCheckedChangeListener(new MapTypeSatelliteSwitcher.OnCheckedChangeListener() {

@@ -62,14 +62,11 @@ public class WellDetailActivity extends AppCompatActivity {
 
         collapsingToolbarLayout.setTitle(getString(R.string.module_title_well_detail));
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        toolbar.setNavigationOnClickListener(v -> {
 
-                Intent intent = new Intent();
-                setResult(RESULT_CANCELED, intent);
-                finish();
-            }
+            Intent intent = new Intent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
         });
         Intent intent = getIntent();
         well = (md.fusionworks.aquamea.model.Well) intent.getSerializableExtra(Constants.EXTRA_PARAM_WELL);

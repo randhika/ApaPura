@@ -75,24 +75,18 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         mapHelper = MapHelper.newInstance(this, map);
         isActivityResult = false;
 
-        addWellFab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        addWellFab.setOnClickListener(v -> {
 
-                Intent intent = new Intent(MapActivity.this, AddWellActivity.class);
-                startActivityForResult(intent, Constants.ACTIVITY_RESULT_ADD_WELL);
-            }
+            Intent intent = new Intent(MapActivity.this, AddWellActivity.class);
+            startActivityForResult(intent, Constants.ACTIVITY_RESULT_ADD_WELL);
         });
 
-        mapTypeSatelliteSwitcher.setOnCheckedChangeListener(new MapTypeSatelliteSwitcher.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(boolean isChecked) {
+        mapTypeSatelliteSwitcher.setOnCheckedChangeListener(isChecked -> {
 
-                if (isChecked)
-                    map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                else
-                    map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            }
+            if (isChecked)
+                map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+            else
+                map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         });
 
         buildGoogleApiClient();
@@ -187,13 +181,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
                     wellDetailsMap.put(marker, well);
                     marker.showInfoWindow();
 
-                    coordinatorLayout.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            Snackbar.make(coordinatorLayout, getString(R.string.info_well_added), Snackbar.LENGTH_SHORT).show();
-                        }
-                    }, 500);
+                    coordinatorLayout.postDelayed(() -> Snackbar.make(coordinatorLayout, getString(R.string.info_well_added), Snackbar.LENGTH_SHORT).show(), 500);
                     break;
 
             }

@@ -101,12 +101,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
             drawerLayout.openDrawer(GravityCompat.START);
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
         actionBarDrawerToggle.syncState();
 
         drawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
@@ -183,12 +178,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
 
         formatDrawerItem(view, itemId, selected);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onDrawerItemClicked(itemId);
-            }
-        });
+        view.setOnClickListener(v -> onDrawerItemClicked(itemId));
 
         return view;
     }
@@ -236,12 +226,7 @@ public class BaseNavigationDrawerActivity extends BaseActivity {
             goToDrawerItem(itemId);
         } else {
 
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    goToDrawerItem(itemId);
-                }
-            }, DRAWER_LAUNCH_DELAY);
+            handler.postDelayed(() -> goToDrawerItem(itemId), DRAWER_LAUNCH_DELAY);
 
             setSelectedDrawerItem(itemId);
         }

@@ -89,14 +89,11 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
         collapsingToolbarLayout.setTitle(getString(R.string.module_title_add_well));
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        toolbar.setNavigationOnClickListener(v -> {
 
-                Intent intent = new Intent();
-                setResult(RESULT_CANCELED, intent);
-                finish();
-            }
+            Intent intent = new Intent();
+            AddWellActivity.this.setResult(RESULT_CANCELED, intent);
+            AddWellActivity.this.finish();
         });
 
         isActivityResult = false;
@@ -150,13 +147,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             wellRealm.setLongitude(longitude);
 
             Realm realm = Realm.getInstance(this);
-            realm.executeTransaction(new Realm.Transaction() {
-                @Override
-                public void execute(Realm realm) {
-
-                    realm.copyToRealm(wellRealm);
-                }
-            });
+            realm.executeTransaction(realm1 -> realm1.copyToRealm(wellRealm));
 
             md.fusionworks.aquamea.model.Well well = Convertor.wellRealmObjectToSimple(wellRealm);
 
@@ -294,13 +285,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                         latitudeField.setText(dialogLatitudeField.getText().toString());
                         longitudeField.setText(dialogLongitudeField.getText().toString());
 
-                        coordinatorLayout.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                Snackbar.make(coordinatorLayout, getString(R.string.info_gps_coordonates_was_set), Snackbar.LENGTH_SHORT).show();
-                            }
-                        }, 500);
+                        coordinatorLayout.postDelayed(() -> Snackbar.make(coordinatorLayout, getString(R.string.info_gps_coordonates_was_set), Snackbar.LENGTH_SHORT).show(), 500);
                     }
 
                     @Override
@@ -560,13 +545,7 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
                 latitudeField.setText(String.valueOf(location.getLatitude()));
                 longitudeField.setText(String.valueOf(location.getLongitude()));
 
-                coordinatorLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        Snackbar.make(coordinatorLayout, getString(R.string.info_gps_coordonates_was_set), Snackbar.LENGTH_SHORT).show();
-                    }
-                }, 500);
+                coordinatorLayout.postDelayed(() -> Snackbar.make(coordinatorLayout, getString(R.string.info_gps_coordonates_was_set), Snackbar.LENGTH_SHORT).show(), 500);
             } else {
 
                 DialogUtils.showAlertDialog(this, getString(R.string.dialog_title_gps_location_error), getString(R.string.info_cannot_get_gps_coordiates));
