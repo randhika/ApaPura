@@ -1,82 +1,82 @@
 <resources>
     <string name="app_name">Aquamea</string>
 
-    <string name="action_settings">Setări</string>
+    <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_map">Map</string>
-    <string name="drawer_item_map">Hartă</string>
-    <string name="drawer_item_health_treatment">Despre sănătate și tratament</string>
-    <string name="drawer_item_treatment">Despre tratament</string>
-    <string name="drawer_item_about_app">Despre aplicație</string>
-    <string name="title_activity_health_treatment">Despre sănătate și tratament</string>
-    <string name="drawer_item_settings">Setări</string>
+    <string name="drawer_item_map">Map</string>
+    <string name="drawer_item_health_treatment">About health and treatment</string>
+    <string name="drawer_item_treatment">About treatment</string>
+    <string name="drawer_item_about_app">About application</string>
+    <string name="title_activity_health_treatment">About health and treatment</string>
+    <string name="drawer_item_settings">Settings</string>
     <string name="title_activity_add_well">Add well</string>
     <string name="drawer_item_empty"> </string>
 
     <string-array name="photo_options">
 
-        <item>Fotografiază</item>
-        <item>Selectează o fotografie</item>
+        <item>Take photo</item>
+        <item>Pick photo</item>
     </string-array>
     <string-array name="photo_options_plus_remove">
 
-        <item>Fotografiază</item>
-        <item>Selectează o fotografie</item>
-        <item>Elimină fotografia selectată</item>
+        <item>Take photo</item>
+        <item>Pick photo</item>
+        <item>Remove selected photo</item>
     </string-array>
     <string-array name="coordinates_options">
-        <item>Marchează un punct pe hartă</item>
-        <item>Depistează coordinatele GPS</item>
-        <item>Introdu coordinatele GPS manual</item>
+        <item>Pick a point on map</item>
+        <item>Get GPS coordinates</item>
+        <item>Enter GPS coordinates manually</item>
     </string-array>
-    <string name="module_title_mark_a_point_on_map">Marchează un punct pe hartă</string>
-    <string name="module_title_add_well">Adaugă o fîntînă</string>
-    <string name="dialog_title_validation_error">Eroare de validare</string>
-    <string name="validation_error_message_gps_coordinates_required">Coordonatele GPS ale fîntînii sunt obligatorii!</string>
-    <string name="action_save">Salvează</string>
-    <string name="dialog_title_enter_gps_coordinates">Introdu coordinatele GPS</string>
-    <string name="dialog_title_gps_location_error">Eroare GPS coordinate</string>
-    <string name="info_cannot_get_gps_coordiates">Nu este posibil de preluat automat coordonatele GPS în acest moment, vă rog verificați dacă serviciile de depistare a coordonatelor GPS sunt activate.</string>
-    <string name="module_title_map">Hartă</string>
-    <string name="info_well_added">Fîntîna a fost adăugată</string>
-    <string name="info_gps_coordonates_was_set">Coordonatele GPS au fost setate</string>
-    <string name="module_title_well_detail">Detaliile fîntînii</string>
-    <string name="action_hide">Ascunde</string>
-    <string name="action_show_legend">Legendă</string>
-    <string name="menu_option_add_well">Adaugă o fîntînă</string>
-    <string name="title_legend">Calitate (1-5)</string>
-    <string name="legend_rate_0_3"> de la 0 pînă la 3</string>
-    <string name="legend_rate_3_4">de la 3 pînă la 4</string>
-    <string name="legend_rate_4_5_1">de la 4 pînă la 5.1</string>
-    <string name="field_latitude">Latitudine</string>
-    <string name="field_longitude">Longitudine</string>
-    <string name="field_water_properties">Proprietățile apei din fîntînă</string>
-    <string name="field_appearance">Aspect</string>
-    <string name="field_taste">Gust</string>
-    <string name="field_smell">Miros</string>
-    <string name="field_well_coordinates">Coordonatele GPS ale fîntînii</string>
-    <string name="field_marked_point_on_map_coordinates">Coordonatele GPS ale punctului marcat pe hartă</string>
-    <string name="hint_note">Notă</string>
-    <string name="field_note">Notă</string>
-    <string name="field_total_rating_">Rating total:</string>
-    <string name="field_appearance_">Aspect:</string>
-    <string name="field_taste_">Gust:</string>
-    <string name="field_smell_">Miros:</string>
+    <string name="module_title_mark_a_point_on_map">Pick a point on map</string>
+    <string name="module_title_add_well">Add well</string>
+    <string name="dialog_title_validation_error">Validation error</string>
+    <string name="validation_error_message_gps_coordinates_required">GPS coordinates of well are required!</string>
+    <string name="action_save">Save</string>
+    <string name="dialog_title_enter_gps_coordinates">Enter GPS coordinates</string>
+    <string name="dialog_title_gps_location_error">Error GPS coordinates</string>
+    <string name="info_cannot_get_gps_coordiates">Cannot automatically get GPS coordinates at moment.</string>
+    <string name="module_title_map">Map</string>
+    <string name="info_well_added">Well added</string>
+    <string name="info_gps_coordonates_was_set">GPS coordinates was set</string>
+    <string name="module_title_well_detail">Well details</string>
+    <string name="action_hide">Hide</string>
+    <string name="action_show_legend">Legend</string>
+    <string name="menu_option_add_well">Add well</string>
+    <string name="title_legend">Quality (1-5)</string>
+    <string name="legend_rate_0_3"> from 0 to 3</string>
+    <string name="legend_rate_3_4">from 3 to 4</string>
+    <string name="legend_rate_4_5_1">from 4 to 5.1</string>
+    <string name="field_latitude">Latitude</string>
+    <string name="field_longitude">Longitude</string>
+    <string name="field_water_properties">Water from well properties</string>
+    <string name="field_appearance">Appearance</string>
+    <string name="field_taste">Taste</string>
+    <string name="field_smell">Smell</string>
+    <string name="field_well_coordinates">GPS coordinates of well</string>
+    <string name="field_marked_point_on_map_coordinates">GPS coordinates of point marked on map</string>
+    <string name="hint_note">Note</string>
+    <string name="field_note">Note</string>
+    <string name="field_total_rating_">Total rating:</string>
+    <string name="field_appearance_">Appearance:</string>
+    <string name="field_taste_">Taste:</string>
+    <string name="field_smell_">Smell:</string>
     <string name="partener_web_address">http://fusionworks.md</string>
 
     <string name="title_activity_mark_apoint_on_map">MarkAPointOnMapActivity</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_about_app">Despre aplicație</string>
+    <string name="title_activity_about_app">About application</string>
 
-    <string name="title_activity_treatment">Despre tratament</string>
-    <string name="field_about_app">Aquamea informează despre calitatea apei tale. Aplicația Noastră - sănătatea Dumnevoastră.</string>
-    <string name="field_partener">Dezvoltat în colaborare cu</string>
-    <string name="field_version">Versiune 1.0.0</string>
-    <string name="field_contact">Suntem în contact</string>
+    <string name="title_activity_treatment">About treatment</string>
+    <string name="field_about_app">Aquamea inform about quality of your water. Our application - Your health.</string>
+    <string name="field_partener">Developed in cooperation with</string>
+    <string name="field_version">Version 1.0.0</string>
+    <string name="field_contact">We are in contact</string>
     <string name="field_contact_email">info@fusionworks.md</string>
-    <string name="field_made_in_moldova">Elaborat în Moldova</string>
-    <string name="field_click_on_window_to_show_details">Faceți click pe fereastră pentru a vedea mai multe informații!</string>
+    <string name="field_made_in_moldova">Product created in Moldova</string>
+    <string name="field_click_on_window_to_show_details">Click on window to see more details!</string>
 </resources>

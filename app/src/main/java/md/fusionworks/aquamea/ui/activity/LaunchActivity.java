@@ -15,5 +15,6 @@ public class LaunchActivity extends AppCompatActivity {
         Intent intentToLaunch = new Intent(this, MapActivity.class);
         intentToLaunch.putExtra(Constants.EXTRA_PARAM_FROM_LAUNCH_SCREEN, true);
         startActivity(intentToLaunch);
+        finish();
     }
 }
