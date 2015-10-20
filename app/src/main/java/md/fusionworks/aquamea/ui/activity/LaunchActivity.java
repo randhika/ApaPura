@@ -43,8 +43,8 @@ public class LaunchActivity extends AppCompatActivity {
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
 
-           // startActivity(intent);
-            //finish();
+            startActivity(intent);
+            finish();
         }
     }
 }
