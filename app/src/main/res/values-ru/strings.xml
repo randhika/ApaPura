@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">Aquamea</string>
+
+    <string name="action_settings">Настройки</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_map">Карта</string>
+    <string name="drawer_item_map">Карта</string>
+    <string name="drawer_item_health_treatment">О здоровье и лечении</string>
+    <string name="drawer_item_treatment">О здоровье</string>
+    <string name="drawer_item_about_app">О приложении</string>
+    <string name="title_activity_health_treatment">О здоровье и лечении</string>
+    <string name="drawer_item_settings">Настройки</string>
+    <string name="title_activity_add_well">Добавить колодец</string>
+    <string name="drawer_item_empty"> </string>
+
+    <string-array name="photo_options">
+
+        <item>Фотографировать</item>
+        <item>Выбрать фотографию</item>
+    </string-array>
+    <string-array name="photo_options_plus_remove">
+
+
+        <item>Фотографировать</item>
+        <item>Выбрать фотографию</item>
+        <item>Удалить выбранную фотографию</item>
+    </string-array>
+    <string-array name="coordinates_options">
+        <item>Отметить точку на карте</item>
+        <item>Обнаружить GPS-координаты</item>
+        <item>Ввести GPS-координаты вручную</item>
+    </string-array>
+    <string name="module_title_mark_a_point_on_map">Отметить точку на карте</string>
+    <string name="module_title_add_well">Добавить колодец</string>
+    <string name="dialog_title_validation_error">Ошибка валидации</string>
+    <string name="validation_error_message_gps_coordinates_required">GPS-координаты колодца обьязательны!</string>
+    <string name="action_save">Сохранить</string>
+    <string name="dialog_title_enter_gps_coordinates">Введите GPS-координаты</string>
+    <string name="dialog_title_gps_location_error">Ошибка GPS-координатов</string>
+    <string name="info_cannot_get_gps_coordiates">Невозможно атоматически получить GPS-координаты в данный момент.</string>
+    <string name="module_title_map">Карта</string>
+    <string name="info_well_added">Колодец был добавлен</string>
+    <string name="info_gps_coordonates_was_set">GPS-координаты добавлены</string>
+    <string name="module_title_well_detail">Детали колодца</string>
+    <string name="action_hide">Скрыть</string>
+    <string name="action_show_legend">Легенда</string>
+    <string name="menu_option_add_well">Добавить колодец</string>
+    <string name="title_legend">Качество (1-5)</string>
+    <string name="legend_rate_0_3">от 0 до 3</string>
+    <string name="legend_rate_3_4">от 3 до 4</string>
+    <string name="legend_rate_4_5_1">от 4 до 5.1</string>
+    <string name="field_latitude">Широта</string>
+    <string name="field_longitude">Долгота</string>
+    <string name="field_water_properties">Своиства воды из колодца</string>
+    <string name="field_appearance">Вид</string>
+    <string name="field_taste">Вкус</string>
+    <string name="field_smell">Запах</string>
+    <string name="field_well_coordinates">GPS-координаты колодца</string>
+    <string name="field_marked_point_on_map_coordinates">GPS-координаты отмеченной точки на карте</string>
+    <string name="hint_note">Заметка</string>
+    <string name="field_note">Заметка</string>
+    <string name="field_total_rating_">Общий рейтинг:</string>
+    <string name="field_appearance_">Вид:</string>
+    <string name="field_taste_">Вкус:</string>
+    <string name="field_smell_">Запах:</string>
+    <string name="partener_web_address">http://fusionworks.md</string>
+
+    <string name="title_activity_mark_apoint_on_map">MarkAPointOnMapActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_about_app">О приложении</string>
+
+    <string name="title_activity_treatment">О лечении</string>
+    <string name="field_about_app">Aquamea сообщяет о качестве твоей воды. Наше приложение - Ваше здоровье.</string>
+    <string name="field_partener">Разработано совместно с</string>
+    <string name="field_version">Версия 1.0.0</string>
+    <string name="field_contact">Мы на связи</string>
+    <string name="field_contact_email">info@fusionworks.md</string>
+    <string name="field_made_in_moldova">Продукт создан в Молдове</string>
+    <string name="field_click_on_window_to_show_details">Нажмите на окно что бы увидеть больше информации!</string>
+</resources>

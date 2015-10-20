@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/content_padding_normal"
             android:gravity="center"
-            android:text="Faceți click pe fereastră pentru a vedea mai multe informații!"
+            android:text="@string/field_click_on_window_to_show_details"
             android:textColor="@color/secondary_text"
             android:textSize="@dimen/text_size_small"
             view:typeface="font/Roboto-Regular.ttf" />
