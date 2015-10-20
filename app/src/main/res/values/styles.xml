@@ -30,7 +30,10 @@
     <style name="Theme.ApaPura.AddWell" parent="Theme.ApaPura.WithNavDrawer" />
     <style name="Theme.ApaPura.WellDetail" parent="Theme.ApaPura.WithNavDrawer" />
     <style name="Theme.ApaPura.MarkAPointOnMap" parent="Theme.ApaPura" />
-    <style name="Theme.ApaPura.Launch" parent="Theme.ApaPura" />
+
+    <style name="Theme.ApaPura.Launch" parent="Theme.ApaPura">
+        <item name="android:windowBackground">@drawable/background_launch</item>
+    </style>
 
     <style name="ActionBarThemeOverlay" parent="">
         <item name="android:textColorPrimary">#fff</item>
