@@ -79,16 +79,21 @@ public class WellDetailActivity extends AppCompatActivity {
 
         if (well != null) {
 
-            String photoPath = well.getPhotoPath();
-            if (!TextUtils.isEmpty(photoPath)) {
+            String localPhoto = well.getLocalPhoto();
+            String serverPhoto = well.getServerPhoto();
+
+            if (!TextUtils.isEmpty(localPhoto)) {
 
                 try {
-                    Bitmap imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.fromFile(new File(photoPath)));
+                    Bitmap imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), Uri.fromFile(new File(localPhoto)));
                     emptyImageView.setImageBitmap(BitmapUtils.scaleToActualAspectRatio(this, imageBitmap));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                emptyImageView.setTag(photoPath);
+            } else if (!TextUtils.isEmpty(serverPhoto)) {
+
+                String photoUrl = "http://192.168.88.21/photo/" + serverPhoto;
+                emptyImageView.setServerImage(WellDetailActivity.this, photoUrl);
             }
 
             appearanceRatingBar.setRating(well.getAppearanceRating());
@@ -113,7 +118,6 @@ public class WellDetailActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
 
 
         return super.onOptionsItemSelected(item);

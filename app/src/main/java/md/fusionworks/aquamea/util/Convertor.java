@@ -10,7 +10,7 @@ public class Convertor {
     public static Well wellRealmObjectToSimple(md.fusionworks.aquamea.model.realm.Well wellRealm) {
 
         Well well = new Well();
-        well.setPhotoPath(wellRealm.getPhotoPath());
+        well.setLocalPhoto(wellRealm.getLocalPhoto());
         well.setAppearanceRating(wellRealm.getAppearanceRating());
         well.setTasteRating(wellRealm.getTasteRating());
         well.setSmellRating(wellRealm.getSmellRating());

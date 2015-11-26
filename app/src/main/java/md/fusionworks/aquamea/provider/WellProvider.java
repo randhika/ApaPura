@@ -25,6 +25,6 @@ public class WellProvider {
 
     public RealmResults<Well> getAll() {
 
-        return realm.where(Well.class).findAll();
+        return realm.where(Well.class).equalTo("sync", false).findAll();
     }
 }

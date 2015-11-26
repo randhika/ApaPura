@@ -7,23 +7,33 @@ import io.realm.RealmObject;
  */
 public class Well extends RealmObject {
 
-    private String photoPath;
+    private String serverPhoto;
+    private String localPhoto;
     private int appearanceRating;
     private int tasteRating;
     private int smellRating;
     private String note;
     private double latitude;
     private double longitude;
+    private boolean sync;
 
     public Well() {
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public String getServerPhoto() {
+        return serverPhoto;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setServerPhoto(String serverPhoto) {
+        this.serverPhoto = serverPhoto;
+    }
+
+    public String getLocalPhoto() {
+        return localPhoto;
+    }
+
+    public void setLocalPhoto(String localPhoto) {
+        this.localPhoto = localPhoto;
     }
 
     public int getAppearanceRating() {
@@ -72,5 +82,13 @@ public class Well extends RealmObject {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public boolean isSync() {
+        return sync;
+    }
+
+    public void setSync(boolean sync) {
+        this.sync = sync;
     }
 }

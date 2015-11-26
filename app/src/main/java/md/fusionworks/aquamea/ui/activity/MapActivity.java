@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Marker;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -29,9 +32,12 @@ import icepick.Icepick;
 import icepick.State;
 import io.realm.RealmResults;
 import md.fusionworks.aquamea.R;
+import md.fusionworks.aquamea.api.AquaMeaClient;
+import md.fusionworks.aquamea.api.Callback;
 import md.fusionworks.aquamea.helper.MapHelper;
 import md.fusionworks.aquamea.model.realm.Well;
 import md.fusionworks.aquamea.provider.WellProvider;
+import md.fusionworks.aquamea.repository.AquameaRepository;
 import md.fusionworks.aquamea.ui.widget.EmptyImageView;
 import md.fusionworks.aquamea.ui.widget.MapLegendView;
 import md.fusionworks.aquamea.ui.widget.MapTypeSatelliteSwitcher;
@@ -59,13 +65,14 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     private Map<Marker, md.fusionworks.aquamea.model.Well> wellDetailsMap;
     private boolean isActivityResult;
 
+    private MaterialDialog loadingMarkersDialog;
+
     @State
     boolean mapLegendShowedState = false;
     @State
     boolean mapTypeSatelliteSwitcerCheckedState = false;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
@@ -147,13 +154,43 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     private void pinWellsOnMap() {
 
         wellDetailsMap = new HashMap<>();
-        RealmResults<Well> wellRealms = WellProvider.newInstance(this).getAll();
-        for (Well wellRealm : wellRealms) {
 
-            int rating = Utils.calculateWaterRating(wellRealm.getAppearanceRating(), wellRealm.getTasteRating(), wellRealm.getSmellRating());
-            Marker marker = mapHelper.createMarker(wellRealm.getLatitude(), wellRealm.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
-            wellDetailsMap.put(marker, Convertor.wellRealmObjectToSimple(wellRealm));
-        }
+        showLoadingMarkers();
+
+        map.clear();
+
+        new AquameaRepository().getMarkers(new Callback<List<md.fusionworks.aquamea.model.Well>>() {
+            @Override
+            public void onSuccess(List<md.fusionworks.aquamea.model.Well> response) {
+
+                for (md.fusionworks.aquamea.model.Well well : response) {
+
+                    int rating;
+                    Marker marker;
+
+                    rating = Utils.calculateWaterRating(well.getAppearanceRating(), well.getTasteRating(), well.getSmellRating());
+                    marker = mapHelper.createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+                    wellDetailsMap.put(marker, well);
+
+                    RealmResults<Well> wellRealms = WellProvider.newInstance(MapActivity.this).getAll();
+                    for (Well wellRealm : wellRealms) {
+
+                        rating = Utils.calculateWaterRating(wellRealm.getAppearanceRating(), wellRealm.getTasteRating(), wellRealm.getSmellRating());
+                        marker = mapHelper.createMarker(wellRealm.getLatitude(), wellRealm.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
+                        wellDetailsMap.put(marker, Convertor.wellRealmObjectToSimple(wellRealm));
+                    }
+
+                    hideLoadingMarkers();
+                }
+            }
+
+            @Override
+            public void onError(Throwable t) {
+
+                hideLoadingMarkers();
+                onLoadingMarkersError();
+            }
+        });
     }
 
     @Override
@@ -269,6 +306,9 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
         mapHelper.goToPosition(marker.getPosition().latitude, marker.getPosition().longitude, true);
         marker.showInfoWindow();
+
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> marker.showInfoWindow(), 200);
         return true;
     }
 
@@ -315,15 +355,57 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
             tasteRatingField.setText(String.format("%s %d", getString(R.string.field_taste_), well.getTasteRating()));
             smellRatingField.setText(String.format("%s %d", getString(R.string.field_smell_), well.getSmellRating()));
 
-            String photoPath = well.getPhotoPath();
-            if (!TextUtils.isEmpty(photoPath)) {
+            String localPhoto = well.getLocalPhoto();
+            String serverPhoto = well.getServerPhoto();
 
-                emptyImageView.setImageBitmap(BitmapUtils.scaleToActualAspectRatio(emptyImageView, photoPath));
-                emptyImageView.setTag(photoPath);
+            if (!TextUtils.isEmpty(localPhoto)) {
+
+                emptyImageView.setImageBitmap(BitmapUtils.scaleToActualAspectRatio(emptyImageView, localPhoto));
+            } else if (!TextUtils.isEmpty(serverPhoto)) {
+
+                String photoUrl = "http://192.168.88.21/photo/" + serverPhoto;
+                emptyImageView.setServerImage(MapActivity.this, photoUrl);
             } else
                 emptyImageView.removeImage();
 
             return view;
         }
+    }
+
+    private void showLoadingMarkers() {
+
+        if (loadingMarkersDialog == null) {
+            loadingMarkersDialog = new MaterialDialog.Builder(this)
+                    .content(R.string.loading_markers___)
+                    .progress(true, 0)
+                    .cancelable(false)
+                    .progressIndeterminateStyle(true)
+                    .show();
+        }
+
+        if (!loadingMarkersDialog.isShowing())
+            loadingMarkersDialog.show();
+    }
+
+    private void hideLoadingMarkers() {
+
+        if (loadingMarkersDialog != null)
+            if (loadingMarkersDialog.isShowing())
+                loadingMarkersDialog.hide();
+
+        loadingMarkersDialog = null;
+    }
+
+    private void onLoadingMarkersError() {
+
+        coordinatorLayout.postDelayed(() -> {
+
+            Snackbar snackbar = Snackbar.make(coordinatorLayout, getString(R.string.field_loading_wells_error), Snackbar.LENGTH_INDEFINITE);
+            snackbar.setAction(R.string.field_try_again, v -> {
+
+                pinWellsOnMap();
+            });
+            snackbar.show();
+        }, 500);
     }
 }

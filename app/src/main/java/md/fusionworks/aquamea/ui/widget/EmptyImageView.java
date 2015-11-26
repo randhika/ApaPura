@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import md.fusionworks.aquamea.R;
@@ -36,6 +38,11 @@ public class EmptyImageView extends FrameLayout {
         emptyLayout.setVisibility(GONE);
         imageView.setImageBitmap(bitmap);
         this.bitmapReference = bitmap;
+    }
+
+    public void setServerImage(Context context, String imageUrl) {
+
+        Picasso.with(context).load(imageUrl).into(imageView);
     }
 
     @Override

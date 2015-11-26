@@ -1,5 +1,7 @@
 package md.fusionworks.aquamea.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -7,23 +9,37 @@ import java.io.Serializable;
  */
 public class Well implements Serializable {
 
-    private String photoPath;
+    @SerializedName("photo")
+    private String serverPhoto;
+    private String localPhoto;
+    @SerializedName("appearance")
     private int appearanceRating;
+    @SerializedName("taste")
     private int tasteRating;
+    @SerializedName("smell")
     private int smellRating;
     private String note;
     private double latitude;
     private double longitude;
 
+
     public Well() {
     }
 
-    public String getPhotoPath() {
-        return photoPath;
+    public String getServerPhoto() {
+        return serverPhoto;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setServerPhoto(String serverPhoto) {
+        this.serverPhoto = serverPhoto;
+    }
+
+    public String getLocalPhoto() {
+        return localPhoto;
+    }
+
+    public void setLocalPhoto(String localPhoto) {
+        this.localPhoto = localPhoto;
     }
 
     public int getAppearanceRating() {

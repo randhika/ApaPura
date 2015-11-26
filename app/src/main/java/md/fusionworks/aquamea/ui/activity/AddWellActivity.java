@@ -38,6 +38,7 @@ import butterknife.ButterKnife;
 import io.realm.Realm;
 import md.fusionworks.aquamea.R;
 import md.fusionworks.aquamea.model.realm.Well;
+import md.fusionworks.aquamea.repository.AquameaRepository;
 import md.fusionworks.aquamea.ui.widget.EmptyImageView;
 import md.fusionworks.aquamea.util.BitmapUtils;
 import md.fusionworks.aquamea.util.Constants;
@@ -138,18 +139,20 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             final double longitude = Double.valueOf(longitudeField.getText().toString());
 
             final Well wellRealm = new Well();
-            wellRealm.setPhotoPath(photoPath);
+            wellRealm.setLocalPhoto(photoPath);
             wellRealm.setAppearanceRating(appearanceRating);
             wellRealm.setSmellRating(smellRating);
             wellRealm.setTasteRating(tasteRating);
             wellRealm.setNote(note);
             wellRealm.setLatitude(latitude);
             wellRealm.setLongitude(longitude);
+            wellRealm.setSync(false);
 
             Realm realm = Realm.getInstance(this);
             realm.executeTransaction(realm1 -> realm1.copyToRealm(wellRealm));
 
             md.fusionworks.aquamea.model.Well well = Convertor.wellRealmObjectToSimple(wellRealm);
+            new AquameaRepository().uploadWell(well);
 
             Intent intent = new Intent();
             intent.putExtra(Constants.EXTRA_PARAM_WELL, well);

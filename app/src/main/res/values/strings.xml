@@ -81,4 +81,7 @@
     <string name="field_contact_email">info@fusionworks.md</string>
     <string name="field_made_in_moldova">Product created in Moldova</string>
     <string name="field_click_on_window_to_show_details">Click on window to see more details!</string>
+    <string name="loading_markers...">Loading wells...</string>
+    <string name="field_try_again">Try again</string>
+    <string name="field_loading_wells_error">Can\'t loading wells</string>
 </resources>
