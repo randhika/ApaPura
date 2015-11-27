@@ -2,11 +2,13 @@ package md.fusionworks.aquamea.api;
 
 import com.squareup.okhttp.RequestBody;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import md.fusionworks.aquamea.model.Well;
 import retrofit.Call;
-import retrofit.http.Field;
+import retrofit.http.Part;
 import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Multipart;
@@ -27,7 +29,7 @@ public interface AquaMeaClient {
     @GET(MARKERS)
     Call<List<Well>> getRates(@Query("token") String token);
 
-    @FormUrlEncoded
+    @Multipart
     @POST(ADD_MARKER)
-    Call<String> uploadWell(@Query("token") String token, @Field("appearance") int appearance, @Field("taste") int taste, @Field("smell") int smell, @Field("note") String note, @Field("latitude") double latitude, @Field("longitude") double longitude);
+    Call<JSONObject> uploadWell(@Query("token") String token, @Part("appearance") RequestBody appearance, @Part("taste") RequestBody taste, @Part("smell") RequestBody smell, @Part("note") RequestBody note, @Part("latitude") RequestBody latitude, @Part("longitude") RequestBody longitude, @Part("photo\"; filename=\"image.png\" ") RequestBody photo);
 }

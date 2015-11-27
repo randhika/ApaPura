@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.RequestBody;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.util.List;
 
@@ -61,20 +63,27 @@ public class AquameaRepository {
             requestBody =
                     RequestBody.create(MediaType.parse("multipart/form-data"), file);
         }
+        RequestBody appearance = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(well.getAppearanceRating()));
+        RequestBody taste = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(well.getTasteRating()));
+        RequestBody smell = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(well.getSmellRating()));
+        RequestBody note = RequestBody.create(MediaType.parse("text/plain"), well.getNote());
+        RequestBody latitude = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(well.getLatitude()));
+        RequestBody longitude = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(well.getLongitude()));
 
-        Call<String> call = aquaMeaClient.uploadWell(
+        Call<JSONObject> call = aquaMeaClient.uploadWell(
                 "g64SD6Gr8g4s.e54HHJChDS864dfgd"
-                , well.getAppearanceRating()
-                , well.getTasteRating()
-                , well.getSmellRating()
-                , well.getNote()
-                , well.getLatitude()
-                , well.getLongitude()
+                , appearance
+                , taste
+                , smell
+                , note
+                , latitude
+                , longitude
+                , requestBody
         );
 
-        call.enqueue(new retrofit.Callback<String>() {
+        call.enqueue(new retrofit.Callback<JSONObject>() {
             @Override
-            public void onResponse(Response<String> response, Retrofit retrofit) {
+            public void onResponse(Response<JSONObject> response, Retrofit retrofit) {
 
             }
 
