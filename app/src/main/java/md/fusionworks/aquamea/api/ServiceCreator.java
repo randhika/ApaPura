@@ -15,14 +15,13 @@ public class ServiceCreator {
 
     private static OkHttpClient httpClient = new OkHttpClient();
 
-    public static <S> S createService(Class<S> serviceClass, String baseUrl, final String authToken) {
+    public static <S> S createService(Class<S> serviceClass, String baseUrl) {
 
         httpClient.interceptors().add(chain -> {
             Request original = chain.request();
 
             Request request = original.newBuilder()
                     .header("Accept", "application/json")
-                    .header("authorization", authToken)
                     .build();
 
             return chain.proceed(request);

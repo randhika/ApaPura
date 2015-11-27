@@ -32,7 +32,6 @@ import icepick.Icepick;
 import icepick.State;
 import io.realm.RealmResults;
 import md.fusionworks.aquamea.R;
-import md.fusionworks.aquamea.api.AquaMeaClient;
 import md.fusionworks.aquamea.api.Callback;
 import md.fusionworks.aquamea.helper.MapHelper;
 import md.fusionworks.aquamea.model.realm.Well;
@@ -64,6 +63,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     private Location myLastLocation;
     private Map<Marker, md.fusionworks.aquamea.model.Well> wellDetailsMap;
     private boolean isActivityResult;
+    private AquameaRepository aquameaRepository;
 
     private MaterialDialog loadingMarkersDialog;
 
@@ -76,6 +76,8 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        aquameaRepository = new AquameaRepository();
 
         ButterKnife.bind(this);
         setUpMapIfNeeded();
@@ -159,7 +161,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
         map.clear();
 
-        new AquameaRepository().getMarkers(new Callback<List<md.fusionworks.aquamea.model.Well>>() {
+        aquameaRepository.getWells(new Callback<List<md.fusionworks.aquamea.model.Well>>() {
             @Override
             public void onSuccess(List<md.fusionworks.aquamea.model.Well> response) {
 
@@ -172,7 +174,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
                     marker = mapHelper.createMarker(well.getLatitude(), well.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
                     wellDetailsMap.put(marker, well);
 
-                    RealmResults<Well> wellRealms = WellProvider.newInstance(MapActivity.this).getAll();
+                    RealmResults<Well> wellRealms = WellProvider.newInstance(MapActivity.this).getNotSyncWells();
                     for (Well wellRealm : wellRealms) {
 
                         rating = Utils.calculateWaterRating(wellRealm.getAppearanceRating(), wellRealm.getTasteRating(), wellRealm.getSmellRating());
@@ -308,7 +310,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         marker.showInfoWindow();
 
         final Handler handler = new Handler();
-        handler.postDelayed(() -> marker.showInfoWindow(), 200);
+        handler.postDelayed(() -> marker.showInfoWindow(), 500);
         return true;
     }
 
@@ -363,10 +365,9 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
                 emptyImageView.setImageBitmap(BitmapUtils.scaleToActualAspectRatio(emptyImageView, localPhoto));
             } else if (!TextUtils.isEmpty(serverPhoto)) {
 
-                String photoUrl = "http://192.168.88.21/photo/" + serverPhoto;
+                String photoUrl = Constants.SERVER_URL + "/photo/" + serverPhoto;
                 emptyImageView.setServerImage(MapActivity.this, photoUrl);
-            } else
-                emptyImageView.removeImage();
+            }
 
             return view;
         }

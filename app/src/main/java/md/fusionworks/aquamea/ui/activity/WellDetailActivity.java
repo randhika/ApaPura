@@ -92,7 +92,7 @@ public class WellDetailActivity extends AppCompatActivity {
                 }
             } else if (!TextUtils.isEmpty(serverPhoto)) {
 
-                String photoUrl = "http://192.168.88.21/photo/" + serverPhoto;
+                String photoUrl = Constants.SERVER_URL + "/photo/" + serverPhoto;
                 emptyImageView.setServerImage(WellDetailActivity.this, photoUrl);
             }
 

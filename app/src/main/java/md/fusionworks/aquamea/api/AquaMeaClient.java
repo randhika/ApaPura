@@ -7,9 +7,8 @@ import org.json.JSONObject;
 import java.util.List;
 
 import md.fusionworks.aquamea.model.Well;
+import md.fusionworks.aquamea.util.Constants;
 import retrofit.Call;
-import retrofit.http.Part;
-import retrofit.http.FormUrlEncoded;
 import retrofit.http.GET;
 import retrofit.http.Multipart;
 import retrofit.http.POST;
@@ -21,7 +20,7 @@ import retrofit.http.Query;
  */
 public interface AquaMeaClient {
 
-    String BASE_URL = "http://192.168.88.21/en/api/";
+    String BASE_URL = Constants.SERVER_URL + "/en/api/";
 
     String MARKERS = "getMarkers";
     String ADD_MARKER = "addMarker";

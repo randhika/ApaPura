@@ -23,7 +23,7 @@ public class WellProvider {
         this.realm = Realm.getInstance(context);
     }
 
-    public RealmResults<Well> getAll() {
+    public RealmResults<Well> getNotSyncWells() {
 
         return realm.where(Well.class).equalTo("sync", false).findAll();
     }

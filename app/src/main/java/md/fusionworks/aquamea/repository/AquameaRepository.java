@@ -27,10 +27,10 @@ public class AquameaRepository {
 
     public AquameaRepository() {
 
-        aquaMeaClient = ServiceCreator.createService(AquaMeaClient.class, AquaMeaClient.BASE_URL, "g64SD6Gr8g4s.e54HHJChDS864dfgd");
+        aquaMeaClient = ServiceCreator.createService(AquaMeaClient.class, AquaMeaClient.BASE_URL);
     }
 
-    public void getMarkers(Callback<List<Well>> callback) {
+    public void getWells(Callback<List<Well>> callback) {
 
         Call<List<Well>> call = aquaMeaClient.getRates("g64SD6Gr8g4s.e54HHJChDS864dfgd");
         call.enqueue(new retrofit.Callback<List<Well>>() {
@@ -84,6 +84,7 @@ public class AquameaRepository {
         call.enqueue(new retrofit.Callback<JSONObject>() {
             @Override
             public void onResponse(Response<JSONObject> response, Retrofit retrofit) {
+
 
             }
 

@@ -38,4 +38,7 @@ public class Constants {
     public static final String CAMERA_DIR = "/DCIM/";
     public static final String PHOTO_ALBUM_NAME = "AquaMeaPhotos";
     public static final int LAUNCH_SLEEP_TIME = 1000;
+
+
+    public static final String SERVER_URL = "http://192.168.88.21";
 }
