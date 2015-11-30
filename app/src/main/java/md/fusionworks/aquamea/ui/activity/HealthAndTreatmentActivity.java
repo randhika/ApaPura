@@ -2,8 +2,6 @@ package md.fusionworks.aquamea.ui.activity;
 
 import android.os.Bundle;
 import android.text.Html;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import butterknife.Bind;

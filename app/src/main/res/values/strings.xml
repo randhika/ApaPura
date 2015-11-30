@@ -84,4 +84,5 @@
     <string name="loading_markers...">Loading wells...</string>
     <string name="field_try_again">Try again</string>
     <string name="field_loading_wells_error">Can\'t loading wells</string>
+    <string name="validation_error_enter_property">Set at least one property</string>
 </resources>

@@ -84,4 +84,5 @@
     <string name="loading_markers...">Se descarcă fîntînile...</string>
     <string name="field_try_again">Încearcă din nou</string>
     <string name="field_loading_wells_error">Imposibil de descărcat fîntînile</string>
+    <string name="validation_error_enter_property">Setați măcar o proprietate</string>
 </resources>

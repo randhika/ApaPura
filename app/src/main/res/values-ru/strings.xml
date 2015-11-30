@@ -85,4 +85,5 @@
     <string name="loading_markers...">Идёт загрузка колодцев...</string>
     <string name="field_try_again">Попробовать снова</string>
     <string name="field_loading_wells_error">Невозможно загрузить колодцы</string>
+    <string name="validation_error_enter_property">Укажите хотя бы одно свойство</string>
 </resources>

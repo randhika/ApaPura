@@ -35,14 +35,11 @@ import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import io.realm.Realm;
 import md.fusionworks.aquamea.R;
-import md.fusionworks.aquamea.model.realm.Well;
 import md.fusionworks.aquamea.repository.AquameaRepository;
 import md.fusionworks.aquamea.ui.widget.EmptyImageView;
 import md.fusionworks.aquamea.util.BitmapUtils;
 import md.fusionworks.aquamea.util.Constants;
-import md.fusionworks.aquamea.util.Convertor;
 import md.fusionworks.aquamea.util.DialogUtils;
 
 public class AddWellActivity extends BaseLocationActivity implements View.OnClickListener {
@@ -168,8 +165,11 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
 
             isValid = false;
             DialogUtils.showAlertDialog(this, getString(R.string.dialog_title_validation_error), getString(R.string.validation_error_message_gps_coordinates_required));
-        }
+        } else if ((appearanceRatingBar.getRating() + tasteRatingBar.getRating() + smellRatingBar.getRating()) == 0) {
 
+            isValid = false;
+            DialogUtils.showAlertDialog(this, getString(R.string.dialog_title_validation_error), getString(R.string.validation_error_enter_property));
+        }
         return isValid;
     }
 

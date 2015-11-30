@@ -18,7 +18,6 @@ import md.fusionworks.aquamea.api.Callback;
 import md.fusionworks.aquamea.api.ServiceCreator;
 import md.fusionworks.aquamea.model.Well;
 import md.fusionworks.aquamea.provider.WellProvider;
-import md.fusionworks.aquamea.util.Convertor;
 import retrofit.Call;
 import retrofit.Response;
 import retrofit.Retrofit;
