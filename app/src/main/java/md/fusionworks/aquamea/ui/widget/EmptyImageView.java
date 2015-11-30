@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.Bind;
@@ -42,8 +46,10 @@ public class EmptyImageView extends FrameLayout {
 
     public void setServerImage(Context context, String imageUrl) {
 
-        Picasso.with(context).load(imageUrl).into(imageView);
+        // Picasso.with(context).load(imageUrl).into(imageView);
+        Glide.with(context).load(imageUrl).asBitmap().into(imageView);
     }
+
 
     @Override
     protected void onDetachedFromWindow() {
@@ -72,5 +78,15 @@ public class EmptyImageView extends FrameLayout {
             bitmapReference.recycle();
             bitmapReference = null;
         }
+    }
+
+    public ImageView getImageView() {
+
+        return imageView;
+    }
+
+    public interface OnImageLoaded {
+
+        void onImageLoaded();
     }
 }

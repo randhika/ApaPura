@@ -78,10 +78,14 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
     private String currentPhotoPath;
     private boolean isActivityResult;
 
+    private AquameaRepository aquameaRepository;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_well);
+
+        aquameaRepository = new AquameaRepository();
 
         ButterKnife.bind(this);
 
@@ -138,21 +142,16 @@ public class AddWellActivity extends BaseLocationActivity implements View.OnClic
             final double latitude = Double.valueOf(latitudeField.getText().toString());
             final double longitude = Double.valueOf(longitudeField.getText().toString());
 
-            final Well wellRealm = new Well();
-            wellRealm.setLocalPhoto(photoPath);
-            wellRealm.setAppearanceRating(appearanceRating);
-            wellRealm.setSmellRating(smellRating);
-            wellRealm.setTasteRating(tasteRating);
-            wellRealm.setNote(note);
-            wellRealm.setLatitude(latitude);
-            wellRealm.setLongitude(longitude);
-            wellRealm.setSync(false);
+            md.fusionworks.aquamea.model.Well well = new md.fusionworks.aquamea.model.Well();
+            well.setLocalPhoto(photoPath);
+            well.setAppearanceRating(appearanceRating);
+            well.setSmellRating(smellRating);
+            well.setTasteRating(tasteRating);
+            well.setNote(note);
+            well.setLatitude(latitude);
+            well.setLongitude(longitude);
 
-            Realm realm = Realm.getInstance(this);
-            realm.executeTransaction(realm1 -> realm1.copyToRealm(wellRealm));
-
-            md.fusionworks.aquamea.model.Well well = Convertor.wellRealmObjectToSimple(wellRealm);
-            new AquameaRepository().uploadWell(well);
+            aquameaRepository.syncWell(this, well);
 
             Intent intent = new Intent();
             intent.putExtra(Constants.EXTRA_PARAM_WELL, well);

@@ -1,5 +1,6 @@
 package md.fusionworks.aquamea.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -92,7 +93,13 @@ public class WellDetailActivity extends AppCompatActivity {
                 }
             } else if (!TextUtils.isEmpty(serverPhoto)) {
 
-                String photoUrl = Constants.SERVER_URL + "/photo/" + serverPhoto;
+                int deviceWidth = getWindowManager().getDefaultDisplay()
+                        .getWidth();
+                int deviceHeight = getWindowManager().getDefaultDisplay()
+                        .getHeight();
+
+                String photoUrl = Constants.SERVER_URL + "/photo/" + deviceWidth + "x" + deviceHeight + "/" + serverPhoto;
+
                 emptyImageView.setServerImage(WellDetailActivity.this, photoUrl);
             }
 

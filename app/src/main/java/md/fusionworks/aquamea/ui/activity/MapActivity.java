@@ -2,6 +2,7 @@ package md.fusionworks.aquamea.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
@@ -71,6 +75,9 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
     boolean mapLegendShowedState = false;
     @State
     boolean mapTypeSatelliteSwitcerCheckedState = false;
+
+
+    private Marker marker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -161,6 +168,8 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
         map.clear();
 
+        aquameaRepository.syncWells(this);
+
         aquameaRepository.getWells(new Callback<List<md.fusionworks.aquamea.model.Well>>() {
             @Override
             public void onSuccess(List<md.fusionworks.aquamea.model.Well> response) {
@@ -177,9 +186,11 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
                     RealmResults<Well> wellRealms = WellProvider.newInstance(MapActivity.this).getNotSyncWells();
                     for (Well wellRealm : wellRealms) {
 
+                        md.fusionworks.aquamea.model.Well notSyncWell = Convertor.wellRealmObjectToSimple(wellRealm);
+
                         rating = Utils.calculateWaterRating(wellRealm.getAppearanceRating(), wellRealm.getTasteRating(), wellRealm.getSmellRating());
                         marker = mapHelper.createMarker(wellRealm.getLatitude(), wellRealm.getLongitude(), UIUtils.getMarkerColorByWaterRating(rating));
-                        wellDetailsMap.put(marker, Convertor.wellRealmObjectToSimple(wellRealm));
+                        wellDetailsMap.put(marker, notSyncWell);
                     }
 
                     hideLoadingMarkers();
@@ -310,7 +321,7 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
         marker.showInfoWindow();
 
         final Handler handler = new Handler();
-        handler.postDelayed(() -> marker.showInfoWindow(), 500);
+        //   handler.postDelayed(() -> marker.showInfoWindow(), 1000);
         return true;
     }
 
@@ -337,11 +348,14 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
 
         @Override
         public View getInfoWindow(Marker marker) {
+
             return null;
         }
 
         @Override
         public View getInfoContents(Marker marker) {
+
+            MapActivity.this.marker = marker;
 
             TextView totalRatingField = (TextView) view.findViewById(R.id.totalRatingField);
             TextView appearanceRatingField = (TextView) view.findViewById(R.id.appearanceRatingField);
@@ -365,8 +379,21 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
                 emptyImageView.setImageBitmap(BitmapUtils.scaleToActualAspectRatio(emptyImageView, localPhoto));
             } else if (!TextUtils.isEmpty(serverPhoto)) {
 
-                String photoUrl = Constants.SERVER_URL + "/photo/" + serverPhoto;
-                emptyImageView.setServerImage(MapActivity.this, photoUrl);
+                String photoUrl = Constants.SERVER_URL + "/photo/250x250/" + serverPhoto;
+
+                Glide.with(MapActivity.this).load(photoUrl).asBitmap().listener(new RequestListener<String, Bitmap>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<Bitmap> target, boolean isFirstResource) {
+                        e.printStackTrace();
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Bitmap resource, String model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        if (!isFromMemoryCache) marker.showInfoWindow();
+                        return false;
+                    }
+                }).into(emptyImageView.getImageView());
             }
 
             return view;
