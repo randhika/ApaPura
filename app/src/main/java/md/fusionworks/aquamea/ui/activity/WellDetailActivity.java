@@ -101,7 +101,8 @@ public class WellDetailActivity extends AppCompatActivity {
                 String photoUrl = Constants.SERVER_URL + "/photo/" + deviceWidth + "x" + deviceHeight + "/" + serverPhoto;
 
                 emptyImageView.setServerImage(WellDetailActivity.this, photoUrl);
-            }
+            } else
+                emptyImageView.removeImage();
 
             appearanceRatingBar.setRating(well.getAppearanceRating());
             tasteRatingBar.setRating(well.getTasteRating());

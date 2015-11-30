@@ -394,7 +394,8 @@ public class MapActivity extends BaseNavigationDrawerActivity implements GoogleA
                         return false;
                     }
                 }).into(emptyImageView.getImageView());
-            }
+            } else
+                emptyImageView.removeImage();
 
             return view;
         }
