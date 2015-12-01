@@ -33,7 +33,7 @@
             android:value="@integer/google_play_services_version"/>
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyAlDBzIseE_5MPuvHu9ik8s7eBZgeRkm2c"/>
+            android:value="AIzaSyCiN9sOqOrNRBRvE8ISzszopQ0xemg8TiM"/>
 
         <activity
             android:name="md.fusionworks.aquamea.ui.activity.MapActivity"

@@ -40,5 +40,5 @@ public class Constants {
     public static final int LAUNCH_SLEEP_TIME = 1000;
 
 
-    public static final String SERVER_URL ="http://192.168.88.103";
+    public static final String SERVER_URL = "http://aquamea.co";
 }
